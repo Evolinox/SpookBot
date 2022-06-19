@@ -17,7 +17,7 @@ public class main {
     public static void main(String[] args) throws LoginException {
 
         //SpookBot Token, soll später in eine Json
-        String token = "NzU4NTgxNTg1NzY2MjUyNTY0.GrpLue.LACfMAZAiY1kVygjfY7EGpqfA_jr7m8sPcrH1U";
+        String token = "Bot Token Here";
 
         JDABuilder bot = JDABuilder.createDefault(token);
 
