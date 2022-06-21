@@ -24,11 +24,11 @@ import java.io.File;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
 
 public class main {
 
     private static JDA spookBot = null;
+    public static SpookOS spookOS = null;
 
     public static void main(String[] args) throws LoginException, IOException {
 
@@ -48,8 +48,7 @@ public class main {
             System.out.println("nope");
         }
 
-        JFrame frame = new SpookOS("SpookOS", 500, 400);
-        frame.setVisible(true);
+        spookOS = new SpookOS("SpookOS", 500, 400);
 
         startSpookBot();
 
@@ -57,11 +56,14 @@ public class main {
 
     public static void setActivity(String activity) {
         spookBot.getPresence().setActivity(Activity.playing(activity));
+        spookOS.writeToConsole("Bot Activity set to " + activity);
     }
 
     public static void stopSpookBot() throws LoginException {
 
         spookBot = null;
+        spookOS.writeToConsole("SpookBot exited");
+
         startSpookBot();
 
     }
@@ -81,13 +83,13 @@ public class main {
         try {
             documentBuilder = documentBuilderFactory.newDocumentBuilder();
         } catch (Exception d) {
-            d.printStackTrace();
+            spookOS.writeToConsole(d.getMessage());
         }
 
         try {
             document = documentBuilder.parse(file);
         } catch (Exception e) {
-            e.printStackTrace();
+            spookOS.writeToConsole(e.getMessage());
         }
 
         token = document.getElementsByTagName("botToken").item(0).getTextContent();
@@ -106,6 +108,7 @@ public class main {
         JDA SpookBot = bot.build();
 
         spookBot = SpookBot;
+        spookOS.writeToConsole("SpookBot is running!");
 
     }
 

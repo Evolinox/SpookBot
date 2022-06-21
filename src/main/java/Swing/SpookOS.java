@@ -38,6 +38,8 @@ public class SpookOS extends JFrame {
 
         addMenuBar(this);
 
+        this.setVisible(true);
+
         consoleOutput.setText(" " + getTime() + " - " + "SpookOS initiated.");
 
     }

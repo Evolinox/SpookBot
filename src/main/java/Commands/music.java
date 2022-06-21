@@ -45,6 +45,7 @@ public class music extends ListenerAdapter {
             if (!event.getMember().getVoiceState().inAudioChannel()) {
 
                 event.getTextChannel().sendMessage("You need to be in a voice channel for this command to work!").queue();
+                main.spookOS.writeToConsole(event.getMember().getEffectiveName() + " tried to play something, but was not connected to a Voicechat!");
 
             }
 
@@ -54,6 +55,7 @@ public class music extends ListenerAdapter {
                 final VoiceChannel memberChannel = (VoiceChannel) event.getMember().getVoiceState().getChannel();
 
                 audioManager.openAudioConnection(memberChannel);
+                main.spookOS.writeToConsole("Connecting to " + memberChannel);
 
             }
 
@@ -65,6 +67,8 @@ public class music extends ListenerAdapter {
 
             player.getINSTANCE().loadAndPlay(event.getTextChannel(), link);
 
+            main.spookOS.writeToConsole("Playing " + link);
+
         }
 
         if (event.getMessage().getContentStripped().startsWith(currentPrefix + "stop")) {
@@ -74,6 +78,9 @@ public class music extends ListenerAdapter {
                 final AudioManager audioManager = event.getGuild().getAudioManager();
 
                 audioManager.closeAudioConnection();
+
+                main.spookOS.writeToConsole(event.getMember().getNickname() + " has stopped Audio Playback");
+                main.spookOS.writeToConsole("Disconnecting from Voicechannel...");
 
             }
 

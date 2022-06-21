@@ -67,6 +67,8 @@ public class rules extends ListenerAdapter {
                 TextChannel rulesChannel = event.getGuild().getTextChannelsByName("rules",true).get(0);
                 rulesChannel.sendMessageEmbeds(rules.build()).setActionRow(btnAccept, btnRefuse).queue();
 
+                main.spookOS.writeToConsole(event.getMember().getEffectiveName() + " requested a embedded rules message in: " + rulesChannel);
+
             }
 
         }
@@ -82,11 +84,15 @@ public class rules extends ListenerAdapter {
             event.getGuild().addRoleToMember(event.getMember(), memberRole).queue();
             event.reply("You have now access to our Server!").setEphemeral(true).queue();
 
+            main.spookOS.writeToConsole(event.getMember().getEffectiveName() + " has accepted the rules and got the role: " + memberRole);
+
         }
 
         if (event.getButton().getId().equals("refuse")) {
 
             event.reply("Sadly, you did not accept our rules. Therefor we won't grant you access to our Server! If you changed your mind, we will always welcome you to our Server! :)").setEphemeral(true).queue();
+
+            main.spookOS.writeToConsole(event.getMember().getEffectiveName() + " did not accept the rules!");
 
         }
 
