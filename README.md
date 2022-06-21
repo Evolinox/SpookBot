@@ -9,14 +9,15 @@ Discord Bot built with JDA 5 ([Java Discord API](https://github.com/DV8FromTheWo
 Basic Information will be in this README. For more specific questions or discussions, join our [Discord Server](https://discord.gg/4a82kzPX3j) 
 
 ## Features
-Stream Audio via the "s!play [url]" command  
-Inspect Discord User Profiles with "s!inspect [mentioned user]"
+Working Graphical User Interface for easy Setup  
+Stream Audio from various Sources  
+Inspect Discord User Profiles  
+Create a rules embed for new Members
 
 
 ## Setup
-Command Prefix is currently "s!"  
-In order to work, this Bot needs a Token from the Developers Website of Discord. At the moment, the Token must be manually placed in data.json file.
-
+First Start might be a bit buggy. Go to "Edit -> Set Token" and paste your Bot Token there, then go to "Edit -> Set Activity" and paste your Bot Activity in there. Lastly, go to "Edit -> Set Command Prefix" and set something like "s!" as your Bots Command Prefix.
+Now restart the Programm and the Bot should all be setup.
 
 ## Roadmap
 #### Short term goals
