@@ -1,6 +1,5 @@
 package Commands;
 
-import Swing.SpookOS;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Member;
@@ -8,14 +7,40 @@ import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.components.buttons.Button;
+import org.w3c.dom.Document;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.File;
 
 public class inspector extends ListenerAdapter {
 
     public void onMessageReceived (MessageReceivedEvent event) {
 
+        File file = new File("src/main/java/SpookBot/app.xml");
+
+        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder documentBuilder = null;
+        Document document = null;
+
+        try {
+            documentBuilder = documentBuilderFactory.newDocumentBuilder();
+        } catch (Exception d) {
+            d.printStackTrace();
+        }
+
+        try {
+            document = documentBuilder.parse(file);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        String currentPrefix = document.getElementsByTagName("commandPrefix").item(0).getTextContent();
+
         if (event.isFromGuild()) {
 
-            if (event.getMessage().getContentStripped().startsWith("s!inspect")) {
+            if (event.getMessage().getContentStripped().startsWith(currentPrefix + "inspect")) {
 
                 Member member = event.getMessage().getMentions().getMembers().get(0);
 

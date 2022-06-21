@@ -12,7 +12,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
 import javax.xml.parsers.*;
 import javax.xml.transform.*;
@@ -78,13 +77,23 @@ public class SpookOS extends JFrame {
 
         var botTokenMenuItem = new JMenuItem("Set Token");
         botTokenMenuItem.setToolTipText("Change your Bot Token");
-        botTokenMenuItem.addActionListener((event) -> writeToConsole("Request for Bottokenpage"));
+        botTokenMenuItem.addActionListener((event) -> writeToConsole("Changing Bot Token"));
+
+        var botActivityMenuItem = new JMenuItem("Set Activity");
+        botActivityMenuItem.setToolTipText("Change your Bot Activity");
+        botActivityMenuItem.addActionListener((event) -> writeToConsole("Changing Bot Activity"));
+
+        var botCommandPrefixMenuItem = new JMenuItem("Set Command Prefix");
+        botCommandPrefixMenuItem.setToolTipText("Change your Command Prefix");
+        botCommandPrefixMenuItem.addActionListener((event) -> writeToConsole("Changing Command Prefix"));
 
         fileMenu.add(infoMenuItem);
         fileMenu.add(githubMenuItem);
         fileMenu.add(exitMenuItem);
 
         editMenu.add(botTokenMenuItem);
+        editMenu.add(botActivityMenuItem);
+        editMenu.add(botCommandPrefixMenuItem);
 
         menuBar.add(fileMenu);
         menuBar.add(editMenu);
@@ -96,6 +105,24 @@ public class SpookOS extends JFrame {
             public void actionPerformed(ActionEvent e) {
 
                 setupBotToken(frame);
+
+            }
+        });
+
+        botActivityMenuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                setupBotActivity(frame);
+
+            }
+        });
+
+        botCommandPrefixMenuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                setupCommandPrefix(frame);
 
             }
         });
@@ -157,7 +184,7 @@ public class SpookOS extends JFrame {
         String currentToken = document.getElementsByTagName("botToken").item(0).getTextContent();
 
         //Create the Dialog
-        String botToken = (String) JOptionPane.showInputDialog(frame, "Please paste your Bot Token from Discord Developers Website", "Setup", JOptionPane.PLAIN_MESSAGE, null, null, null);
+        String botToken = (String) JOptionPane.showInputDialog(frame, "Please paste your Bot Token from Discord Developers Website", "Setup", JOptionPane.PLAIN_MESSAGE, null, null, currentToken);
 
         if (botToken != null && botToken != currentToken) {
 
@@ -181,6 +208,96 @@ public class SpookOS extends JFrame {
             }
 
         }
+    }
+
+    private void setupBotActivity(JFrame frame) {
+
+        File file = new File("src/main/java/SpookBot/app.xml");
+
+        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder documentBuilder = null;
+        Document document = null;
+
+        try {
+            documentBuilder = documentBuilderFactory.newDocumentBuilder();
+        } catch (Exception d) {
+            d.printStackTrace();
+        }
+
+        try {
+            document = documentBuilder.parse(file);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        String currentActivity = document.getElementsByTagName("botActivity").item(0).getTextContent();
+
+        //Create the Dialog
+        String botActivity = (String) JOptionPane.showInputDialog(frame, "Update your Bot's Activity", "Setup", JOptionPane.PLAIN_MESSAGE, null, null, currentActivity);
+
+        if (botActivity != null && botActivity != currentActivity) {
+
+            document.getElementsByTagName("botActivity").item(0).setTextContent(botActivity);
+
+            try {
+                Transformer transformer = TransformerFactory.newInstance().newTransformer();
+                //transformer.setOutputProperties(OutputKeys.INDENT, "yes");
+
+                transformer.transform(new DOMSource(document), new StreamResult(new FileOutputStream(file)));
+            } catch (TransformerException te) {
+                writeToConsole(te.getMessage());
+            } catch (IOException ioe) {
+                writeToConsole(ioe.getMessage());
+            }
+
+            main.setActivity(botActivity);
+
+        }
+
+    }
+
+    private void setupCommandPrefix(JFrame frame) {
+
+        File file = new File("src/main/java/SpookBot/app.xml");
+
+        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder documentBuilder = null;
+        Document document = null;
+
+        try {
+            documentBuilder = documentBuilderFactory.newDocumentBuilder();
+        } catch (Exception d) {
+            d.printStackTrace();
+        }
+
+        try {
+            document = documentBuilder.parse(file);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        String currentPrefix = document.getElementsByTagName("commandPrefix").item(0).getTextContent();
+
+        //Create the Dialog
+        String commandPrefix = (String) JOptionPane.showInputDialog(frame, "Update your Command Prefix", "Setup", JOptionPane.PLAIN_MESSAGE, null, null, currentPrefix);
+
+        if (commandPrefix != null && commandPrefix != currentPrefix) {
+
+            document.getElementsByTagName("commandPrefix").item(0).setTextContent(commandPrefix);
+
+            try {
+                Transformer transformer = TransformerFactory.newInstance().newTransformer();
+                //transformer.setOutputProperties(OutputKeys.INDENT, "yes");
+
+                transformer.transform(new DOMSource(document), new StreamResult(new FileOutputStream(file)));
+            } catch (TransformerException te) {
+                writeToConsole(te.getMessage());
+            } catch (IOException ioe) {
+                writeToConsole(ioe.getMessage());
+            }
+
+        }
+
     }
 
 }

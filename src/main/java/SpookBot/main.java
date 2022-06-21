@@ -28,19 +28,25 @@ import java.nio.file.Paths;
 
 public class main {
 
+    private static JDA spookBot = null;
+
     public static void main(String[] args) throws LoginException {
 
-        JFrame frame = new SpookOS("SpookOS", 600, 500);
+        JFrame frame = new SpookOS("SpookOS", 500, 400);
         frame.setVisible(true);
 
         startSpookBot();
 
     }
 
+    public static void setActivity(String activity) {
+        spookBot.getPresence().setActivity(Activity.playing(activity));
+    }
+
     public static void startSpookBot() throws LoginException {
 
         String token = null;
-        String activity = "SpookOS";
+        String activity = null;
 
         File file = new File("src/main/java/SpookBot/app.xml");
 
@@ -61,9 +67,9 @@ public class main {
         }
 
         token = document.getElementsByTagName("botToken").item(0).getTextContent();
+        activity = document.getElementsByTagName("botActivity").item(0).getTextContent();
 
         JDABuilder bot = JDABuilder.createDefault(token);
-
         bot.setStatus(OnlineStatus.ONLINE);
         bot.setActivity(Activity.playing(activity));
         bot.enableCache(CacheFlag.VOICE_STATE);
@@ -75,6 +81,10 @@ public class main {
 
         JDA SpookBot = bot.build();
 
+        spookBot = SpookBot;
+
     }
+
+
 
 }

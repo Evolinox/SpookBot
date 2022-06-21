@@ -8,15 +8,39 @@ import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.components.buttons.Button;
+import org.w3c.dom.Document;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import java.awt.*;
+import java.io.File;
 
 public class rules extends ListenerAdapter {
 
     public void onMessageReceived (MessageReceivedEvent event) {
 
+        File file = new File("src/main/java/SpookBot/app.xml");
+
+        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder documentBuilder = null;
+        Document document = null;
+
+        try {
+            documentBuilder = documentBuilderFactory.newDocumentBuilder();
+        } catch (Exception d) {
+            d.printStackTrace();
+        }
+
+        try {
+            document = documentBuilder.parse(file);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        String currentPrefix = document.getElementsByTagName("commandPrefix").item(0).getTextContent();
+
         //Rules Message erstellen und in #rules senden
-        if (event.getMessage().getContentStripped().equals("s!setup rules")) {
+        if (event.getMessage().getContentStripped().equals(currentPrefix + "setup rules")) {
 
             if (event.getMember().getPermissions().contains(Permission.ADMINISTRATOR)) {
 

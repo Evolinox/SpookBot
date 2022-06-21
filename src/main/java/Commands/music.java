@@ -5,7 +5,11 @@ import net.dv8tion.jda.api.entities.VoiceChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.managers.*;
+import org.w3c.dom.Document;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import java.io.File;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -13,7 +17,27 @@ public class music extends ListenerAdapter {
 
     public void onMessageReceived (MessageReceivedEvent event) {
 
-        if (event.getMessage().getContentStripped().startsWith("s!play")) {
+        File file = new File("src/main/java/SpookBot/app.xml");
+
+        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder documentBuilder = null;
+        Document document = null;
+
+        try {
+            documentBuilder = documentBuilderFactory.newDocumentBuilder();
+        } catch (Exception d) {
+            d.printStackTrace();
+        }
+
+        try {
+            document = documentBuilder.parse(file);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        String currentPrefix = document.getElementsByTagName("commandPrefix").item(0).getTextContent();
+
+        if (event.getMessage().getContentStripped().startsWith(currentPrefix + "play")) {
 
             if (!event.getMember().getVoiceState().inAudioChannel()) {
 
@@ -40,7 +64,7 @@ public class music extends ListenerAdapter {
 
         }
 
-        if (event.getMessage().getContentStripped().startsWith("s!stop")) {
+        if (event.getMessage().getContentStripped().startsWith(currentPrefix + "stop")) {
 
             if (event.getGuild().getSelfMember().getVoiceState().inAudioChannel()) {
 
