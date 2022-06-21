@@ -16,8 +16,8 @@ Create a rules embed for new Members
 
 
 ## Setup
-First Start might be a bit buggy. Go to "Edit -> Set Token" and paste your Bot Token there, then go to "Edit -> Set Activity" and paste your Bot Activity in there. Lastly, go to "Edit -> Set Command Prefix" and set something like "s!" as your Bots Command Prefix.
-Now restart the Programm and the Bot should all be setup.
+First Start might be a bit buggy. Go to "Settings -> Set Token" and paste your Bot Token there, then go to "Settings -> Set Activity" and paste your Bot Activity in there. Lastly, go to "Settings -> Set Command Prefix" and set something like "s!" as your Bots Command Prefix.
+Now restart the Bot with "SpookBot -> Restart" and the Bot should all be setup.
 
 ## Roadmap
 #### Short term goals
