@@ -15,11 +15,21 @@ Inspect Discord User Profiles with "s!inspect [mentioned user]"
 
 ## Setup
 Command Prefix is currently "s!"  
-In order to work, this Bot needs a Token from the Developers Website of Discord.
+In order to work, this Bot needs a Token from the Developers Website of Discord. At the moment, the Token must be manually placed in data.json file.
 
 
 ## Roadmap
+#### Short term goals
+- Work on the Swing GUI for better usability
+- Automatically create the data.json
+- Setup Screen on first Startup
 
-- Rework the README.md with more explanations.
-- Add proper Kick, Timeout and Ban options.
-- Add Survey Function.
+#### Medium term goals
+- Expand the functionality of Audio Streaming
+- Implement Reddit Posts (If possible)
+- Implement GitHub Updates (If possible)
+- Implement custom Surveys for Communities
+- Implement Slash Commands
+
+#### Long term goals
+- Rework the Code for better readability
