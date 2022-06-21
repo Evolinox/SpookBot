@@ -1,19 +1,26 @@
 package Swing;
 
-import org.json.JSONObject;
-
+import javax.security.auth.login.LoginException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+
+import javax.xml.parsers.*;
+import javax.xml.transform.*;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+
+import SpookBot.main;
+import org.w3c.dom.*;
 
 public class SpookOS extends JFrame {
 
@@ -88,41 +95,7 @@ public class SpookOS extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                File file = new File("src/main/java/SpookBot/data.json");
-
-                String currentToken = "current";
-
-                try {
-
-                    String jsonPath = new String(Files.readAllBytes(Paths.get(file.toURI())));
-
-                    JSONObject json = new JSONObject(jsonPath);
-                    currentToken = json.getString("Token");
-
-                } catch (IOException s) {
-
-                    s.printStackTrace();
-
-                }
-
-                String botToken = (String) JOptionPane.showInputDialog(frame, "Please paste your Bot Token from Discord Developers Website", "Setup", JOptionPane.PLAIN_MESSAGE, null, null, currentToken);
-
-                if (botToken != currentToken && botToken != null) {
-
-                    try {
-
-                        String jsonPath = new String(Files.readAllBytes(Paths.get(file.toURI())));
-
-                        JSONObject json = new JSONObject(jsonPath);
-                        json.remove("Token");
-                        json.put("Token", botToken);
-
-                    } catch (IOException d) {
-
-                        d.printStackTrace();
-
-                    }
-                }
+                setupBotToken(frame);
 
             }
         });
@@ -159,6 +132,55 @@ public class SpookOS extends JFrame {
 
         }
 
+    }
+
+    private void setupBotToken(JFrame frame) {
+
+        File file = new File("src/main/java/SpookBot/app.xml");
+
+        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder documentBuilder = null;
+        Document document = null;
+
+        try {
+            documentBuilder = documentBuilderFactory.newDocumentBuilder();
+        } catch (Exception d) {
+            d.printStackTrace();
+        }
+
+        try {
+            document = documentBuilder.parse(file);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        String currentToken = document.getElementsByTagName("botToken").item(0).getTextContent();
+
+        //Create the Dialog
+        String botToken = (String) JOptionPane.showInputDialog(frame, "Please paste your Bot Token from Discord Developers Website", "Setup", JOptionPane.PLAIN_MESSAGE, null, null, null);
+
+        if (botToken != null && botToken != currentToken) {
+
+            document.getElementsByTagName("botToken").item(0).setTextContent(botToken);
+
+            try {
+                Transformer transformer = TransformerFactory.newInstance().newTransformer();
+                //transformer.setOutputProperties(OutputKeys.INDENT, "yes");
+
+                transformer.transform(new DOMSource(document), new StreamResult(new FileOutputStream(file)));
+            } catch (TransformerException te) {
+                writeToConsole(te.getMessage());
+            } catch (IOException ioe) {
+                writeToConsole(ioe.getMessage());
+            }
+
+            try {
+                main.startSpookBot();
+            } catch (LoginException e) {
+                writeToConsole(e.getMessage());
+            }
+
+        }
     }
 
 }

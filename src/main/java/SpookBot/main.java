@@ -7,65 +7,65 @@ import Commands.rules;
 
 import Swing.SpookOS;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.utils.cache.CacheFlag;
+import org.w3c.dom.Document;
 
 import javax.security.auth.login.LoginException;
 import javax.swing.*;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 
 import java.io.IOException;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import org.json.JSONObject;
-
 public class main {
 
     public static void main(String[] args) throws LoginException {
 
-        String token = new String();
-        File file = new File("src/main/java/SpookBot/data.json");
-        if (!file.exists()) {
-
-            try {
-
-                file.createNewFile();
-
-            } catch (IOException e) {
-
-                e.printStackTrace();
-
-            }
-
-        }
-        else {
-
-            try {
-
-                String jsonPath = new String(Files.readAllBytes(Paths.get(file.toURI())));
-
-                JSONObject json = new JSONObject(jsonPath);
-                token = json.getString("Token");
-
-            } catch (IOException e) {
-
-                e.printStackTrace();
-
-            }
-
-        }
-
         JFrame frame = new SpookOS("SpookOS", 600, 500);
         frame.setVisible(true);
+
+        startSpookBot();
+
+    }
+
+    public static void startSpookBot() throws LoginException {
+
+        String token = null;
+        String activity = "SpookOS";
+
+        File file = new File("src/main/java/SpookBot/app.xml");
+
+        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder documentBuilder = null;
+        Document document = null;
+
+        try {
+            documentBuilder = documentBuilderFactory.newDocumentBuilder();
+        } catch (Exception d) {
+            d.printStackTrace();
+        }
+
+        try {
+            document = documentBuilder.parse(file);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        token = document.getElementsByTagName("botToken").item(0).getTextContent();
 
         JDABuilder bot = JDABuilder.createDefault(token);
 
         bot.setStatus(OnlineStatus.ONLINE);
-        bot.setActivity(Activity.playing("SpookOS"));
+        bot.setActivity(Activity.playing(activity));
         bot.enableCache(CacheFlag.VOICE_STATE);
 
         bot.addEventListeners(new messages());
