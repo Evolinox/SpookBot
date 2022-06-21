@@ -1,5 +1,6 @@
 package Commands;
 
+import SpookBot.main;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Member;
@@ -12,13 +13,18 @@ import org.w3c.dom.Document;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
 
 public class inspector extends ListenerAdapter {
 
     public void onMessageReceived (MessageReceivedEvent event) {
 
-        File file = new File("src/main/java/SpookBot/app.xml");
+        String path = System.getProperty("user.home") + File.separator + "Documents" + File.separator + "SpookBotSettings";
+        File file = new File(path + File.separator + "config.xml");
 
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = null;

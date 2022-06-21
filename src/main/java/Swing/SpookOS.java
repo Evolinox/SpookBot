@@ -5,20 +5,21 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import javax.swing.border.TitledBorder;
 import javax.xml.parsers.*;
 import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import SpookBot.main;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.w3c.dom.*;
 
 public class SpookOS extends JFrame {
@@ -31,7 +32,7 @@ public class SpookOS extends JFrame {
 
         super(title);
 
-        this.setContentPane(mainPanel);
+        this.setContentPane($$$getRootComponent$$$());
         this.setSize(x, y);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -60,14 +61,14 @@ public class SpookOS extends JFrame {
 
         var menuBar = new JMenuBar();
 
-        var fileMenu = new JMenu("File");
-        var editMenu = new JMenu("Edit");
+        var fileMenu = new JMenu("SpookBot");
+        var editMenu = new JMenu("Settings");
 
         var exitMenuItem = new JMenuItem("Exit");
         exitMenuItem.setToolTipText("Exit SpookOS");
         exitMenuItem.addActionListener((event) -> System.exit(0));
 
-        var infoMenuItem = new JMenuItem("Info");
+        var infoMenuItem = new JMenuItem("About");
         infoMenuItem.setToolTipText("About SpookOS");
         infoMenuItem.addActionListener((event) -> writeToConsole("Request for Infopage"));
 
@@ -87,8 +88,13 @@ public class SpookOS extends JFrame {
         botCommandPrefixMenuItem.setToolTipText("Change your Command Prefix");
         botCommandPrefixMenuItem.addActionListener((event) -> writeToConsole("Changing Command Prefix"));
 
+        var restartBotMenuItem = new JMenuItem("Restart");
+        restartBotMenuItem.setToolTipText("Restart SpookOS after changing Settings");
+        restartBotMenuItem.addActionListener((event) -> writeToConsole("Restarting SpookOS..."));
+
         fileMenu.add(infoMenuItem);
         fileMenu.add(githubMenuItem);
+        fileMenu.add(restartBotMenuItem);
         fileMenu.add(exitMenuItem);
 
         editMenu.add(botTokenMenuItem);
@@ -99,6 +105,28 @@ public class SpookOS extends JFrame {
         menuBar.add(editMenu);
 
         setJMenuBar(menuBar);
+
+        infoMenuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                showBotInfo(frame);
+
+            }
+        });
+
+        restartBotMenuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                try {
+                    main.stopSpookBot();
+                } catch (LoginException ex) {
+                    throw new RuntimeException(ex);
+                }
+
+            }
+        });
 
         botTokenMenuItem.addActionListener(new ActionListener() {
             @Override
@@ -137,8 +165,7 @@ public class SpookOS extends JFrame {
 
             uri = new URI(link);
 
-        } catch (URISyntaxException e ) {
-
+        } catch (URISyntaxException e) {
 
 
         }
@@ -163,7 +190,8 @@ public class SpookOS extends JFrame {
 
     private void setupBotToken(JFrame frame) {
 
-        File file = new File("src/main/java/SpookBot/app.xml");
+        String path = System.getProperty("user.home") + File.separator + "Documents" + File.separator + "SpookBotSettings";
+        File file = new File(path + File.separator + "config.xml");
 
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = null;
@@ -195,16 +223,11 @@ public class SpookOS extends JFrame {
                 //transformer.setOutputProperties(OutputKeys.INDENT, "yes");
 
                 transformer.transform(new DOMSource(document), new StreamResult(new FileOutputStream(file)));
+
             } catch (TransformerException te) {
                 writeToConsole(te.getMessage());
             } catch (IOException ioe) {
                 writeToConsole(ioe.getMessage());
-            }
-
-            try {
-                main.startSpookBot();
-            } catch (LoginException e) {
-                writeToConsole(e.getMessage());
             }
 
         }
@@ -212,7 +235,8 @@ public class SpookOS extends JFrame {
 
     private void setupBotActivity(JFrame frame) {
 
-        File file = new File("src/main/java/SpookBot/app.xml");
+        String path = System.getProperty("user.home") + File.separator + "Documents" + File.separator + "SpookBotSettings";
+        File file = new File(path + File.separator + "config.xml");
 
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = null;
@@ -258,7 +282,8 @@ public class SpookOS extends JFrame {
 
     private void setupCommandPrefix(JFrame frame) {
 
-        File file = new File("src/main/java/SpookBot/app.xml");
+        String path = System.getProperty("user.home") + File.separator + "Documents" + File.separator + "SpookBotSettings";
+        File file = new File(path + File.separator + "config.xml");
 
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = null;
@@ -290,6 +315,7 @@ public class SpookOS extends JFrame {
                 //transformer.setOutputProperties(OutputKeys.INDENT, "yes");
 
                 transformer.transform(new DOMSource(document), new StreamResult(new FileOutputStream(file)));
+
             } catch (TransformerException te) {
                 writeToConsole(te.getMessage());
             } catch (IOException ioe) {
@@ -300,4 +326,51 @@ public class SpookOS extends JFrame {
 
     }
 
+    private void showBotInfo(JFrame frame) {
+
+        JOptionPane.showMessageDialog(frame, "SpookOS Preview 2, JDA 5.0.0-alpha.12, JDK 11", "About SpookOS", JOptionPane.INFORMATION_MESSAGE);
+
+    }
+
+    {
+// GUI initializer generated by IntelliJ IDEA GUI Designer
+// >>> IMPORTANT!! <<<
+// DO NOT EDIT OR ADD ANY CODE HERE!
+        $$$setupUI$$$();
+    }
+
+    /**
+     * Method generated by IntelliJ IDEA GUI Designer
+     * >>> IMPORTANT!! <<<
+     * DO NOT edit this method OR call it in your code!
+     *
+     * @noinspection ALL
+     */
+    private void $$$setupUI$$$() {
+        mainPanel = new JPanel();
+        mainPanel.setLayout(new GridBagLayout());
+        mainPanel.setBorder(BorderFactory.createTitledBorder(null, "SpookOS", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, new Color(-4473925)));
+        consoleScrollPane = new JScrollPane();
+        GridBagConstraints gbc;
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.BOTH;
+        mainPanel.add(consoleScrollPane, gbc);
+        consoleOutput = new JTextArea();
+        consoleOutput.setColumns(0);
+        consoleOutput.setEditable(false);
+        consoleOutput.setRows(0);
+        consoleOutput.setText("");
+        consoleScrollPane.setViewportView(consoleOutput);
+    }
+
+    /**
+     * @noinspection ALL
+     */
+    public JComponent $$$getRootComponent$$$() {
+        return mainPanel;
+    }
 }

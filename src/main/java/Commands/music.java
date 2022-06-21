@@ -1,6 +1,7 @@
 package Commands;
 
 import Music.player;
+import SpookBot.main;
 import net.dv8tion.jda.api.entities.VoiceChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -10,6 +11,7 @@ import org.w3c.dom.Document;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
+import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -17,7 +19,8 @@ public class music extends ListenerAdapter {
 
     public void onMessageReceived (MessageReceivedEvent event) {
 
-        File file = new File("src/main/java/SpookBot/app.xml");
+        String path = System.getProperty("user.home") + File.separator + "Documents" + File.separator + "SpookBotSettings";
+        File file = new File(path + File.separator + "config.xml");
 
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = null;
