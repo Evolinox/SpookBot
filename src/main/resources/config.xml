@@ -3,4 +3,5 @@
     <botToken></botToken>
     <commandPrefix></commandPrefix>
     <botActivity></botActivity>
+    <laf>Nimbus</laf>
 </settings>

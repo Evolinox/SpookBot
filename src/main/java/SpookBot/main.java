@@ -30,6 +30,8 @@ public class main {
     private static JDA spookBot = null;
     public static SpookOS spookOS = null;
 
+    public static String version = "v0.2.2-alpha";
+
     public static void main(String[] args) throws LoginException, IOException {
 
         String path = System.getProperty("user.home") + File.separator + "Documents" + File.separator + "SpookBotSettings";
@@ -48,7 +50,7 @@ public class main {
             System.out.println("nope");
         }
 
-        spookOS = new SpookOS("SpookOS", 500, 400);
+        spookOS = new SpookOS("SpookOS " + version, 500, 400);
 
         startSpookBot();
 

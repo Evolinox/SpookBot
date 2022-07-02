@@ -12,6 +12,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import javax.swing.border.TitledBorder;
+import javax.swing.plaf.nimbus.NimbusLookAndFeel;
+import javax.swing.plaf.nimbus.NimbusStyle;
 import javax.xml.parsers.*;
 import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
@@ -65,6 +67,19 @@ public class SpookOS extends JFrame {
 
         var fileMenu = new JMenu("SpookBot");
         var editMenu = new JMenu("Settings");
+        var themesMenu = new JMenu("Theme");
+
+        var javaLFItem = new JMenuItem("Java Style");
+        javaLFItem.setToolTipText("Set Look and Feel to Java Style");
+        javaLFItem.addActionListener((event) -> setLookAndFeel("Metal", frame));
+
+        var systemLFItem = new JMenuItem("System Style");
+        systemLFItem.setToolTipText("Set Look and Feel to System Style");
+        systemLFItem.addActionListener((event) -> setLookAndFeel("System", frame));
+
+        var nimbusLFItem = new JMenuItem("Nimbus");
+        nimbusLFItem.setToolTipText("Set Look and Feel to Nimbus");
+        nimbusLFItem.addActionListener((event) -> setLookAndFeel("Nimbus", frame));
 
         var exitMenuItem = new JMenuItem("Exit");
         exitMenuItem.setToolTipText("Exit SpookOS");
@@ -103,8 +118,13 @@ public class SpookOS extends JFrame {
         editMenu.add(botActivityMenuItem);
         editMenu.add(botCommandPrefixMenuItem);
 
+        themesMenu.add(javaLFItem);
+        themesMenu.add(systemLFItem);
+        themesMenu.add(nimbusLFItem);
+
         menuBar.add(fileMenu);
         menuBar.add(editMenu);
+        menuBar.add(themesMenu);
 
         setJMenuBar(menuBar);
 
@@ -328,6 +348,22 @@ public class SpookOS extends JFrame {
 
     }
 
+    private void setLookAndFeel(String lfName, JFrame frame)
+    {
+        try {
+            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                if (lfName.equals(info.getName())) {
+                    UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            writeToConsole(e.getMessage());
+        }
+
+        SwingUtilities.updateComponentTreeUI(frame);
+    }
+
     private void showBotInfo(JFrame frame) {
 
         JOptionPane.showMessageDialog(frame, "SpookOS Preview 2, JDA 5.0.0-alpha.12, JDK 11", "About SpookOS", JOptionPane.INFORMATION_MESSAGE);
@@ -351,7 +387,7 @@ public class SpookOS extends JFrame {
     private void $$$setupUI$$$() {
         mainPanel = new JPanel();
         mainPanel.setLayout(new GridBagLayout());
-        mainPanel.setBorder(BorderFactory.createTitledBorder(null, "SpookOS", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, new Color(-4473925)));
+        mainPanel.setBorder(BorderFactory.createTitledBorder(null, "SpookOS - Terminal Software " + main.version, TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, new Color(-4473925)));
         consoleScrollPane = new JScrollPane();
         GridBagConstraints gbc;
         gbc = new GridBagConstraints();
