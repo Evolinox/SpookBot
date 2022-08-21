@@ -9,11 +9,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7a652928-0a4b-472f-bc2b-24c47223091b" name="Changes" comment="Added more Console Outputs to Swing GUI">
+    <list default="true" id="7a652928-0a4b-472f-bc2b-24c47223091b" name="Changes" comment="Prepare for Themes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SpookBot/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SpookBot/main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Swing/SpookOS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Swing/SpookOS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,7 +164,14 @@
       <option name="project" value="LOCAL" />
       <updated>1655838291825</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Prepare for Themes">
+      <created>1656776561681</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1656776561681</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -191,6 +195,7 @@
     <MESSAGE value="Further GUI Improvements.&#10;Command Prefix can now be set through Swing GUI&#10;Activity can now be set through Swing GUI&#10;Updated README.md to reflect newest Changes!" />
     <MESSAGE value="Further GUI Improvements" />
     <MESSAGE value="Added more Console Outputs to Swing GUI" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added more Console Outputs to Swing GUI" />
+    <MESSAGE value="Prepare for Themes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Prepare for Themes" />
   </component>
 </project>
