@@ -11,9 +11,6 @@
   <component name="ChangeListManager">
     <list default="true" id="7a652928-0a4b-472f-bc2b-24c47223091b" name="Changes" comment="Prepare for Themes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/music.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/music.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Music/player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Music/player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Music/scheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Music/scheduler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
