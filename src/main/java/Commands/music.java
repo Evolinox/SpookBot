@@ -39,6 +39,7 @@ public class music extends ListenerAdapter {
         }
 
         String currentPrefix = document.getElementsByTagName("commandPrefix").item(0).getTextContent();
+        String activity = document.getElementsByTagName("botActivity").item(0).getTextContent();
 
         if (event.getMessage().getContentStripped().startsWith(currentPrefix + "play")) {
 
@@ -81,6 +82,7 @@ public class music extends ListenerAdapter {
 
                 main.spookOS.writeToConsole(event.getMember().getNickname() + " has stopped Audio Playback");
                 main.spookOS.writeToConsole("Disconnecting from Voicechannel...");
+                main.setActivity(activity);
 
             }
 

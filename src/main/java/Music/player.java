@@ -1,5 +1,6 @@
 package Music;
 
+import SpookBot.main;
 import com.sedmelluq.discord.lavaplayer.player.*;
 import com.sedmelluq.discord.lavaplayer.source.*;
 import com.sedmelluq.discord.lavaplayer.tools.FriendlyException;
@@ -52,6 +53,8 @@ public class player {
                         .append(audioTrack.getInfo().author)
                         .append("`**")
                         .queue();
+
+                main.setActivity(audioTrack.getInfo().title);
 
             }
 
