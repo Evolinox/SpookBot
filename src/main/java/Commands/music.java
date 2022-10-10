@@ -1,5 +1,6 @@
 package Commands;
 
+import Music.manager;
 import Music.player;
 import SpookBot.main;
 import net.dv8tion.jda.api.entities.VoiceChannel;
@@ -11,7 +12,6 @@ import org.w3c.dom.Document;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
-import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -69,6 +69,21 @@ public class music extends ListenerAdapter {
             player.getINSTANCE().loadAndPlay(event.getTextChannel(), link);
 
             main.spookOS.writeToConsole("Playing " + link);
+
+            //testing: dynamic Activity for music
+
+        }
+
+        if (event.getMessage().getContentStripped().startsWith(currentPrefix + "next")) {
+
+            if (event.getGuild().getSelfMember().getVoiceState().inAudioChannel()) {
+
+                //here logic for next song from playlist
+                final manager musicManager = Music.player.getINSTANCE().getMusicManager(event.getGuild());
+
+                musicManager.trackScheduler.nextTrack();
+
+            }
 
         }
 

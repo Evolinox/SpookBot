@@ -54,8 +54,6 @@ public class player {
                         .append("`**")
                         .queue();
 
-                main.setActivity(audioTrack.getInfo().title);
-
             }
 
             @Override
