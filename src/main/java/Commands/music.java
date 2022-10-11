@@ -4,6 +4,7 @@ import Music.manager;
 import Music.player;
 import SpookBot.main;
 import net.dv8tion.jda.api.entities.VoiceChannel;
+import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.managers.*;
@@ -17,7 +18,8 @@ import java.net.URISyntaxException;
 
 public class music extends ListenerAdapter {
 
-    public void onMessageReceived (MessageReceivedEvent event) {
+    @Override
+    public void onSlashCommandInteraction(SlashCommandInteractionEvent event) {
 
         String path = System.getProperty("user.home") + File.separator + "Documents" + File.separator + "SpookBotSettings";
         File file = new File(path + File.separator + "config.xml");
@@ -41,7 +43,7 @@ public class music extends ListenerAdapter {
         String currentPrefix = document.getElementsByTagName("commandPrefix").item(0).getTextContent();
         String activity = document.getElementsByTagName("botActivity").item(0).getTextContent();
 
-        if (event.getMessage().getContentStripped().startsWith(currentPrefix + "play")) {
+        if (event.getName().equals("play")) {
 
             if (!event.getMember().getVoiceState().inAudioChannel()) {
 
@@ -60,7 +62,7 @@ public class music extends ListenerAdapter {
 
             }
 
-            String link = event.getMessage().getContentStripped().substring(7);
+            String link = event.getOption("name").getAsString();
 
             if(!isUrl(link)) {
                 link = "ytsearch:" + link + " audio";
@@ -70,24 +72,9 @@ public class music extends ListenerAdapter {
 
             main.spookOS.writeToConsole("Playing " + link);
 
-            //testing: dynamic Activity for music
-
         }
 
-        if (event.getMessage().getContentStripped().startsWith(currentPrefix + "next")) {
-
-            if (event.getGuild().getSelfMember().getVoiceState().inAudioChannel()) {
-
-                //here logic for next song from playlist
-                final manager musicManager = Music.player.getINSTANCE().getMusicManager(event.getGuild());
-
-                musicManager.trackScheduler.nextTrack();
-
-            }
-
-        }
-
-        if (event.getMessage().getContentStripped().startsWith(currentPrefix + "stop")) {
+        if (event.getName().equals("stop")) {
 
             if (event.getGuild().getSelfMember().getVoiceState().inAudioChannel()) {
 
@@ -98,6 +85,19 @@ public class music extends ListenerAdapter {
                 main.spookOS.writeToConsole(event.getMember().getNickname() + " has stopped Audio Playback");
                 main.spookOS.writeToConsole("Disconnecting from Voicechannel...");
                 main.setActivity(activity);
+
+            }
+
+        }
+
+        if (event.getName().equals("next")) {
+
+            if (event.getGuild().getSelfMember().getVoiceState().inAudioChannel()) {
+
+                //here logic for next song from playlist
+                final manager musicManager = Music.player.getINSTANCE().getMusicManager(event.getGuild());
+
+                musicManager.trackScheduler.nextTrack();
 
             }
 

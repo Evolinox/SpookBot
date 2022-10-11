@@ -10,7 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7a652928-0a4b-472f-bc2b-24c47223091b" name="Changes" comment="Prepare for Themes">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Commands/manager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/inspector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/inspector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/music.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/music.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SpookBot/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SpookBot/main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +54,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propGUI&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;
   }
 }</component>
   <component name="RecentsManager">

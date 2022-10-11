@@ -4,6 +4,8 @@ import SpookBot.main;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Member;
+import net.dv8tion.jda.api.entities.User;
+import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -21,34 +23,14 @@ import java.io.InputStream;
 
 public class inspector extends ListenerAdapter {
 
-    public void onMessageReceived (MessageReceivedEvent event) {
+    @Override
+    public void onSlashCommandInteraction(SlashCommandInteractionEvent event) {
 
-        String path = System.getProperty("user.home") + File.separator + "Documents" + File.separator + "SpookBotSettings";
-        File file = new File(path + File.separator + "config.xml");
+        if (event.getName().equals("inspect")) {
 
-        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder documentBuilder = null;
-        Document document = null;
+            if (event.isFromGuild()) {
 
-        try {
-            documentBuilder = documentBuilderFactory.newDocumentBuilder();
-        } catch (Exception d) {
-            d.printStackTrace();
-        }
-
-        try {
-            document = documentBuilder.parse(file);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        String currentPrefix = document.getElementsByTagName("commandPrefix").item(0).getTextContent();
-
-        if (event.isFromGuild()) {
-
-            if (event.getMessage().getContentStripped().startsWith(currentPrefix + "inspect")) {
-
-                Member member = event.getMessage().getMentions().getMembers().get(0);
+                Member member = event.getOption("user").getAsMember();
 
                 Integer numReports = 0;
                 Integer numTimeouts = 0;

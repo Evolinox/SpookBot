@@ -1,9 +1,6 @@
 package SpookBot;
 
-import Commands.inspector;
-import Commands.messages;
-import Commands.music;
-import Commands.rules;
+import Commands.*;
 
 import Swing.SpookOS;
 
@@ -11,7 +8,10 @@ import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.entities.Activity;
+import net.dv8tion.jda.api.events.guild.GuildReadyEvent;
+import net.dv8tion.jda.api.interactions.commands.build.CommandData;
 import net.dv8tion.jda.api.utils.cache.CacheFlag;
+import org.jetbrains.annotations.NotNull;
 import org.w3c.dom.Document;
 
 import javax.security.auth.login.LoginException;
@@ -24,6 +24,8 @@ import java.io.File;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 
 public class main {
 
@@ -106,6 +108,7 @@ public class main {
         bot.addEventListeners(new rules());
         bot.addEventListeners(new inspector());
         bot.addEventListeners(new music());
+        bot.addEventListeners(new manager());
 
         JDA SpookBot = bot.build();
 
@@ -113,7 +116,5 @@ public class main {
         spookOS.writeToConsole("SpookBot is running!");
 
     }
-
-
 
 }
