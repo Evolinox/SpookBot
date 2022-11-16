@@ -15,6 +15,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.concurrent.TimeUnit;
 
 public class music extends ListenerAdapter {
 
@@ -47,7 +48,7 @@ public class music extends ListenerAdapter {
 
             if (!event.getMember().getVoiceState().inAudioChannel()) {
 
-                event.getTextChannel().sendMessage("You need to be in a voice channel for this command to work!").queue();
+                event.reply("You need to be in a voice channel for this command to work!").queue();
                 main.spookOS.writeToConsole(event.getMember().getEffectiveName() + " tried to play something, but was not connected to a Voicechat!");
 
             }
@@ -70,6 +71,14 @@ public class music extends ListenerAdapter {
 
             player.getINSTANCE().loadAndPlay(event.getTextChannel(), link);
 
+            event.deferReply().queue();
+            try {
+                TimeUnit.SECONDS.sleep(1);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            event.getHook().deleteOriginal().queue();
+
             main.spookOS.writeToConsole("Playing " + link);
 
         }
@@ -81,6 +90,8 @@ public class music extends ListenerAdapter {
                 final AudioManager audioManager = event.getGuild().getAudioManager();
 
                 audioManager.closeAudioConnection();
+
+                event.reply("I'm leaving now. Bye, have a great Time!").queue();
 
                 main.spookOS.writeToConsole(event.getMember().getNickname() + " has stopped Audio Playback");
                 main.spookOS.writeToConsole("Disconnecting from Voicechannel...");
@@ -96,6 +107,8 @@ public class music extends ListenerAdapter {
 
                 //here logic for next song from playlist
                 final manager musicManager = Music.player.getINSTANCE().getMusicManager(event.getGuild());
+
+                event.reply("Now playing: {title_Song} by {author_Song}").queue();
 
                 musicManager.trackScheduler.nextTrack();
 

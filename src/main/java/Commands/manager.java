@@ -1,5 +1,6 @@
 package Commands;
 
+import net.dv8tion.jda.api.events.ReadyEvent;
 import net.dv8tion.jda.api.events.guild.GuildReadyEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
@@ -14,7 +15,7 @@ import java.util.List;
 public class manager extends ListenerAdapter {
 
     @Override
-    public void onGuildReady(@NotNull GuildReadyEvent event) {
+    public void onReady(@NotNull ReadyEvent event) {
         List<CommandData> commandData = new ArrayList<>();
 
         // Inspector Command
@@ -32,7 +33,16 @@ public class manager extends ListenerAdapter {
         // Next
         commandData.add(Commands.slash("next", "Some ugly music right there? Just start the next one!"));
 
-        event.getGuild().updateCommands().addCommands(commandData).queue();
+        //Ask
+        OptionData questionText = new OptionData(OptionType.STRING, "question", "Type your question here!", true);
+        commandData.add(Commands.slash("ask", "You have a question for me? I'll try to answer it!").addOptions(questionText));
+
+        event.getJDA().updateCommands().addCommands(commandData).queue();
+    }
+
+    @Override
+    public void onGuildReady(@NotNull GuildReadyEvent event) {
+        event.getGuild().updateCommands().addCommands().queue();
     }
 
 }

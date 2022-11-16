@@ -57,14 +57,14 @@ public class inspector extends ListenerAdapter {
 
                 if (event.getMember().getPermissions().contains(Permission.ADMINISTRATOR)) {
 
-                    event.getChannel().sendMessageEmbeds(inspector.build()).setActionRow(btnAvatar, btnKick, btnTimeout, btnBan).queue();
+                    event.replyEmbeds(inspector.build()).addActionRow(btnAvatar, btnKick, btnTimeout, btnBan).queue();
                     main.spookOS.writeToConsole(event.getMember().getEffectiveName() + " inspected " + member.getNickname() + " with admin rights");
 
                 }
 
                 else {
 
-                    event.getChannel().sendMessageEmbeds(inspector.build()).setActionRow(btnAvatar).queue();
+                    event.replyEmbeds(inspector.build()).addActionRow(btnAvatar).queue();
                     main.spookOS.writeToConsole(event.getMember().getEffectiveName() + " inspected " + member.getNickname());
 
                 }
