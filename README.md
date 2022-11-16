@@ -21,15 +21,13 @@ Now restart the Bot with "SpookBot -> Restart" and the Bot should all be setup.
 
 ## Roadmap
 #### Short term goals
-- Implement Slash Commands (partly done! :-) )
-- Work on the Swing GUI for better usability
+- Implement Reddit Posts
+- Expand the functionality of Audio Streaming
 
 #### Medium term goals
-- Expand the functionality of Audio Streaming
-- Implement Reddit Posts (If possible)
-- Implement GitHub Updates (If possible)
+- Implement GitHub Updates
 - Implement custom Surveys for Communities
 
 #### Long term goals
 - Rework the Code for better readability
-- Setup Screen on first Startup
+- Work on the Swing GUI for better usability
