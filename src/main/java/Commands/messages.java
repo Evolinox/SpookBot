@@ -13,7 +13,7 @@ public class messages extends ListenerAdapter {
             if (event.getMessage().getContentStripped().contains("SpookBot")) {
 
                 event.getChannel().sendMessage("Hallo").queue();
-                event.getMessage().addReaction("\uD83D\uDC4B").queue();
+                //event.getMessage().addReaction("\uD83D\uDC4B").queue();
                 main.spookOS.writeToConsole(event.getMember().getEffectiveName() + " mentioned me in his Message! :O");
 
             }

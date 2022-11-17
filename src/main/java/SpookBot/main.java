@@ -8,14 +8,11 @@ import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.entities.Activity;
-import net.dv8tion.jda.api.events.guild.GuildReadyEvent;
-import net.dv8tion.jda.api.interactions.commands.build.CommandData;
+import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.cache.CacheFlag;
-import org.jetbrains.annotations.NotNull;
 import org.w3c.dom.Document;
 
 import javax.security.auth.login.LoginException;
-import javax.swing.*;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -24,8 +21,6 @@ import java.io.File;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
 
 public class main {
 
@@ -103,6 +98,7 @@ public class main {
         bot.setStatus(OnlineStatus.ONLINE);
         bot.setActivity(Activity.playing(activity));
         bot.enableCache(CacheFlag.VOICE_STATE);
+        bot.enableIntents(GatewayIntent.MESSAGE_CONTENT);
 
         bot.addEventListeners(new messages());
         bot.addEventListeners(new rules());

@@ -69,7 +69,7 @@ public class music extends ListenerAdapter {
                 link = "ytsearch:" + link + " audio";
             }
 
-            player.getINSTANCE().loadAndPlay(event.getTextChannel(), link);
+            player.getINSTANCE().loadAndPlay(event.getChannel().asTextChannel(), link);
 
             event.deferReply().queue();
             try {
@@ -106,7 +106,7 @@ public class music extends ListenerAdapter {
             if (event.getGuild().getSelfMember().getVoiceState().inAudioChannel()) {
 
                 //here logic for next song from playlist
-                final manager musicManager = Music.player.getINSTANCE().getMusicManager(event.getGuild());
+                final manager musicManager = player.getINSTANCE().getMusicManager(event.getGuild());
 
                 event.reply("Now playing: {title_Song} by {author_Song}").queue();
 
