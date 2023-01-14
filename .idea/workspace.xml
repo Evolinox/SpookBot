@@ -10,13 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7a652928-0a4b-472f-bc2b-24c47223091b" name="Changes" comment="Prepare for Themes">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Commands/reddit.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/inspector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/inspector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/messages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/messages.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/music.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/music.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/manager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/SpookBot/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SpookBot/main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Swing/SpookOS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Swing/SpookOS.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -37,6 +37,10 @@ public class manager extends ListenerAdapter {
         OptionData questionText = new OptionData(OptionType.STRING, "question", "Type your question here!", true);
         commandData.add(Commands.slash("ask", "You have a question for me? I'll try to answer it!").addOptions(questionText));
 
+        //Reddit
+        OptionData subredditName = new OptionData(OptionType.STRING, "subreddit", "Want a specific subreddit?", false);
+        commandData.add(Commands.slash("reddit", "You want to see some reddit posts?").addOptions(subredditName));
+
         event.getJDA().updateCommands().addCommands(commandData).queue();
     }
 
