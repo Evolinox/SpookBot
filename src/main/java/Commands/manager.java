@@ -18,6 +18,10 @@ public class manager extends ListenerAdapter {
     public void onReady(@NotNull ReadyEvent event) {
         List<CommandData> commandData = new ArrayList<>();
 
+        // Verification Command
+        OptionData channelId = new OptionData(OptionType.CHANNEL, "channelid", "Choose your Verification Channel", true);
+        commandData.add(Commands.slash("verification", "Create a Verification Message!").addOptions(channelId));
+
         // Inspector Command
         OptionData userRequired = new OptionData(OptionType.USER, "user", "User to inspect", true);
         commandData.add(Commands.slash("inspect", "Inspect Userprofiles on your Server!").addOptions(userRequired));
