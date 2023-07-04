@@ -27,7 +27,7 @@ public class main {
     private static JDA spookBot = null;
     public static SpookOS spookOS = null;
 
-    public static String version = "v0.2.2-alpha";
+    public static String version = "v0.3.0-alpha";
 
     public static void main(String[] args) throws LoginException, IOException {
 
