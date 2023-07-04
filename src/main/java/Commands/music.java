@@ -3,11 +3,12 @@ package Commands;
 import Music.manager;
 import Music.player;
 import SpookBot.main;
-import net.dv8tion.jda.api.entities.VoiceChannel;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
-import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
-import net.dv8tion.jda.api.managers.*;
+import net.dv8tion.jda.api.entities.channel.concrete.VoiceChannel;
+import net.dv8tion.jda.api.managers.AudioManager;
+
+import org.jetbrains.annotations.NotNull;
 import org.w3c.dom.Document;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -20,7 +21,7 @@ import java.util.concurrent.TimeUnit;
 public class music extends ListenerAdapter {
 
     @Override
-    public void onSlashCommandInteraction(SlashCommandInteractionEvent event) {
+    public void onSlashCommandInteraction(@NotNull SlashCommandInteractionEvent event) {
 
         String path = System.getProperty("user.home") + File.separator + "Documents" + File.separator + "SpookBotSettings";
         File file = new File(path + File.separator + "config.xml");
@@ -41,7 +42,6 @@ public class music extends ListenerAdapter {
             e.printStackTrace();
         }
 
-        String currentPrefix = document.getElementsByTagName("commandPrefix").item(0).getTextContent();
         String activity = document.getElementsByTagName("botActivity").item(0).getTextContent();
 
         if (event.getName().equals("play")) {

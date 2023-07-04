@@ -188,7 +188,7 @@ public class SpookOS extends JFrame {
             uri = new URI(link);
 
         } catch (URISyntaxException e) {
-
+            writeToConsole(e.getMessage());
 
         }
 
@@ -348,8 +348,7 @@ public class SpookOS extends JFrame {
 
     }
 
-    private void setLookAndFeel(String lfName, JFrame frame)
-    {
+    private void setLookAndFeel(String lfName, JFrame frame) {
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
                 if (lfName.equals(info.getName())) {
@@ -387,7 +386,7 @@ public class SpookOS extends JFrame {
     private void $$$setupUI$$$() {
         mainPanel = new JPanel();
         mainPanel.setLayout(new GridBagLayout());
-        mainPanel.setBorder(BorderFactory.createTitledBorder(null, "SpookOS - Terminal Software " + main.version, TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, new Color(-4473925)));
+        mainPanel.setBorder(BorderFactory.createTitledBorder(null, "SpookOS", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, new Color(-4473925)));
         consoleScrollPane = new JScrollPane();
         GridBagConstraints gbc;
         gbc = new GridBagConstraints();
@@ -411,4 +410,5 @@ public class SpookOS extends JFrame {
     public JComponent $$$getRootComponent$$$() {
         return mainPanel;
     }
+
 }
