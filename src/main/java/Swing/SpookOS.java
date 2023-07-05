@@ -296,7 +296,7 @@ public class SpookOS extends JFrame {
                 writeToConsole(ioe.getMessage());
             }
 
-            main.setActivity(botActivity);
+            main.setActivity(true, botActivity);
 
         }
 

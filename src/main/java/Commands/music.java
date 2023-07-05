@@ -3,6 +3,7 @@ package Commands;
 import Music.manager;
 import Music.player;
 import SpookBot.main;
+import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.entities.channel.concrete.VoiceChannel;
@@ -77,7 +78,7 @@ public class music extends ListenerAdapter {
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            event.getHook().deleteOriginal().queue();
+            event.getHook().editOriginal("Sure! I've searched on YouTube for: " + link).queue();
 
             main.spookOS.writeToConsole("Playing " + link);
 
@@ -95,7 +96,7 @@ public class music extends ListenerAdapter {
 
                 main.spookOS.writeToConsole(event.getMember().getNickname() + " has stopped Audio Playback");
                 main.spookOS.writeToConsole("Disconnecting from Voicechannel...");
-                main.setActivity(activity);
+                main.setActivity(true, activity);
 
             }
 
@@ -107,6 +108,7 @@ public class music extends ListenerAdapter {
 
                 //here logic for next song from playlist
                 final manager musicManager = player.getINSTANCE().getMusicManager(event.getGuild());
+                final AudioPlayer audioPlayer = player.getINSTANCE().
 
                 event.reply("Now playing: {title_Song} by {author_Song}").queue();
 

@@ -53,9 +53,35 @@ public class main {
 
     }
 
-    public static void setActivity(String activity) {
-        spookBot.getPresence().setActivity(Activity.playing(activity));
-        spookOS.writeToConsole("Bot Activity set to " + activity);
+    public static void setActivity(Boolean Custom, String activity) {
+        String path = System.getProperty("user.home") + File.separator + "Documents" + File.separator + "SpookBotSettings";
+        File file = new File(path + File.separator + "config.xml");
+
+        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder documentBuilder = null;
+        Document document = null;
+
+        try {
+            documentBuilder = documentBuilderFactory.newDocumentBuilder();
+        } catch (Exception d) {
+            spookOS.writeToConsole(d.getMessage());
+        }
+
+        try {
+            document = documentBuilder.parse(file);
+        } catch (Exception e) {
+            spookOS.writeToConsole(e.getMessage());
+        }
+
+        String base = document.getElementsByTagName("botActivity").item(0).getTextContent();
+
+        if (Custom) {
+            spookBot.getPresence().setActivity(Activity.playing(activity));
+            spookOS.writeToConsole("Bot Activity set to " + activity);
+        }
+        else {
+            spookBot.getPresence().setActivity(Activity.playing(base));
+        }
     }
 
     public static void stopSpookBot() throws LoginException {

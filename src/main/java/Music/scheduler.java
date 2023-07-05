@@ -33,7 +33,7 @@ public class scheduler extends AudioEventAdapter {
 
         }
 
-        main.setActivity(this.audioPlayer.getPlayingTrack().getInfo().title + ", by " + this.audioPlayer.getPlayingTrack().getInfo().author);
+        main.setActivity(true, this.audioPlayer.getPlayingTrack().getInfo().title + ", by " + this.audioPlayer.getPlayingTrack().getInfo().author);
 
     }
 
@@ -41,7 +41,7 @@ public class scheduler extends AudioEventAdapter {
 
         this.audioPlayer.startTrack(this.queue.poll(), false);
 
-        main.setActivity(this.audioPlayer.getPlayingTrack().getInfo().title + ", by " + this.audioPlayer.getPlayingTrack().getInfo().author);
+        main.setActivity(true, this.audioPlayer.getPlayingTrack().getInfo().title + ", by " + this.audioPlayer.getPlayingTrack().getInfo().author);
 
     }
 
@@ -54,36 +54,12 @@ public class scheduler extends AudioEventAdapter {
     @Override
     public void onTrackEnd(AudioPlayer audioPlayer, AudioTrack track, AudioTrackEndReason endReason) {
 
-        //get config xml block
-        String path = System.getProperty("user.home") + File.separator + "Documents" + File.separator + "SpookBotSettings";
-        File file = new File(path + File.separator + "config.xml");
-
-        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder documentBuilder = null;
-        Document document = null;
-
-        try {
-            documentBuilder = documentBuilderFactory.newDocumentBuilder();
-        } catch (Exception d) {
-            d.printStackTrace();
-        }
-
-        try {
-            document = documentBuilder.parse(file);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        String activity = document.getElementsByTagName("botActivity").item(0).getTextContent();
-        //end config xml block
+        main.setActivity(false, "");
 
         //normal op
         if (endReason.mayStartNext) {
 
             nextTrack();
-
-            //dynamic activity op
-            main.setActivity(activity);
 
         }
 
