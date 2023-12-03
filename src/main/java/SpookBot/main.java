@@ -24,11 +24,14 @@ import java.nio.file.Path;
 
 public class main {
 
+    //set basic JDA Variables
     private static JDA spookBot = null;
     public static SpookOS spookOS = null;
 
+    //set global Version String
     public static String version = "v0.3.0-alpha";
 
+    //main class, basic code for the Bot
     public static void main(String[] args) throws LoginException, IOException {
 
         String path = System.getProperty("user.home") + File.separator + "Documents" + File.separator + "SpookBotSettings";
@@ -47,6 +50,7 @@ public class main {
             System.out.println("nope");
         }
 
+        //Create a Window with Title and x/y Size
         spookOS = new SpookOS("SpookOS " + version, 500, 400);
 
         startSpookBot();
@@ -133,6 +137,7 @@ public class main {
         bot.addEventListeners(new manager());
         bot.addEventListeners(new ask());
         bot.addEventListeners(new reddit());
+        bot.addEventListeners(new reporting());
 
         JDA SpookBot = bot.build();
 

@@ -20,7 +20,7 @@ public class ask extends ListenerAdapter {
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            event.getHook().sendMessage("''" + question + "''" + " -- That's a complicated question i can't answer... :( Maybe ask Google?").queue();
+            event.getHook().sendMessage("This Feature isn't working at the moment!").queue();
 
         }
 

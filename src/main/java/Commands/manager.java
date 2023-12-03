@@ -27,9 +27,14 @@ public class manager extends ListenerAdapter {
         OptionData userRequired = new OptionData(OptionType.USER, "user", "User to inspect", true);
         commandData.add(Commands.slash("inspect", "Inspect Userprofiles on your Server!").addOptions(userRequired));
 
+        // Report Command
+        OptionData reportedUser = new OptionData(OptionType.USER, "user", "User you want to report", true);
+        OptionData reportDescription = new OptionData(OptionType.STRING, "reason", "Why do you want to report this User?", true);
+        commandData.add(Commands.slash("report", "Report other Users on this Server to the Moderators!").addOptions(reportedUser, reportDescription));
+
         // Music Commands
         // Play
-        OptionData musicText = new OptionData(OptionType.STRING, "name", "What music to play? (URL or a Name)", true);
+        OptionData musicText = new OptionData(OptionType.STRING, "link", "What music to play? (URL or a Name)", true);
         commandData.add(Commands.slash("play", "Play some music for you and your Friends!").addOptions(musicText));
 
         // Stop

@@ -3,7 +3,6 @@ package Commands;
 import Music.manager;
 import Music.player;
 import SpookBot.main;
-import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.entities.channel.concrete.VoiceChannel;
@@ -24,6 +23,7 @@ public class music extends ListenerAdapter {
     @Override
     public void onSlashCommandInteraction(@NotNull SlashCommandInteractionEvent event) {
 
+        // Erster Part um die config.xml zu laden
         String path = System.getProperty("user.home") + File.separator + "Documents" + File.separator + "SpookBotSettings";
         File file = new File(path + File.separator + "config.xml");
 
@@ -43,17 +43,23 @@ public class music extends ListenerAdapter {
             e.printStackTrace();
         }
 
+        // Get Activity von der config
         String activity = document.getElementsByTagName("botActivity").item(0).getTextContent();
 
+        // Schauen, ob überhaupt das play event getriggered wurde
         if (event.getName().equals("play")) {
 
+            // Wenn der Discord Nutzer nicht in nem VC ist...
             if (!event.getMember().getVoiceState().inAudioChannel()) {
 
+                // Antworte mit ner Nachricht, das er net in nem VC ist
                 event.reply("You need to be in a voice channel for this command to work!").queue();
+                // Info an die Konsole
                 main.spookOS.writeToConsole(event.getMember().getEffectiveName() + " tried to play something, but was not connected to a Voicechat!");
 
             }
 
+            //
             if (!event.getGuild().getSelfMember().getVoiceState().inAudioChannel()) {
 
                 final AudioManager audioManager = event.getGuild().getAudioManager();
@@ -64,7 +70,7 @@ public class music extends ListenerAdapter {
 
             }
 
-            String link = event.getOption("name").getAsString();
+            String link = event.getOption("link").getAsString();
 
             if(!isUrl(link)) {
                 link = "ytsearch:" + link + " audio";
@@ -108,9 +114,11 @@ public class music extends ListenerAdapter {
 
                 //here logic for next song from playlist
                 final manager musicManager = player.getINSTANCE().getMusicManager(event.getGuild());
-                final AudioPlayer audioPlayer = player.getINSTANCE().
 
-                event.reply("Now playing: {title_Song} by {author_Song}").queue();
+                String titleSong = "scheduler.getTitleSong()";
+                String authorSong = "scheduler.getAuthorSong()";
+
+                event.reply("Now playing: " + titleSong + " by " + authorSong);
 
                 musicManager.trackScheduler.nextTrack();
 
