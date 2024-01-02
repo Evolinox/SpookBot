@@ -9,14 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7a652928-0a4b-472f-bc2b-24c47223091b" name="Changes" comment="Prepare for Themes">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Commands/reporting.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="7a652928-0a4b-472f-bc2b-24c47223091b" name="Changes" comment="General Update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/ask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/ask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/manager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/music.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/music.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SpookBot/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SpookBot/main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Music/scheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Music/scheduler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +26,26 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="overhaul" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Evolinox&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="f1f59547-4df1-484d-b184-20f9f94cc60f" />
+        <option name="url" value="https://github.com/Spooki02/SpookBot.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -59,17 +73,18 @@
     &quot;UI_DESIGNER_EDITOR_MODE.PaletteManager.STATE&quot;: &quot;right&quot;,
     &quot;UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.STATE&quot;: &quot;left&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;overhaul&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;P:/Dokumente/GitHub/SpookBot&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;discord-application&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -114,6 +129,22 @@
       <workItem from="1701516333508" duration="72000" />
       <workItem from="1701516413141" duration="2683000" />
       <workItem from="1701605874601" duration="81000" />
+      <workItem from="1701605964921" duration="4873000" />
+      <workItem from="1701618594049" duration="742000" />
+      <workItem from="1701629991005" duration="1842000" />
+      <workItem from="1701725683465" duration="773000" />
+      <workItem from="1701726474348" duration="617000" />
+      <workItem from="1701788502966" duration="595000" />
+      <workItem from="1701902397270" duration="608000" />
+      <workItem from="1701968143911" duration="18000" />
+      <workItem from="1702329164577" duration="601000" />
+      <workItem from="1702487444105" duration="1207000" />
+      <workItem from="1702664785622" duration="6000" />
+      <workItem from="1702933406034" duration="607000" />
+      <workItem from="1702996206957" duration="603000" />
+      <workItem from="1703004259229" duration="679000" />
+      <workItem from="1703782404729" duration="1094000" />
+      <workItem from="1703957381807" duration="607000" />
     </task>
     <task id="LOCAL-00001" summary="Removed Bot Token">
       <created>1655665154386</created>
@@ -199,7 +230,15 @@
       <option name="project" value="LOCAL" />
       <updated>1656776561681</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="General Update">
+      <option name="closed" value="true" />
+      <created>1701606117900</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1701606117900</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -227,7 +266,8 @@
     <MESSAGE value="Further GUI Improvements" />
     <MESSAGE value="Added more Console Outputs to Swing GUI" />
     <MESSAGE value="Prepare for Themes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Prepare for Themes" />
+    <MESSAGE value="General Update" />
+    <option name="LAST_COMMIT_MESSAGE" value="General Update" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -236,6 +276,11 @@
           <properties class="java.lang.NullPointerException" package="java.lang" />
           <option name="timeStamp" value="1" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Commands/music.java</url>
+          <line>78</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
