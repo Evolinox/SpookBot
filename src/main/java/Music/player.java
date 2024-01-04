@@ -70,12 +70,12 @@ public class player {
 
             @Override
             public void noMatches() {
-
+                System.out.println("noMatches");
             }
 
             @Override
             public void loadFailed(FriendlyException e) {
-
+                System.out.println("loadFailed");
             }
         });
 
