@@ -66,7 +66,7 @@ public class music extends ListenerAdapter {
                 final VoiceChannel memberChannel = (VoiceChannel) event.getMember().getVoiceState().getChannel();
 
                 audioManager.openAudioConnection(memberChannel);
-                //main.spookOS.writeToConsole("Connecting to " + memberChannel);
+                main.spookOS.writeToConsole("Connecting to " + memberChannel);
 
             }
 
@@ -86,7 +86,7 @@ public class music extends ListenerAdapter {
             }
             event.getHook().editOriginal("Sure! I've searched on YouTube for: " + link).queue();
 
-            //main.spookOS.writeToConsole("Playing " + link);
+            main.spookOS.writeToConsole("Playing " + link);
 
         }
 
