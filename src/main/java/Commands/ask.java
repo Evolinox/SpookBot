@@ -17,11 +17,11 @@ public class ask extends ListenerAdapter {
 
             event.deferReply().queue();
             try {
-                TimeUnit.SECONDS.sleep(10);
+                TimeUnit.SECONDS.sleep(1);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            event.getHook().sendMessage("This Feature isn't working at the moment!").queue();
+            event.getHook().sendMessage("This feature won't be maintained anymore, please use <@823237843685081088>'s /prompt Command instead!").queue();
 
         }
 
