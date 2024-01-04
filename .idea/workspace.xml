@@ -9,10 +9,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7a652928-0a4b-472f-bc2b-24c47223091b" name="Changes" comment="Prepare for Themes">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="7a652928-0a4b-472f-bc2b-24c47223091b" name="Changes" comment="Uncommented some Console commands">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/music.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/music.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,9 +48,9 @@
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 2
-}</component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 3
+}]]></component>
   <component name="ProjectId" id="2An6ifS9FGGIYNaE5c95UGWzaqW" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -136,7 +134,7 @@
       <workItem from="1704019904867" duration="174000" />
       <workItem from="1704302205931" duration="43000" />
       <workItem from="1704364301148" duration="21000" />
-      <workItem from="1704364326201" duration="178000" />
+      <workItem from="1704364326201" duration="858000" />
     </task>
     <task id="LOCAL-00001" summary="Removed Bot Token">
       <created>1655665154386</created>
@@ -222,7 +220,15 @@
       <option name="project" value="LOCAL" />
       <updated>1656776561681</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Uncommented some Console commands">
+      <option name="closed" value="true" />
+      <created>1704364714851</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1704364714851</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -250,7 +256,8 @@
     <MESSAGE value="Further GUI Improvements" />
     <MESSAGE value="Added more Console Outputs to Swing GUI" />
     <MESSAGE value="Prepare for Themes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Prepare for Themes" />
+    <MESSAGE value="Uncommented some Console commands" />
+    <option name="LAST_COMMIT_MESSAGE" value="Uncommented some Console commands" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
