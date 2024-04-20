@@ -115,10 +115,10 @@ public class music extends ListenerAdapter {
                 //here logic for next song from playlist
                 final manager musicManager = player.getINSTANCE().getMusicManager(event.getGuild());
 
-                String titleSong = "scheduler.getTitleSong()";
-                String authorSong = "scheduler.getAuthorSong()";
+                String titleSong = musicManager.trackScheduler.getTitleSong();
+                String authorSong = musicManager.trackScheduler.getAuthorSong();
 
-                event.reply("Now playing: " + titleSong + " by " + authorSong).queue();
+                event.reply("Now playing: **`" + titleSong + "`** by **`" + authorSong + "`**").queue();
 
                 musicManager.trackScheduler.nextTrack();
 

@@ -33,6 +33,14 @@ public class scheduler extends AudioEventAdapter {
 
     }
 
+    public String getTitleSong() {
+        return this.audioPlayer.getPlayingTrack().getInfo().title;
+    }
+
+    public String getAuthorSong() {
+        return this.audioPlayer.getPlayingTrack().getInfo().author;
+    }
+
     public void nextTrack() {
 
         this.audioPlayer.startTrack(this.queue.poll(), false);
