@@ -15,7 +15,13 @@ import org.w3c.dom.Document;
 import javax.security.auth.login.LoginException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.File;
 import java.io.InputStream;
@@ -23,6 +29,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.logging.Logger;
 
 public class main {
 
@@ -31,13 +38,16 @@ public class main {
     //set basic JDA Variables
     private static JDA spookBot = null;
     public static SpookOS spookOS = null;
+    public static Logger loggingService = null;
 
     //set global Version String
     public static String version = "v0.3.0-alpha";
 
     //main class, basic code for the Bot
     public static void main(String[] args) throws LoginException, IOException {
-
+        // Logger Setup
+        loggingService = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+        // Rest
         String path = System.getProperty("user.home") + File.separator + "Documents" + File.separator + "SpookBotSettings";
         File configPath = new File(path);
         File config = new File(path + File.separator + "config.xml");
@@ -51,7 +61,7 @@ public class main {
         } else if (configPath.mkdirs()) {
             Files.copy(appSource, Path.of(System.getProperty("user.home") + File.separator + "Documents" + File.separator + "SpookBotSettings" + File.separator + "config.xml"));
         } else {
-            System.out.println("nope");
+            loggingService.warning("nope");
         }
 
         if (Arrays.asList(args).contains("-g")) {
@@ -80,20 +90,24 @@ public class main {
         try {
             documentBuilder = documentBuilderFactory.newDocumentBuilder();
         } catch (Exception d) {
-            spookOS.writeToConsole(d.getMessage());
+            loggingService.severe(d.getMessage());
         }
 
         try {
             document = documentBuilder.parse(file);
         } catch (Exception e) {
-            spookOS.writeToConsole(e.getMessage());
+            loggingService.severe(e.getMessage());
         }
 
         String base = document.getElementsByTagName("botActivity").item(0).getTextContent();
 
         if (Custom) {
             spookBot.getPresence().setActivity(Activity.playing(activity));
-            spookOS.writeToConsole("Bot Activity set to " + activity);
+            if (main.spookOS != null) {
+                spookOS.writeToConsole("Bot Activity set to " + activity);
+            } else {
+                loggingService.info("Bot Activity set to " + activity);
+            }
         }
         else {
             spookBot.getPresence().setActivity(Activity.playing(base));
@@ -111,13 +125,13 @@ public class main {
         try {
             documentBuilder = documentBuilderFactory.newDocumentBuilder();
         } catch (Exception d) {
-            spookOS.writeToConsole(d.getMessage());
+            loggingService.severe(d.getMessage());
         }
 
         try {
             document = documentBuilder.parse(file);
         } catch (Exception e) {
-            spookOS.writeToConsole(e.getMessage());
+            loggingService.severe(e.getMessage());
         }
 
         //CLI Stuff
@@ -135,25 +149,51 @@ public class main {
         System.out.println("Activity: " + activity);
         System.out.println("Are your Input's correct? (Y/N)");
 
-        handleConfirmation();
+        if (handleConfirmation()) {
+            document.getElementsByTagName("commandPrefix").item(0).setTextContent(prefix);
+            document.getElementsByTagName("botToken").item(0).setTextContent(token);
+            document.getElementsByTagName("botActivity").item(0).setTextContent(activity);
+
+            try {
+                Transformer transformer = TransformerFactory.newInstance().newTransformer();
+                //transformer.setOutputProperties(OutputKeys.INDENT, "yes");
+
+                transformer.transform(new DOMSource(document), new StreamResult(new FileOutputStream(file)));
+            } catch (TransformerException te) {
+                loggingService.severe(te.getMessage());
+            } catch (IOException ioe) {
+                loggingService.severe(ioe.getMessage());
+            }
+        } else {
+            headlessSetup();
+        }
     }
 
-    public static void handleConfirmation() {
+    public static Boolean handleConfirmation() {
+        Boolean bConfirmed = false;
         if (scanner.nextLine().equals("Y")) {
             System.out.println("Setup Complete! SpookBot will now start...");
+            bConfirmed = true;
         } else if (scanner.nextLine().equals("N")) {
             System.out.println("Setup will start again...");
-            headlessSetup();
+            bConfirmed = false;
         } else {
-            System.out.println("Please enter either Y or N... Setup will restart...");
+            System.out.println("Please enter either Y or N...");
             handleConfirmation();
         }
+
+        return bConfirmed;
     }
 
     public static void stopSpookBot() throws LoginException {
 
         spookBot = null;
-        spookOS.writeToConsole("SpookBot exited");
+
+        if (main.spookOS != null) {
+            spookOS.writeToConsole("SpookBot exited");
+        } else {
+            loggingService.info("SpookBot exited");
+        }
 
         startSpookBot();
 
@@ -174,13 +214,13 @@ public class main {
         try {
             documentBuilder = documentBuilderFactory.newDocumentBuilder();
         } catch (Exception d) {
-            spookOS.writeToConsole(d.getMessage());
+            loggingService.severe(d.getMessage());
         }
 
         try {
             document = documentBuilder.parse(file);
         } catch (Exception e) {
-            spookOS.writeToConsole(e.getMessage());
+            loggingService.severe(e.getMessage());
         }
 
         token = document.getElementsByTagName("botToken").item(0).getTextContent();
@@ -204,8 +244,11 @@ public class main {
         JDA SpookBot = bot.build();
 
         spookBot = SpookBot;
-        spookOS.writeToConsole("SpookBot is running!");
 
+        if (main.spookOS != null) {
+            spookOS.writeToConsole("SpookBot is running!");
+        } else {
+            loggingService.info("SpookBot is running!");
+        }
     }
-
 }
