@@ -17,12 +17,12 @@ import java.io.File;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Logger;
 
 public class music extends ListenerAdapter {
 
     @Override
     public void onSlashCommandInteraction(@NotNull SlashCommandInteractionEvent event) {
-
         // Erster Part um die config.xml zu laden
         String path = System.getProperty("user.home") + File.separator + "Documents" + File.separator + "SpookBotSettings";
         File file = new File(path + File.separator + "config.xml");
@@ -55,8 +55,11 @@ public class music extends ListenerAdapter {
                 // Antworte mit ner Nachricht, das er net in nem VC ist
                 event.reply("You need to be in a voice channel for this command to work!").queue();
                 // Info an die Konsole
-                main.spookOS.writeToConsole(event.getMember().getEffectiveName() + " tried to play something, but was not connected to a Voicechat!");
-
+                if (main.spookOS != null) {
+                    main.spookOS.writeToConsole(event.getMember().getEffectiveName() + " tried to play something, but was not connected to a Voicechat!");
+                } else {
+                    main.loggingService.warning(event.getMember().getEffectiveName() + " tried to play something, but was not connected to a Voicechat!");
+                }
             }
 
             //
@@ -66,8 +69,12 @@ public class music extends ListenerAdapter {
                 final VoiceChannel memberChannel = (VoiceChannel) event.getMember().getVoiceState().getChannel();
 
                 audioManager.openAudioConnection(memberChannel);
-                main.spookOS.writeToConsole("Connecting to " + memberChannel);
 
+                if (main.spookOS != null) {
+                    main.spookOS.writeToConsole("Connecting to " + memberChannel.getName());
+                } else {
+                    main.loggingService.info("Connecting to " + memberChannel.getName());
+                }
             }
 
             String link = event.getOption("link").getAsString();
@@ -86,8 +93,11 @@ public class music extends ListenerAdapter {
             }
             event.getHook().editOriginal("Sure! I've searched for: " + link).queue();
 
-            main.spookOS.writeToConsole("Playing " + link);
-
+            if (main.spookOS != null) {
+                main.spookOS.writeToConsole("Playing " + link);
+            } else {
+                main.loggingService.info("Playing " + link);
+            }
         }
 
         if (event.getName().equals("stop")) {
@@ -100,10 +110,15 @@ public class music extends ListenerAdapter {
 
                 event.reply("I'm leaving now. Bye, have a great Time!").queue();
 
-                main.spookOS.writeToConsole(event.getMember().getNickname() + " has stopped Audio Playback");
-                main.spookOS.writeToConsole("Disconnecting from Voicechannel...");
+                // Info an die Konsole
+                if (main.spookOS != null) {
+                    main.spookOS.writeToConsole(event.getMember().getNickname() + " has stopped Audio Playback");
+                    main.spookOS.writeToConsole("Disconnecting from Voicechannel...");
+                } else {
+                    main.loggingService.info(event.getMember().getNickname() + " has stopped Audio Playback");
+                    main.loggingService.info("Disconnecting from Voicechannel...");
+                }
                 main.setActivity(true, activity);
-
             }
 
         }
