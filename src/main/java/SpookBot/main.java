@@ -21,6 +21,7 @@ import java.io.File;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Arrays;
 
 public class main {
 
@@ -50,8 +51,11 @@ public class main {
             System.out.println("nope");
         }
 
-        //Create a Window with Title and x/y Size
-        spookOS = new SpookOS("SpookOS " + version, 500, 400);
+        if (Arrays.asList(args).contains("-g")) {
+            //Create a Window with Title and x/y Size
+            Integer xSize = 500, ySize = 400;
+            spookOS = new SpookOS("SpookOS " + version, xSize, ySize);
+        }
 
         startSpookBot();
 
