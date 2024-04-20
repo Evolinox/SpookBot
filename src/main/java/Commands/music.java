@@ -84,7 +84,7 @@ public class music extends ListenerAdapter {
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            event.getHook().editOriginal("Sure! I've searched on YouTube for: " + link).queue();
+            event.getHook().editOriginal("Sure! I've searched for: " + link).queue();
 
             main.spookOS.writeToConsole("Playing " + link);
 
