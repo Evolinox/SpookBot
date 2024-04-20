@@ -22,8 +22,11 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class main {
+
+    static Scanner scanner = new Scanner(System.in);
 
     //set basic JDA Variables
     private static JDA spookBot = null;
@@ -55,6 +58,11 @@ public class main {
             //Create a Window with Title and x/y Size
             Integer xSize = 500, ySize = 400;
             spookOS = new SpookOS("SpookOS " + version, xSize, ySize);
+        }
+
+        if (Arrays.asList(args).contains("-s")) {
+            //Code for Headless Setup
+            headlessSetup();
         }
 
         startSpookBot();
@@ -89,6 +97,56 @@ public class main {
         }
         else {
             spookBot.getPresence().setActivity(Activity.playing(base));
+        }
+    }
+
+    public static void headlessSetup() {
+        String path = System.getProperty("user.home") + File.separator + "Documents" + File.separator + "SpookBotSettings";
+        File file = new File(path + File.separator + "config.xml");
+
+        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder documentBuilder = null;
+        Document document = null;
+
+        try {
+            documentBuilder = documentBuilderFactory.newDocumentBuilder();
+        } catch (Exception d) {
+            spookOS.writeToConsole(d.getMessage());
+        }
+
+        try {
+            document = documentBuilder.parse(file);
+        } catch (Exception e) {
+            spookOS.writeToConsole(e.getMessage());
+        }
+
+        //CLI Stuff
+        System.out.println("Enter your preferred Prefix ( Something like !s for example ) : ");
+        String prefix = scanner.nextLine();
+        System.out.println("Enter your Discord Bot Token ( From Developer Page ) : ");
+        String token = scanner.nextLine();
+        System.out.println("Enter your preferred Activity ( Something like SpookOS :P ) : ");
+        String activity = scanner.nextLine();
+
+        //Confirmation
+        System.out.println("Please Confirm your Input");
+        System.out.println("Prefix: " + prefix);
+        System.out.println("Token: " + token);
+        System.out.println("Activity: " + activity);
+        System.out.println("Are your Input's correct? (Y/N)");
+
+        handleConfirmation();
+    }
+
+    public static void handleConfirmation() {
+        if (scanner.nextLine().equals("Y")) {
+            System.out.println("Setup Complete! SpookBot will now start...");
+        } else if (scanner.nextLine().equals("N")) {
+            System.out.println("Setup will start again...");
+            headlessSetup();
+        } else {
+            System.out.println("Please enter either Y or N... Setup will restart...");
+            handleConfirmation();
         }
     }
 
