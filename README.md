@@ -21,7 +21,7 @@ Now restart the Bot with "SpookBot -> Restart" and the Bot should all be setup. 
 
 ## Roadmap
 #### Short term goals
-- Remove NullPointerException when GUI is not enabled
+- Remove NullPointerException when GUI is not enabled ☑️
 - Further adjustments for Headless Operation
 
 #### Mid term goals
