@@ -10,10 +10,10 @@ Discord Bot built with JDA 5 ([Java Discord API](https://github.com/DV8FromTheWo
 Basic Information will be in this README. For more specific questions or discussions, join our [Discord Server](https://discord.gg/4a82kzPX3j) 
 
 ## Features
-Working Graphical User Interface for easy Setup
+Working Graphical User Interface for easy Setup  
 Stream Audio from various Sources  
 Inspect Discord User Profiles  
-Create a verification embed for new Members
+Create a verification embed for new Members  
 
 ## Setup
 > [!IMPORTANT]
