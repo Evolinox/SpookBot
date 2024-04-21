@@ -41,7 +41,7 @@ public class main {
     public static Logger loggingService = null;
 
     //set global Version String
-    public static String version = "v0.3.0-alpha";
+    public static String version = "1.0";
 
     //main class, basic code for the Bot
     public static void main(String[] args) throws LoginException, IOException {
