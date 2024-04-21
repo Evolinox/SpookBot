@@ -365,7 +365,7 @@ public class SpookOS extends JFrame {
 
     private void showBotInfo(JFrame frame) {
 
-        JOptionPane.showMessageDialog(frame, "SpookOS Release 1.0, JDA 5.0.0-beta.12, JDK 11", "About SpookOS", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(frame, "SpookOS Release 1.1, JDA 5.0.0-beta.12, JDK 11", "About SpookOS", JOptionPane.INFORMATION_MESSAGE);
 
     }
 
