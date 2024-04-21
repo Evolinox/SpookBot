@@ -16,11 +16,11 @@ Inspect Discord User Profiles
 Create a verification embed for new Members
 
 ## Setup
-> [!INFORMATION]
+> [!IMPORTANT]
 > To enable the GUI on startup, add the "-g" Argument.
 
 In the User Interface, go to "Settings -> Set Token" and paste your Bot Token there, then go to "Settings -> Set Activity" and paste your Bot Activity in there. Lastly, go to "Settings -> Set Command Prefix" and set something like "s!" as your Bots Command Prefix.
-> [!INFORMATION]
+> [!TIP]
 > Even though, the Command Prefix is deprecated with Slash Commands, it is still recommended to set one. Just in Case.
 
 Now restart the Bot with "SpookBot -> Restart" and the Bot should all be setup.
