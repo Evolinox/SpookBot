@@ -237,7 +237,6 @@ public class main {
         bot.addEventListeners(new inspector());
         bot.addEventListeners(new music());
         bot.addEventListeners(new manager());
-        bot.addEventListeners(new ask());
         bot.addEventListeners(new reddit());
         bot.addEventListeners(new reporting());
 

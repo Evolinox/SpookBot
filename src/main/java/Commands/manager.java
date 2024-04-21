@@ -34,7 +34,7 @@ public class manager extends ListenerAdapter {
 
         // Music Commands
         // Play
-        OptionData musicText = new OptionData(OptionType.STRING, "link", "What music to play? (URL or a Name)", true);
+        OptionData musicText = new OptionData(OptionType.STRING, "link", "What music to play? (Sound Cloud Link or Songname)", true);
         commandData.add(Commands.slash("play", "Play some music for you and your Friends!").addOptions(musicText));
 
         // Stop
@@ -42,10 +42,6 @@ public class manager extends ListenerAdapter {
 
         // Next
         commandData.add(Commands.slash("next", "Some ugly music right there? Just start the next one!"));
-
-        //Ask
-        OptionData questionText = new OptionData(OptionType.STRING, "question", "Type your question here!", true);
-        commandData.add(Commands.slash("ask", "You have a question for me? I'll try to answer it!").addOptions(questionText));
 
         //Reddit
         OptionData subredditName = new OptionData(OptionType.STRING, "subreddit", "Want a specific subreddit?", false);

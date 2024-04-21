@@ -14,7 +14,11 @@ public class messages extends ListenerAdapter {
 
                 event.getChannel().sendMessage("Hallo").queue();
                 //event.getMessage().addReaction("\uD83D\uDC4B").queue();
-                main.spookOS.writeToConsole(event.getMember().getEffectiveName() + " mentioned me in his Message! :O");
+                if (main.spookOS != null) {
+                    main.spookOS.writeToConsole(event.getMember().getEffectiveName() + " mentioned me in his Message! :O");
+                } else {
+                    main.loggingService.info(event.getMember().getEffectiveName() + " mentioned me in his Message! :O");
+                }
 
             }
 
