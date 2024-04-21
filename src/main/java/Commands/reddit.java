@@ -19,7 +19,11 @@ public class reddit extends ListenerAdapter {
 
                 event.reply("r/all").queue();
 
-                main.spookOS.writeToConsole("Requesting a Reddit Post from r/all");
+                if (main.spookOS != null) {
+                    main.spookOS.writeToConsole("Requesting a Reddit Post from r/all");
+                } else {
+                    main.loggingService.info("Requesting a Reddit Post from r/all");
+                }
 
             }
 
@@ -29,7 +33,11 @@ public class reddit extends ListenerAdapter {
 
                 event.reply("r/" + subreddit).queue();
 
-                main.spookOS.writeToConsole("Requesting a Reddit Post from r/" + subreddit);
+                if (main.spookOS != null) {
+                    main.spookOS.writeToConsole("Requesting a Reddit Post from r/" + subreddit);
+                } else {
+                    main.loggingService.info("Requesting a Reddit Post from r/" + subreddit);
+                }
 
             }
 

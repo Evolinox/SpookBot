@@ -10,26 +10,31 @@ Discord Bot built with JDA 5 ([Java Discord API](https://github.com/DV8FromTheWo
 Basic Information will be in this README. For more specific questions or discussions, join our [Discord Server](https://discord.gg/4a82kzPX3j) 
 
 ## Features
-Working Graphical User Interface for easy Setup  
+Working Graphical User Interface for easy Setup
 Stream Audio from various Sources  
 Inspect Discord User Profiles  
-Create a rules embed for new Members
-
+Create a verification embed for new Members
 
 ## Setup
-First Start might be a bit buggy. Go to "Settings -> Set Token" and paste your Bot Token there, then go to "Settings -> Set Activity" and paste your Bot Activity in there. Lastly, go to "Settings -> Set Command Prefix" and set something like "s!" as your Bots Command Prefix.
+> [!IMPORTANT]
+> To enable the GUI on startup, add the "-g" Argument.
+
+In the User Interface, go to "Settings -> Set Token" and paste your Bot Token there, then go to "Settings -> Set Activity" and paste your Bot Activity in there. Lastly, go to "Settings -> Set Command Prefix" and set something like "s!" as your Bots Command Prefix.
+> [!TIP]
+> Even though, the Command Prefix is deprecated with Slash Commands, it is still recommended to set one. Just in Case.
+
 Now restart the Bot with "SpookBot -> Restart" and the Bot should all be setup.
+
+> [!IMPORTANT]
+> If you are running SpookBot without a Graphical User Interface, make sure to run the .jar with -s first. This will invoke a Setup Process in the Console.
 
 ## Roadmap
 #### Short term goals
-- Rework the Code for better readability
+- Remove NullPointerException when GUI is not enabled ☑️
+- Further adjustments for Headless Operation ☑️
 
-#### Medium term goals
-- Implement GitHub Updates
-- Implement custom Surveys for Communities
-
-#### Long term goals
+#### Mid term goals
 - Work on the Swing GUI for better usability
 
-#### Never ending goals
+#### Long term goals
 - Work on a efficient Code

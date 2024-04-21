@@ -46,14 +46,24 @@ public class inspector extends ListenerAdapter {
                 if (event.getMember().getPermissions().contains(Permission.ADMINISTRATOR)) {
 
                     event.replyEmbeds(inspector.build()).addActionRow(btnAvatar, btnKick, btnTimeout, btnBan).queue();
-                    main.spookOS.writeToConsole(event.getMember().getEffectiveName() + " inspected " + member.getNickname() + " with admin rights");
+
+                    if (main.spookOS != null) {
+                        main.spookOS.writeToConsole(event.getMember().getEffectiveName() + " inspected " + member.getNickname() + " with admin rights");
+                    } else {
+                        main.loggingService.info(event.getMember().getEffectiveName() + " inspected " + member.getNickname() + " with admin rights");
+                    }
 
                 }
 
                 else {
 
                     event.replyEmbeds(inspector.build()).addActionRow(btnAvatar).queue();
-                    main.spookOS.writeToConsole(event.getMember().getEffectiveName() + " inspected " + member.getNickname());
+
+                    if (main.spookOS != null) {
+                        main.spookOS.writeToConsole(event.getMember().getEffectiveName() + " inspected " + member.getNickname());
+                    } else {
+                        main.loggingService.info(event.getMember().getEffectiveName() + " inspected " + member.getNickname());
+                    }
 
                 }
 
