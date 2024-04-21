@@ -70,12 +70,12 @@ public class player {
 
             @Override
             public void noMatches() {
-                System.out.println("noMatches");
+                main.loggingService.severe("No Matches Found");
             }
 
             @Override
             public void loadFailed(FriendlyException e) {
-                System.out.println("loadFailed");
+                main.loggingService.severe("Loading Track failed: " + e.getMessage());
             }
         });
 
