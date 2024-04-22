@@ -9,13 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7a652928-0a4b-472f-bc2b-24c47223091b" name="Changes" comment="Added null check if GUI is there and also added Logging for when the GUI isn't there.">
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/SpookBot.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/SpookBotV1.xml" afterDir="false" />
+    <list default="true" id="7a652928-0a4b-472f-bc2b-24c47223091b" name="Changes" comment="Update JDA from beta 12 -&gt; beta 23">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Reddit/Client.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Reddit/OAuth.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/META-INF/MANIFEST.MF" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SpookBot/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SpookBot/main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Swing/SpookOS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Swing/SpookOS.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,42 +74,42 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "JAR Application.SpookBot.jar.executor": "Run",
-    "JAR Application.SpookBotV1.jar.executor": "Run",
-    "Maven.SpookBot [install,--non-recursive].executor": "Run",
-    "Maven.main -g.executor": "Run",
-    "Maven.main -s.executor": "Run",
-    "Maven.main.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "UI_DESIGNER_EDITOR_MODE.PaletteManager.STATE": "right",
-    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.STATE": "left",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "v1.1",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "P:/Dokumente/GitHub/SpookBot",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Artifacts",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JAR Application.SpookBot.jar.executor&quot;: &quot;Run&quot;,
+    &quot;JAR Application.SpookBotV1.jar.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.SpookBot [install,--non-recursive].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.main -g.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.main -s.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;UI_DESIGNER_EDITOR_MODE.PaletteManager.STATE&quot;: &quot;right&quot;,
+    &quot;UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.STATE&quot;: &quot;left&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;v1.1&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;P:/Dokumente/GitHub/SpookBot&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;discord-application&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Github\SpookBot\src\main\resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.main -g">
+  <component name="RunManager" selected="Application.main">
     <configuration name="main -g" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="corretto-11" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -183,34 +181,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="MavenRunConfiguration" factoryName="Maven">
-      <MavenSettings>
-        <option name="myGeneralSettings" />
-        <option name="myRunnerSettings" />
-        <option name="myRunnerParameters">
-          <MavenRunnerParameters>
-            <option name="cmdOptions" />
-            <option name="profiles">
-              <set />
-            </option>
-            <option name="goals">
-              <list />
-            </option>
-            <option name="multimoduleDir" />
-            <option name="pomFileName" />
-            <option name="profilesMap">
-              <map />
-            </option>
-            <option name="projectsCmdOptionValues">
-              <list />
-            </option>
-            <option name="resolveToWorkspace" value="false" />
-            <option name="workingDirPath" value="" />
-          </MavenRunnerParameters>
-        </option>
-      </MavenSettings>
-      <method v="2" />
-    </configuration>
     <list>
       <item itemvalue="Application.main" />
       <item itemvalue="Application.main -g" />
@@ -252,6 +222,8 @@
       <workItem from="1713631778889" duration="6912000" />
       <workItem from="1713690014923" duration="122000" />
       <workItem from="1713690155755" duration="804000" />
+      <workItem from="1713719928277" duration="820000" />
+      <workItem from="1713736965615" duration="9157000" />
     </task>
     <task id="LOCAL-00001" summary="Removed Bot Token">
       <created>1655665154386</created>
@@ -409,7 +381,23 @@
       <option name="project" value="LOCAL" />
       <updated>1713652978265</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Publish Branch v1.1">
+      <option name="closed" value="true" />
+      <created>1713719734588</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1713719734588</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Update JDA from beta 12 -&gt; beta 23">
+      <option name="closed" value="true" />
+      <created>1713775701147</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1713775701147</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -445,7 +433,9 @@
     <MESSAGE value="Edited README.md" />
     <MESSAGE value="Added Headless Configuration. But it doesnt save it at the moment :D" />
     <MESSAGE value="Added null check if GUI is there and also added Logging for when the GUI isn't there." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added null check if GUI is there and also added Logging for when the GUI isn't there." />
+    <MESSAGE value="Publish Branch v1.1" />
+    <MESSAGE value="Update JDA from beta 12 -&gt; beta 23" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update JDA from beta 12 -&gt; beta 23" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
