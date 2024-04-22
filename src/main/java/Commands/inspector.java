@@ -1,6 +1,6 @@
 package Commands;
 
-import SpookBot.main;
+import SpookBot.Main;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Member;
@@ -9,7 +9,7 @@ import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.components.buttons.Button;
 
-public class inspector extends ListenerAdapter {
+public class Inspector extends ListenerAdapter {
 
     @Override
     public void onSlashCommandInteraction(SlashCommandInteractionEvent event) {
@@ -47,10 +47,10 @@ public class inspector extends ListenerAdapter {
 
                     event.replyEmbeds(inspector.build()).addActionRow(btnAvatar, btnKick, btnTimeout, btnBan).queue();
 
-                    if (main.spookOS != null) {
-                        main.spookOS.writeToConsole(event.getMember().getEffectiveName() + " inspected " + member.getNickname() + " with admin rights");
+                    if (Main.spookOS != null) {
+                        Main.spookOS.writeToConsole(event.getMember().getEffectiveName() + " inspected " + member.getNickname() + " with admin rights");
                     } else {
-                        main.loggingService.info(event.getMember().getEffectiveName() + " inspected " + member.getNickname() + " with admin rights");
+                        Main.loggingService.info(event.getMember().getEffectiveName() + " inspected " + member.getNickname() + " with admin rights");
                     }
 
                 }
@@ -59,10 +59,10 @@ public class inspector extends ListenerAdapter {
 
                     event.replyEmbeds(inspector.build()).addActionRow(btnAvatar).queue();
 
-                    if (main.spookOS != null) {
-                        main.spookOS.writeToConsole(event.getMember().getEffectiveName() + " inspected " + member.getNickname());
+                    if (Main.spookOS != null) {
+                        Main.spookOS.writeToConsole(event.getMember().getEffectiveName() + " inspected " + member.getNickname());
                     } else {
-                        main.loggingService.info(event.getMember().getEffectiveName() + " inspected " + member.getNickname());
+                        Main.loggingService.info(event.getMember().getEffectiveName() + " inspected " + member.getNickname());
                     }
 
                 }

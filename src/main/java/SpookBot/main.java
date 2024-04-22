@@ -31,7 +31,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
-public class main {
+public class Main {
 
     static Scanner scanner = new Scanner(System.in);
 
@@ -51,7 +51,7 @@ public class main {
         String path = System.getProperty("user.home") + File.separator + "Documents" + File.separator + "SpookBotSettings";
         File configPath = new File(path);
         File config = new File(path + File.separator + "config.xml");
-        InputStream appSource = main.class.getClassLoader().getResourceAsStream("config.xml");
+        InputStream appSource = Main.class.getClassLoader().getResourceAsStream("config.xml");
 
         if (configPath.exists()) {
             if (!config.isFile()) {
@@ -103,7 +103,7 @@ public class main {
 
         if (Custom) {
             spookBot.getPresence().setActivity(Activity.playing(activity));
-            if (main.spookOS != null) {
+            if (Main.spookOS != null) {
                 spookOS.writeToConsole("Bot Activity set to " + activity);
             } else {
                 loggingService.info("Bot Activity set to " + activity);
@@ -189,7 +189,7 @@ public class main {
 
         spookBot = null;
 
-        if (main.spookOS != null) {
+        if (Main.spookOS != null) {
             spookOS.writeToConsole("SpookBot exited");
         } else {
             loggingService.info("SpookBot exited");
@@ -232,19 +232,19 @@ public class main {
         bot.enableCache(CacheFlag.VOICE_STATE);
         bot.enableIntents(GatewayIntent.MESSAGE_CONTENT);
 
-        bot.addEventListeners(new messages());
-        bot.addEventListeners(new rules());
-        bot.addEventListeners(new inspector());
-        bot.addEventListeners(new music());
-        bot.addEventListeners(new manager());
-        bot.addEventListeners(new reddit());
-        bot.addEventListeners(new reporting());
+        bot.addEventListeners(new Messages());
+        bot.addEventListeners(new Rules());
+        bot.addEventListeners(new Inspector());
+        bot.addEventListeners(new Music());
+        bot.addEventListeners(new Manager());
+        bot.addEventListeners(new Reddit());
+        bot.addEventListeners(new Reporting());
 
         JDA SpookBot = bot.build();
 
         spookBot = SpookBot;
 
-        if (main.spookOS != null) {
+        if (Main.spookOS != null) {
             spookOS.writeToConsole("SpookBot is running!");
         } else {
             loggingService.info("SpookBot is running!");

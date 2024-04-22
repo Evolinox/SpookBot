@@ -1,6 +1,5 @@
 package Commands;
 
-import net.dv8tion.jda.api.events.*;
 import net.dv8tion.jda.api.events.guild.GuildReadyEvent;
 import net.dv8tion.jda.api.events.session.ReadyEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -13,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-public class manager extends ListenerAdapter {
+public class Manager extends ListenerAdapter {
 
     @Override
     public void onReady(@NotNull ReadyEvent event) {

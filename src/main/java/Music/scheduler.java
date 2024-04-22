@@ -1,6 +1,6 @@
 package Music;
 
-import SpookBot.main;
+import SpookBot.Main;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.player.event.AudioEventAdapter;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
@@ -9,12 +9,12 @@ import com.sedmelluq.discord.lavaplayer.track.AudioTrackEndReason;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
-public class scheduler extends AudioEventAdapter {
+public class Scheduler extends AudioEventAdapter {
 
     public final AudioPlayer audioPlayer;
     public final BlockingQueue<AudioTrack> queue;
 
-    public scheduler(AudioPlayer audioPlayer) {
+    public Scheduler(AudioPlayer audioPlayer) {
 
         this.audioPlayer = audioPlayer;
         this.queue = new LinkedBlockingQueue<>();
@@ -29,7 +29,7 @@ public class scheduler extends AudioEventAdapter {
 
         }
 
-        main.setActivity(true, this.audioPlayer.getPlayingTrack().getInfo().title + ", by " + this.audioPlayer.getPlayingTrack().getInfo().author);
+        Main.setActivity(true, this.audioPlayer.getPlayingTrack().getInfo().title + ", by " + this.audioPlayer.getPlayingTrack().getInfo().author);
 
     }
 
@@ -45,7 +45,7 @@ public class scheduler extends AudioEventAdapter {
 
         this.audioPlayer.startTrack(this.queue.poll(), false);
 
-        main.setActivity(true, this.audioPlayer.getPlayingTrack().getInfo().title + ", by " + this.audioPlayer.getPlayingTrack().getInfo().author);
+        Main.setActivity(true, this.audioPlayer.getPlayingTrack().getInfo().title + ", by " + this.audioPlayer.getPlayingTrack().getInfo().author);
 
     }
 
@@ -58,7 +58,7 @@ public class scheduler extends AudioEventAdapter {
     @Override
     public void onTrackEnd(AudioPlayer audioPlayer, AudioTrack track, AudioTrackEndReason endReason) {
 
-        main.setActivity(false, "");
+        Main.setActivity(false, "");
 
         //normal op
         if (endReason.mayStartNext) {

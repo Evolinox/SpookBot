@@ -1,25 +1,18 @@
 package Commands;
 
-import SpookBot.main;
+import SpookBot.Main;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent;
-import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.components.buttons.Button;
-import org.w3c.dom.Document;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import java.awt.*;
-import java.io.File;
-import java.io.InputStream;
 import java.util.concurrent.TimeUnit;
 
-public class rules extends ListenerAdapter {
+public class Rules extends ListenerAdapter {
 
     @Override
     public void onSlashCommandInteraction(SlashCommandInteractionEvent event) {
@@ -50,10 +43,10 @@ public class rules extends ListenerAdapter {
                 TextChannel rulesChannel = event.getGuild().getTextChannelById(channelId);
                 rulesChannel.sendMessageEmbeds(rules.build()).setActionRow(btnAccept, btnRefuse).queue();
 
-                if (main.spookOS != null) {
-                    main.spookOS.writeToConsole(event.getMember().getEffectiveName() + " requested a embedded rules message in: " + rulesChannel);
+                if (Main.spookOS != null) {
+                    Main.spookOS.writeToConsole(event.getMember().getEffectiveName() + " requested a embedded rules message in: " + rulesChannel);
                 } else {
-                    main.loggingService.info(event.getMember().getEffectiveName() + " requested a embedded rules message in: " + rulesChannel);
+                    Main.loggingService.info(event.getMember().getEffectiveName() + " requested a embedded rules message in: " + rulesChannel);
                 }
 
                 event.deferReply().queue();
@@ -79,10 +72,10 @@ public class rules extends ListenerAdapter {
             event.getGuild().addRoleToMember(event.getMember(), memberRole).queue();
             event.reply("You have now access to our Server!").setEphemeral(true).queue();
 
-            if (main.spookOS != null) {
-                main.spookOS.writeToConsole(event.getMember().getEffectiveName() + " has accepted the rules and got the role: " + memberRole);
+            if (Main.spookOS != null) {
+                Main.spookOS.writeToConsole(event.getMember().getEffectiveName() + " has accepted the rules and got the role: " + memberRole);
             } else {
-                main.loggingService.info(event.getMember().getEffectiveName() + " has accepted the rules and got the role: " + memberRole);
+                Main.loggingService.info(event.getMember().getEffectiveName() + " has accepted the rules and got the role: " + memberRole);
             }
 
         }
@@ -91,10 +84,10 @@ public class rules extends ListenerAdapter {
 
             event.reply("Sadly, you did not accept our rules. Therefor we won't grant you access to our Server! If you changed your mind, we will always welcome you to our Server! :)").setEphemeral(true).queue();
 
-            if (main.spookOS != null) {
-                main.spookOS.writeToConsole(event.getMember().getEffectiveName() + " did not accept the rules!");
+            if (Main.spookOS != null) {
+                Main.spookOS.writeToConsole(event.getMember().getEffectiveName() + " did not accept the rules!");
             } else {
-                main.loggingService.info(event.getMember().getEffectiveName() + " did not accept the rules!");
+                Main.loggingService.info(event.getMember().getEffectiveName() + " did not accept the rules!");
             }
 
         }

@@ -3,22 +3,22 @@ package Music;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
 
-public class manager {
+public class Manager {
 
     public final AudioPlayer audioPlayer;
-    public final scheduler trackScheduler;
-    private final handler audioHandler;
+    public final Scheduler trackScheduler;
+    private final Handler audioHandler;
 
-    public manager(AudioPlayerManager manager) {
+    public Manager(AudioPlayerManager manager) {
 
         this.audioPlayer = manager.createPlayer();
-        this.trackScheduler = new scheduler(this.audioPlayer);
+        this.trackScheduler = new Scheduler(this.audioPlayer);
         this.audioPlayer.addListener(this.trackScheduler);
-        this.audioHandler = new handler(this.audioPlayer);
+        this.audioHandler = new Handler(this.audioPlayer);
 
     }
 
-    public handler getAudioHandler() {
+    public Handler getAudioHandler() {
 
         return this.audioHandler;
 
