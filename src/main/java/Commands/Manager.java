@@ -47,7 +47,12 @@ public class Manager extends ListenerAdapter {
         commandData.add(Commands.slash("reddit", "You want to see some reddit posts?").addOptions(subredditName));
 
         //Ollama
-        commandData.add(Commands.slash("ollama", "You have a Question and need an Answer? Try this"));
+        OptionData llmModel = new OptionData(OptionType.STRING, "model", "What Model do you want to use?", true)
+                .addChoice("Llama 3", "llama3")
+                .addChoice("Llama 2", "llama2")
+                .addChoice("Code-Llama", "codellama");
+        OptionData llmQuestion = new OptionData(OptionType.STRING, "question", "What is your Question?", true);
+        commandData.add(Commands.slash("ollama", "You have a Question and need an Answer? Try this").addOptions(llmModel, llmQuestion));
 
         event.getJDA().updateCommands().addCommands(commandData).queue();
     }
