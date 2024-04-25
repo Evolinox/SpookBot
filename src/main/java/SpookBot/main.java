@@ -232,13 +232,14 @@ public class main {
         bot.enableCache(CacheFlag.VOICE_STATE);
         bot.enableIntents(GatewayIntent.MESSAGE_CONTENT);
 
+        bot.addEventListeners(new Manager());
         bot.addEventListeners(new messages());
         bot.addEventListeners(new rules());
         bot.addEventListeners(new inspector());
         bot.addEventListeners(new music());
-        bot.addEventListeners(new manager());
         bot.addEventListeners(new reddit());
         bot.addEventListeners(new reporting());
+        bot.addEventListeners(new Ollama());
 
         JDA SpookBot = bot.build();
 
