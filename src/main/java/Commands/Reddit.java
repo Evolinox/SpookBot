@@ -1,10 +1,10 @@
 package Commands;
 
-import SpookBot.main;
+import SpookBot.Main;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
-public class reddit extends ListenerAdapter {
+public class Reddit extends ListenerAdapter {
 
     @Override
     public void onSlashCommandInteraction(SlashCommandInteractionEvent event) {
@@ -19,10 +19,10 @@ public class reddit extends ListenerAdapter {
 
                 event.reply("r/all").queue();
 
-                if (main.spookOS != null) {
-                    main.spookOS.writeToConsole("Requesting a Reddit Post from r/all");
+                if (Main.spookOS != null) {
+                    Main.spookOS.writeToConsole("Requesting a Reddit Post from r/all");
                 } else {
-                    main.loggingService.info("Requesting a Reddit Post from r/all");
+                    Main.loggingService.info("Requesting a Reddit Post from r/all");
                 }
 
             }
@@ -33,10 +33,10 @@ public class reddit extends ListenerAdapter {
 
                 event.reply("r/" + subreddit).queue();
 
-                if (main.spookOS != null) {
-                    main.spookOS.writeToConsole("Requesting a Reddit Post from r/" + subreddit);
+                if (Main.spookOS != null) {
+                    Main.spookOS.writeToConsole("Requesting a Reddit Post from r/" + subreddit);
                 } else {
-                    main.loggingService.info("Requesting a Reddit Post from r/" + subreddit);
+                    Main.loggingService.info("Requesting a Reddit Post from r/" + subreddit);
                 }
 
             }

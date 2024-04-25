@@ -8,13 +8,13 @@ import org.jetbrains.annotations.Nullable;
 import java.nio.Buffer;
 import java.nio.ByteBuffer;
 
-public class handler implements AudioSendHandler {
+public class Handler implements AudioSendHandler {
 
     private final AudioPlayer audioPlayer;
     private final ByteBuffer buffer;
     private final MutableAudioFrame frame;
 
-    public handler(AudioPlayer audioPlayer) {
+    public Handler(AudioPlayer audioPlayer) {
 
         this.audioPlayer = audioPlayer;
         this.buffer = ByteBuffer.allocate(1024);

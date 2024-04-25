@@ -1,8 +1,8 @@
 package Commands;
 
-import Music.manager;
-import Music.player;
-import SpookBot.main;
+import Music.Manager;
+import Music.Player;
+import SpookBot.Main;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.entities.channel.concrete.VoiceChannel;
@@ -17,9 +17,8 @@ import java.io.File;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Logger;
 
-public class music extends ListenerAdapter {
+public class Music extends ListenerAdapter {
 
     @Override
     public void onSlashCommandInteraction(@NotNull SlashCommandInteractionEvent event) {
@@ -55,10 +54,10 @@ public class music extends ListenerAdapter {
                 // Antworte mit ner Nachricht, das er net in nem VC ist
                 event.reply("You need to be in a voice channel for this command to work!").queue();
                 // Info an die Konsole
-                if (main.spookOS != null) {
-                    main.spookOS.writeToConsole(event.getMember().getEffectiveName() + " tried to play something, but was not connected to a Voicechat!");
+                if (Main.spookOS != null) {
+                    Main.spookOS.writeToConsole(event.getMember().getEffectiveName() + " tried to play something, but was not connected to a Voicechat!");
                 } else {
-                    main.loggingService.warning(event.getMember().getEffectiveName() + " tried to play something, but was not connected to a Voicechat!");
+                    Main.loggingService.warning(event.getMember().getEffectiveName() + " tried to play something, but was not connected to a Voicechat!");
                 }
             }
 
@@ -70,10 +69,10 @@ public class music extends ListenerAdapter {
 
                 audioManager.openAudioConnection(memberChannel);
 
-                if (main.spookOS != null) {
-                    main.spookOS.writeToConsole("Connecting to " + memberChannel.getName());
+                if (Main.spookOS != null) {
+                    Main.spookOS.writeToConsole("Connecting to " + memberChannel.getName());
                 } else {
-                    main.loggingService.info("Connecting to " + memberChannel.getName());
+                    Main.loggingService.info("Connecting to " + memberChannel.getName());
                 }
             }
 
@@ -83,7 +82,7 @@ public class music extends ListenerAdapter {
                 link = "ytsearch:" + link + " audio";
             }
 
-            player.getINSTANCE().loadAndPlay(event.getChannel().asTextChannel(), link);
+            Player.getINSTANCE().loadAndPlay(event.getChannel().asTextChannel(), link);
 
             event.deferReply().queue();
             try {
@@ -93,10 +92,10 @@ public class music extends ListenerAdapter {
             }
             event.getHook().editOriginal("Sure! I've searched for: " + link).queue();
 
-            if (main.spookOS != null) {
-                main.spookOS.writeToConsole("Playing " + link);
+            if (Main.spookOS != null) {
+                Main.spookOS.writeToConsole("Playing " + link);
             } else {
-                main.loggingService.info("Playing " + link);
+                Main.loggingService.info("Playing " + link);
             }
         }
 
@@ -111,14 +110,14 @@ public class music extends ListenerAdapter {
                 event.reply("I'm leaving now. Bye, have a great Time!").queue();
 
                 // Info an die Konsole
-                if (main.spookOS != null) {
-                    main.spookOS.writeToConsole(event.getMember().getNickname() + " has stopped Audio Playback");
-                    main.spookOS.writeToConsole("Disconnecting from Voicechannel...");
+                if (Main.spookOS != null) {
+                    Main.spookOS.writeToConsole(event.getMember().getNickname() + " has stopped Audio Playback");
+                    Main.spookOS.writeToConsole("Disconnecting from Voicechannel...");
                 } else {
-                    main.loggingService.info(event.getMember().getNickname() + " has stopped Audio Playback");
-                    main.loggingService.info("Disconnecting from Voicechannel...");
+                    Main.loggingService.info(event.getMember().getNickname() + " has stopped Audio Playback");
+                    Main.loggingService.info("Disconnecting from Voicechannel...");
                 }
-                main.setActivity(true, activity);
+                Main.setActivity(true, activity);
             }
 
         }
@@ -128,7 +127,7 @@ public class music extends ListenerAdapter {
             if (event.getGuild().getSelfMember().getVoiceState().inAudioChannel()) {
 
                 //here logic for next song from playlist
-                final manager musicManager = player.getINSTANCE().getMusicManager(event.getGuild());
+                final Manager musicManager = Player.getINSTANCE().getMusicManager(event.getGuild());
 
                 String titleSong = musicManager.trackScheduler.getTitleSong();
                 String authorSong = musicManager.trackScheduler.getAuthorSong();
