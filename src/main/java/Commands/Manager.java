@@ -1,6 +1,5 @@
 package Commands;
 
-import net.dv8tion.jda.api.events.*;
 import net.dv8tion.jda.api.events.guild.GuildReadyEvent;
 import net.dv8tion.jda.api.events.session.ReadyEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -13,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-public class manager extends ListenerAdapter {
+public class Manager extends ListenerAdapter {
 
     @Override
     public void onReady(@NotNull ReadyEvent event) {
@@ -46,6 +45,9 @@ public class manager extends ListenerAdapter {
         //Reddit
         OptionData subredditName = new OptionData(OptionType.STRING, "subreddit", "Want a specific subreddit?", false);
         commandData.add(Commands.slash("reddit", "You want to see some reddit posts?").addOptions(subredditName));
+
+        //Ollama
+        commandData.add(Commands.slash("ollama", "You have a Question and need an Answer? Try this"));
 
         event.getJDA().updateCommands().addCommands(commandData).queue();
     }
