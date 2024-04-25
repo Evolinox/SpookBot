@@ -1,19 +1,17 @@
 package Commands;
 
-import Reddit.Client;
+import SpookBot.Main;
+import com.fasterxml.jackson.core.JsonParser;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.time.Duration;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
 
 public class Ollama extends ListenerAdapter {
 
@@ -29,40 +27,29 @@ public class Ollama extends ListenerAdapter {
             // Get Question
             final String question = event.getOption("question").getAsString();
 
-            // Set HTTP Request Parameter
-            final Map<String, String> params = new HashMap<>();
-            params.put("model", model);
-            params.put("prompt", question);
-
-            // Building the Request Form
-            final String form = params.entrySet().stream()
-                    .map(entry -> entry.getKey() + "=" + entry.getValue())
-                    .collect(Collectors.joining("&"));
-
-            // Building the HTTP Request
-            final HttpRequest request = HttpRequest.newBuilder()
-                    .POST(HttpRequest.BodyPublishers.ofString(form))
+            HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create(ollamaApiUrl))
+                    .header("Accept", "*/*")
+                    .header("User-Agent", "Thunder Client (https://www.thunderclient.com)")
+                    .header("Content-Type", "application/json")
+                    .method("POST", HttpRequest.BodyPublishers.ofString("{\n  \"model\": \"llama2\",\n  \"prompt\": \"Hi\",\n  \"stream\": false\n}"))
                     .build();
-
-            final HttpClient client = Reddit.Client.getHttpClient();
-
-            HttpResponse<String> response;
-            try {
-                response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
 
             // Defer Reply
             event.deferReply().queue();
+            HttpResponse<String> response = null;
             try {
+                response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
                 TimeUnit.SECONDS.sleep(1);
+            } catch (IOException e) {
+                Main.loggingService.severe(e.getMessage());
             } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+                Main.loggingService.severe(e.getMessage());
             }
+
+            // Convert to a JSON object to print data
+
+
             event.getHook().editOriginal(response.body()).queue();
         }
     }
