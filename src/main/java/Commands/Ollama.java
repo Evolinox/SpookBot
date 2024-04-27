@@ -30,9 +30,9 @@ public class Ollama extends ListenerAdapter {
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create(ollamaApiUrl))
                     .header("Accept", "*/*")
-                    .header("User-Agent", "Thunder Client (https://www.thunderclient.com)")
+                    .header("User-Agent", "SpookBot")
                     .header("Content-Type", "application/json")
-                    .method("POST", HttpRequest.BodyPublishers.ofString("{\n  \"model\": \"llama2\",\n  \"prompt\": \"Hi\",\n  \"stream\": false\n}"))
+                    .method("POST", HttpRequest.BodyPublishers.ofString(String.format("{\n  \"model\": \"%s\",\n  \"prompt\": \"%s\",\n  \"stream\": false\n}", model, question)))
                     .build();
 
             // Defer Reply
