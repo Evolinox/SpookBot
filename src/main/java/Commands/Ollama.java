@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.JsonParser;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.URI;
@@ -48,9 +49,11 @@ public class Ollama extends ListenerAdapter {
             }
 
             // Convert to a JSON object to print data
+            JSONObject responseBody = new JSONObject(response.body());
+            String answer = responseBody.getString("response");
 
-
-            event.getHook().editOriginal(response.body()).queue();
+            // Output response
+            event.getHook().editOriginal(answer).queue();
         }
     }
 }
