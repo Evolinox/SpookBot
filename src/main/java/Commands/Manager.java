@@ -54,6 +54,13 @@ public class Manager extends ListenerAdapter {
         OptionData llmQuestion = new OptionData(OptionType.STRING, "question", "What is your Question?", true);
         commandData.add(Commands.slash("ollama", "You have a Question and need an Answer? Try this").addOptions(llmModel, llmQuestion));
 
+        //Timetable
+        OptionData stationId = new OptionData(OptionType.STRING, "stationId", "Which Station?", true)
+                .addChoice("Mosbach (Baden)", "8004094")
+                .addChoice("Mosbach-Neckarelz", "8000264")
+                .addChoice("Heilbronn Hbf", "8000157");
+        commandData.add(Commands.slash("timetable", "See all Arrivals and Departures from a Station (Germany Only)").addOptions(stationId));
+
         event.getJDA().updateCommands().addCommands(commandData).queue();
     }
 
