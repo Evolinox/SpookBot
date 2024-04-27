@@ -14,6 +14,7 @@ Working Graphical User Interface for easy Setup
 Stream Audio from various Sources  
 Inspect Discord User Profiles  
 Create a verification embed for new Members  
+Integrated Ollama AI (Requires Local Server)
 
 ## Setup
 > [!IMPORTANT]
@@ -27,14 +28,3 @@ Now restart the Bot with "SpookBot -> Restart" and the Bot should all be setup.
 
 > [!IMPORTANT]
 > If you are running SpookBot without a Graphical User Interface, make sure to run the .jar with -s first. This will invoke a Setup Process in the Console.
-
-## Roadmap
-#### Short term goals
-- Remove NullPointerException when GUI is not enabled ☑️
-- Further adjustments for Headless Operation ☑️
-
-#### Mid term goals
-- Work on the Swing GUI for better usability
-
-#### Long term goals
-- Work on a efficient Code
