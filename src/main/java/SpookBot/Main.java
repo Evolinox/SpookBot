@@ -40,8 +40,10 @@ public class Main {
     public static SpookOS spookOS = null;
     public static Logger loggingService = null;
 
-    //set global Version String
+    //set global Variables
     public static String version = "1.1";
+    public static String dbApiKey = null;
+    public static String dbApiSecret = null;
 
     //main class, basic code for the Bot
     public static void main(String[] args) throws LoginException, IOException {
