@@ -4,4 +4,6 @@
     <commandPrefix></commandPrefix>
     <botActivity></botActivity>
     <laf>Nimbus</laf>
+    <dbApiKey></dbApiKey>
+    <dbApiSecret></dbApiSecret>
 </settings>
