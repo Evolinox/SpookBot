@@ -55,7 +55,7 @@ public class Manager extends ListenerAdapter {
         commandData.add(Commands.slash("ollama", "You have a Question and need an Answer? Try this").addOptions(llmModel, llmQuestion));
 
         //Timetable
-        OptionData stationId = new OptionData(OptionType.STRING, "stationId", "Which Station?", true)
+        OptionData stationId = new OptionData(OptionType.STRING, "station", "Which Station?", true)
                 .addChoice("Mosbach (Baden)", "8004094")
                 .addChoice("Mosbach-Neckarelz", "8000264")
                 .addChoice("Heilbronn Hbf", "8000157");

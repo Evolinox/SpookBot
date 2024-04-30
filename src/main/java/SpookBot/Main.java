@@ -240,6 +240,7 @@ public class Main {
         bot.addEventListeners(new Reddit());
         bot.addEventListeners(new Reporting());
         bot.addEventListeners(new Ollama());
+        bot.addEventListeners(new Timetable());
 
         JDA SpookBot = bot.build();
 
