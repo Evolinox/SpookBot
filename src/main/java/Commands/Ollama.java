@@ -24,7 +24,6 @@ public class Ollama extends ListenerAdapter {
             final String ollamaApiUrl = "http://127.0.0.1:11434/api/generate";
             // Get Model
             final String model = event.getOption("model").getAsString();
-            ;
             // Get Question
             final String question = event.getOption("question").getAsString();
 
