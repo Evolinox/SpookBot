@@ -29,9 +29,6 @@ public class Request {
 
         HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
 
-        JSONObject timetable = new JSONObject();
-        timetable.put("value", response.body());
-
-        return timetable;
+        return XmlToJson.ToJSON(response);
     }
 }
