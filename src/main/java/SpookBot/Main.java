@@ -143,18 +143,26 @@ public class Main {
         String token = scanner.nextLine();
         System.out.println("Enter your preferred Activity ( Something like SpookOS :P ) : ");
         String activity = scanner.nextLine();
+        System.out.println("Enter your DB API Key ( From DB API Marketplace ) : ");
+        String dbKey = scanner.nextLine();
+        System.out.println("Enter your DB API Secret ( From DB API Marketplace ) : ");
+        String dbSecret = scanner.nextLine();
 
         //Confirmation
         System.out.println("Please Confirm your Input");
         System.out.println("Prefix: " + prefix);
         System.out.println("Token: " + token);
         System.out.println("Activity: " + activity);
+        System.out.println("DB API Key: " + dbKey);
+        System.out.println("DB API Secret: " + dbSecret);
         System.out.println("Are your Input's correct? (Y/N)");
 
         if (handleConfirmation()) {
             document.getElementsByTagName("commandPrefix").item(0).setTextContent(prefix);
             document.getElementsByTagName("botToken").item(0).setTextContent(token);
             document.getElementsByTagName("botActivity").item(0).setTextContent(activity);
+            document.getElementsByTagName("dbApiKey").item(0).setTextContent(dbKey);
+            document.getElementsByTagName("dbApiSecret").item(0).setTextContent(dbSecret);
 
             try {
                 Transformer transformer = TransformerFactory.newInstance().newTransformer();
@@ -191,7 +199,7 @@ public class Main {
 
         spookBot = null;
 
-        if (Main.spookOS != null) {
+        if (spookOS != null) {
             spookOS.writeToConsole("SpookBot exited");
         } else {
             loggingService.info("SpookBot exited");
@@ -227,6 +235,8 @@ public class Main {
 
         token = document.getElementsByTagName("botToken").item(0).getTextContent();
         activity = document.getElementsByTagName("botActivity").item(0).getTextContent();
+        dbApiKey = document.getElementsByTagName("dbApiKey").item(0).getTextContent();
+        dbApiSecret = document.getElementsByTagName("dbApiSecret").item(0).getTextContent();
 
         JDABuilder bot = JDABuilder.createDefault(token);
         bot.setStatus(OnlineStatus.ONLINE);
