@@ -1,12 +1,10 @@
 package Timetable;
 
 import SpookBot.Main;
-import org.apache.http.HttpEntity;
-import org.apache.http.util.EntityUtils;
+
 import org.json.JSONObject;
 import org.w3c.dom.*;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
+import org.xml.sax.*;
 
 import javax.xml.parsers.*;
 import java.io.IOException;
