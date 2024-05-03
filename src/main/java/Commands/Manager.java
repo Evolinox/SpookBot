@@ -59,7 +59,9 @@ public class Manager extends ListenerAdapter {
                 .addChoice("Mosbach (Baden)", "8004094")
                 .addChoice("Mosbach-Neckarelz", "8000264")
                 .addChoice("Heilbronn Hbf", "8000157");
-        commandData.add(Commands.slash("timetable", "See all Arrivals and Departures from a Station (Germany Only)").addOptions(stationId));
+        OptionData customDate = new OptionData(OptionType.STRING, "customdate", "Enter a custom Date (YYMMDD)", false);
+        OptionData customHour = new OptionData(OptionType.STRING, "customhour", "Enter a custom Hour (HH)", false);
+        commandData.add(Commands.slash("timetable", "See all Arrivals and Departures from a Station (Germany Only)").addOptions(stationId, customDate, customHour));
 
         event.getJDA().updateCommands().addCommands(commandData).queue();
     }

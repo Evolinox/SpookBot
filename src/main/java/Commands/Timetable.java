@@ -14,7 +14,7 @@ public class Timetable extends ListenerAdapter {
         if (event.getName().equals("timetable")) {
             JSONObject tt = null;
             try {
-                tt = Request.getTimetable(event.getOption("station").getAsString(), "240430", "15");
+                tt = Request.getTimetable(event.getOption("station").getAsString(), event.getOption("customdate").getAsString(), event.getOption("customhour").getAsString());
             } catch (IOException e) {
                 throw new RuntimeException(e);
             } catch (InterruptedException e) {
