@@ -14,8 +14,8 @@ Working Graphical User Interface for easy Setup
 Stream Audio from various Sources  
 Inspect Discord User Profiles  
 Create a verification embed for new Members  
-Integrated Ollama AI (Requires Local Server)
-Get a Timetable for a Trainstation (Germany only)
+Integrated Ollama AI (Requires Local Server)  
+Get a Timetable for a Trainstation (Germany only)  
 
 ## Setup
 > [!IMPORTANT]
