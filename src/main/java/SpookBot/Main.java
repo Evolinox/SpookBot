@@ -31,7 +31,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
-public class main {
+public class Main {
 
     static Scanner scanner = new Scanner(System.in);
 
@@ -40,8 +40,10 @@ public class main {
     public static SpookOS spookOS = null;
     public static Logger loggingService = null;
 
-    //set global Version String
-    public static String version = "1.0";
+    //set global Variables
+    public static String version = "1.1";
+    public static String dbApiKey = null;
+    public static String dbApiSecret = null;
 
     //main class, basic code for the Bot
     public static void main(String[] args) throws LoginException, IOException {
@@ -51,7 +53,7 @@ public class main {
         String path = System.getProperty("user.home") + File.separator + "Documents" + File.separator + "SpookBotSettings";
         File configPath = new File(path);
         File config = new File(path + File.separator + "config.xml");
-        InputStream appSource = main.class.getClassLoader().getResourceAsStream("config.xml");
+        InputStream appSource = Main.class.getClassLoader().getResourceAsStream("config.xml");
 
         if (configPath.exists()) {
             if (!config.isFile()) {
@@ -103,7 +105,7 @@ public class main {
 
         if (Custom) {
             spookBot.getPresence().setActivity(Activity.playing(activity));
-            if (main.spookOS != null) {
+            if (Main.spookOS != null) {
                 spookOS.writeToConsole("Bot Activity set to " + activity);
             } else {
                 loggingService.info("Bot Activity set to " + activity);
@@ -141,18 +143,26 @@ public class main {
         String token = scanner.nextLine();
         System.out.println("Enter your preferred Activity ( Something like SpookOS :P ) : ");
         String activity = scanner.nextLine();
+        System.out.println("Enter your DB API Key ( From DB API Marketplace ) : ");
+        String dbKey = scanner.nextLine();
+        System.out.println("Enter your DB API Secret ( From DB API Marketplace ) : ");
+        String dbSecret = scanner.nextLine();
 
         //Confirmation
         System.out.println("Please Confirm your Input");
         System.out.println("Prefix: " + prefix);
         System.out.println("Token: " + token);
         System.out.println("Activity: " + activity);
+        System.out.println("DB API Key: " + dbKey);
+        System.out.println("DB API Secret: " + dbSecret);
         System.out.println("Are your Input's correct? (Y/N)");
 
         if (handleConfirmation()) {
             document.getElementsByTagName("commandPrefix").item(0).setTextContent(prefix);
             document.getElementsByTagName("botToken").item(0).setTextContent(token);
             document.getElementsByTagName("botActivity").item(0).setTextContent(activity);
+            document.getElementsByTagName("dbApiKey").item(0).setTextContent(dbKey);
+            document.getElementsByTagName("dbApiSecret").item(0).setTextContent(dbSecret);
 
             try {
                 Transformer transformer = TransformerFactory.newInstance().newTransformer();
@@ -189,7 +199,7 @@ public class main {
 
         spookBot = null;
 
-        if (main.spookOS != null) {
+        if (spookOS != null) {
             spookOS.writeToConsole("SpookBot exited");
         } else {
             loggingService.info("SpookBot exited");
@@ -225,6 +235,8 @@ public class main {
 
         token = document.getElementsByTagName("botToken").item(0).getTextContent();
         activity = document.getElementsByTagName("botActivity").item(0).getTextContent();
+        dbApiKey = document.getElementsByTagName("dbApiKey").item(0).getTextContent();
+        dbApiSecret = document.getElementsByTagName("dbApiSecret").item(0).getTextContent();
 
         JDABuilder bot = JDABuilder.createDefault(token);
         bot.setStatus(OnlineStatus.ONLINE);
@@ -232,19 +244,21 @@ public class main {
         bot.enableCache(CacheFlag.VOICE_STATE);
         bot.enableIntents(GatewayIntent.MESSAGE_CONTENT);
 
-        bot.addEventListeners(new messages());
-        bot.addEventListeners(new rules());
-        bot.addEventListeners(new inspector());
-        bot.addEventListeners(new music());
-        bot.addEventListeners(new manager());
-        bot.addEventListeners(new reddit());
-        bot.addEventListeners(new reporting());
+        bot.addEventListeners(new Manager());
+        bot.addEventListeners(new Messages());
+        bot.addEventListeners(new Rules());
+        bot.addEventListeners(new Inspector());
+        bot.addEventListeners(new Music());
+        bot.addEventListeners(new Reddit());
+        bot.addEventListeners(new Reporting());
+        bot.addEventListeners(new Ollama());
+        bot.addEventListeners(new Timetable());
 
         JDA SpookBot = bot.build();
 
         spookBot = SpookBot;
 
-        if (main.spookOS != null) {
+        if (Main.spookOS != null) {
             spookOS.writeToConsole("SpookBot is running!");
         } else {
             loggingService.info("SpookBot is running!");

@@ -12,16 +12,12 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import javax.swing.border.TitledBorder;
-import javax.swing.plaf.nimbus.NimbusLookAndFeel;
-import javax.swing.plaf.nimbus.NimbusStyle;
 import javax.xml.parsers.*;
 import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-import SpookBot.main;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
+import SpookBot.Main;
 import org.w3c.dom.*;
 
 public class SpookOS extends JFrame {
@@ -142,7 +138,7 @@ public class SpookOS extends JFrame {
             public void actionPerformed(ActionEvent e) {
 
                 try {
-                    main.stopSpookBot();
+                    Main.stopSpookBot();
                 } catch (LoginException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -296,7 +292,7 @@ public class SpookOS extends JFrame {
                 writeToConsole(ioe.getMessage());
             }
 
-            main.setActivity(true, botActivity);
+            Main.setActivity(true, botActivity);
 
         }
 
@@ -365,7 +361,7 @@ public class SpookOS extends JFrame {
 
     private void showBotInfo(JFrame frame) {
 
-        JOptionPane.showMessageDialog(frame, "SpookOS Release 1.0, JDA 5.0.0-beta.12, JDK 11", "About SpookOS", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(frame, "SpookOS Release 1.1, JDA 5.0.0-beta.23, JDK 11", "About SpookOS", JOptionPane.INFORMATION_MESSAGE);
 
     }
 

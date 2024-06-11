@@ -1,6 +1,5 @@
 package Commands;
 
-import net.dv8tion.jda.api.events.*;
 import net.dv8tion.jda.api.events.guild.GuildReadyEvent;
 import net.dv8tion.jda.api.events.session.ReadyEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -13,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-public class manager extends ListenerAdapter {
+public class Manager extends ListenerAdapter {
 
     @Override
     public void onReady(@NotNull ReadyEvent event) {
@@ -46,6 +45,23 @@ public class manager extends ListenerAdapter {
         //Reddit
         OptionData subredditName = new OptionData(OptionType.STRING, "subreddit", "Want a specific subreddit?", false);
         commandData.add(Commands.slash("reddit", "You want to see some reddit posts?").addOptions(subredditName));
+
+        //Ollama
+        OptionData llmModel = new OptionData(OptionType.STRING, "model", "What Model do you want to use?", true)
+                .addChoice("Llama 3", "llama3")
+                .addChoice("Llama 2", "llama2")
+                .addChoice("Code-Llama", "codellama");
+        OptionData llmQuestion = new OptionData(OptionType.STRING, "question", "What is your Question?", true);
+        commandData.add(Commands.slash("ollama", "You have a Question and need an Answer? Try this").addOptions(llmModel, llmQuestion));
+
+        //Timetable
+        OptionData stationId = new OptionData(OptionType.STRING, "station", "Which Station?", true)
+                .addChoice("Mosbach (Baden)", "8004094")
+                .addChoice("Mosbach-Neckarelz", "8000264")
+                .addChoice("Heilbronn Hbf", "8000157");
+        OptionData customDate = new OptionData(OptionType.STRING, "customdate", "Enter a custom Date (YYMMDD)", false);
+        OptionData customHour = new OptionData(OptionType.STRING, "customhour", "Enter a custom Hour (HH)", false);
+        commandData.add(Commands.slash("timetable", "See all Arrivals and Departures from a Station (Germany Only)").addOptions(stationId, customDate, customHour));
 
         event.getJDA().updateCommands().addCommands(commandData).queue();
     }

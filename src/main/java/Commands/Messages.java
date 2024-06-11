@@ -1,10 +1,10 @@
 package Commands;
 
-import SpookBot.main;
+import SpookBot.Main;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
-public class messages extends ListenerAdapter {
+public class Messages extends ListenerAdapter {
 
     public void onMessageReceived (MessageReceivedEvent event) {
 
@@ -14,10 +14,10 @@ public class messages extends ListenerAdapter {
 
                 event.getChannel().sendMessage("Hallo").queue();
                 //event.getMessage().addReaction("\uD83D\uDC4B").queue();
-                if (main.spookOS != null) {
-                    main.spookOS.writeToConsole(event.getMember().getEffectiveName() + " mentioned me in his Message! :O");
+                if (Main.spookOS != null) {
+                    Main.spookOS.writeToConsole(event.getMember().getEffectiveName() + " mentioned me in his Message! :O");
                 } else {
-                    main.loggingService.info(event.getMember().getEffectiveName() + " mentioned me in his Message! :O");
+                    Main.loggingService.info(event.getMember().getEffectiveName() + " mentioned me in his Message! :O");
                 }
 
             }
