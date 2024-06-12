@@ -38,6 +38,36 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>de.perdian.maven.plugins</groupId>
+                <artifactId>macosappbundler-maven-plugin</artifactId>
+                <version>1.20.1</version>
+                <configuration>
+                    <plist>
+                        <CFBundleDevelopmentRegion>English</CFBundleDevelopmentRegion>
+                        <CFBundleDisplayName>SpookBot</CFBundleDisplayName>
+                        <CFBundleShortVersionString>1.1</CFBundleShortVersionString>
+                        <CFBundlePackageType>APPL</CFBundlePackageType>
+                        <NSHumanReadableCopyright>Evolinox</NSHumanReadableCopyright>
+                        <NSHighResolutionCapable>True</NSHighResolutionCapable>
+                        <JVMMainClassName>SpookBot.Main</JVMMainClassName>
+                        <JVMArguments>
+                            <string>-g</string>
+                        </JVMArguments>
+                    </plist>
+                    <codesign>
+                        <identity>-</identity>
+                    </codesign>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>bundle</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
@@ -88,6 +118,16 @@
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
             <version>20230618</version>
+        </dependency>
+        <dependency>
+            <groupId>de.perdian.maven.plugins</groupId>
+            <artifactId>macosappbundler-maven-plugin</artifactId>
+            <version>1.20.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.formdev</groupId>
+            <artifactId>flatlaf</artifactId>
+            <version>3.4.1</version>
         </dependency>
     </dependencies>
 </project>
