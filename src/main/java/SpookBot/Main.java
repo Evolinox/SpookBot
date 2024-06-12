@@ -4,6 +4,7 @@ import Commands.*;
 
 import Swing.SpookOS;
 
+import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
@@ -13,6 +14,7 @@ import net.dv8tion.jda.api.utils.cache.CacheFlag;
 import org.w3c.dom.Document;
 
 import javax.security.auth.login.LoginException;
+import javax.swing.*;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.Transformer;
@@ -28,6 +30,7 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
@@ -47,6 +50,11 @@ public class Main {
 
     //main class, basic code for the Bot
     public static void main(String[] args) throws LoginException, IOException {
+        if (Objects.equals(System.getProperty("os.name"), "Mac OS X")) {
+            System.setProperty( "apple.laf.useScreenMenuBar", "true" );
+            System.setProperty( "apple.awt.application.name", "SpookBot" );
+        }
+
         // Logger Setup
         loggingService = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
         // Rest
