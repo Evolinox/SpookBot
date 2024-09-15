@@ -1,8 +1,13 @@
 package Commands;
 
 import SpookBot.Main;
+import SpookBot.Utils;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 public class Birthday extends ListenerAdapter {
     @Override
@@ -14,6 +19,10 @@ public class Birthday extends ListenerAdapter {
             Integer month = event.getOption("month").getAsInt();
             // Add day and month for Logging and Response
             String date = day + "." + month;
+            String dateClean = day.toString() + month;
+            // Get Eventdata
+            String guildId = event.getGuild().getId();
+            String userId = event.getMember().getId();
 
             // Check Variables
             if (month > 12 || month < 1 || day > 31 || day < 1) {
@@ -25,16 +34,57 @@ public class Birthday extends ListenerAdapter {
                 // Doing a bit of Logging
                 Main.loggingService.info(event.getMember().getEffectiveName() + " has added a Birthday: " + date);
 
-                // Logic
-                event.reply("I've set your Birthday to " + date).queue();
+                // Get config.xml
+                Document config = Utils.getConfiguration();
+                config.getDocumentElement().normalize();
+
+                // Check, if Server is already in Birthday List
+                NodeList birthdayConfigList = config.getElementsByTagName("birthday");
+                if (birthdayConfigList.getLength() > 0) {
+                    Element birthdayElement = (Element) birthdayConfigList.item(0);
+                    NodeList serverElements = birthdayElement.getElementsByTagName("s" + guildId);
+
+                    // Check
+                    if (serverElements.getLength() == 0) {
+                        Element serverBirthdayConfig = config.createElement("s" + guildId);
+                        serverBirthdayConfig.setAttribute("enabled", "true");
+                        serverBirthdayConfig.setAttribute("broadcastId", "");
+                        birthdayElement.appendChild(serverBirthdayConfig);
+                    }
+
+                    if (serverElements.getLength() > 0){
+                        Element serverBirthdayConfig = (Element) serverElements.item(0);
+
+                        // Check, if User is already in config.xml or not and update the Date
+                        NodeList userNodes = serverBirthdayConfig.getElementsByTagName("u" + userId);
+                        if (userNodes.getLength() == 0) {
+                            Element userElement = config.createElement("u" + userId);
+                            userElement.setTextContent(dateClean);
+                            serverBirthdayConfig.appendChild(userElement);
+                        } else {
+                            serverBirthdayConfig.getElementsByTagName("u" + userId).item(0).setTextContent(dateClean);
+                        }
+                    }
+                }
+
+                // Set config.xml and respond to User
+                if (Utils.setConfiguration(config)) {
+                    Main.loggingService.info("succesfully updated config.xml");
+                    event.reply("I've set your Birthday to " + date).queue();
+                } else {
+                    Main.loggingService.severe("could not update config.xml");
+                    event.reply("There was an Issue setting your Birthday. Please try again later or contact my Creator!").queue();
+                }
             }
+        }
 
         // User wants to remove Birthday
-        } else if (event.getName().equals("remove_birthday")) {
+        else if (event.getName().equals("remove_birthday")) {
             event.reply("removebirthdaylololo").queue();
+        }
 
         // User wants a list of upcoming Birthdays
-        } else if (event.getName().equals("get_birthday")) {
+        else if (event.getName().equals("get_birthday")) {
             event.reply("getbirthdaylololo").queue();
         }
     }
