@@ -6,7 +6,6 @@ import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEve
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 public class Birthday extends ListenerAdapter {
@@ -47,8 +46,8 @@ public class Birthday extends ListenerAdapter {
                     // Check
                     if (serverElements.getLength() == 0) {
                         Element serverBirthdayConfig = config.createElement("s" + guildId);
-                        serverBirthdayConfig.setAttribute("enabled", "true");
-                        serverBirthdayConfig.setAttribute("broadcastId", "");
+                        serverBirthdayConfig.setAttribute("enabled", "false");
+                        serverBirthdayConfig.setAttribute("broadcastId", "null");
                         birthdayElement.appendChild(serverBirthdayConfig);
                     }
 
@@ -59,10 +58,10 @@ public class Birthday extends ListenerAdapter {
                         NodeList userNodes = serverBirthdayConfig.getElementsByTagName("u" + userId);
                         if (userNodes.getLength() == 0) {
                             Element userElement = config.createElement("u" + userId);
-                            userElement.setTextContent(dateClean);
+                            userElement.setTextContent(date);
                             serverBirthdayConfig.appendChild(userElement);
                         } else {
-                            serverBirthdayConfig.getElementsByTagName("u" + userId).item(0).setTextContent(dateClean);
+                            serverBirthdayConfig.getElementsByTagName("u" + userId).item(0).setTextContent(date);
                         }
                     }
                 }
@@ -86,6 +85,50 @@ public class Birthday extends ListenerAdapter {
         // User wants a list of upcoming Birthdays
         else if (event.getName().equals("get_birthday")) {
             event.reply("getbirthdaylololo").queue();
+        }
+
+        // User wants to set the Broadcast Channel
+        else if (event.getName().equals("set_broadcast_channel")) {
+            // Input Variables
+            String channelId = event.getOption("broadcastchannel").getAsString();
+
+            // Get Eventdata
+            String guildId = event.getGuild().getId();
+
+            // Doing a bit of Logging
+            Main.loggingService.info(event.getMember().getEffectiveName() + " has set the Broadcast ID for " + guildId + " to: " + channelId);
+
+            // Get config.xml
+            Document config = Utils.getConfiguration();
+            config.getDocumentElement().normalize();
+
+            // Check, if Server is already in Birthday List
+            NodeList birthdayConfigList = config.getElementsByTagName("birthday");
+            if (birthdayConfigList.getLength() > 0) {
+                Element birthdayElement = (Element) birthdayConfigList.item(0);
+                NodeList serverElements = birthdayElement.getElementsByTagName("s" + guildId);
+
+                // Check
+                if (serverElements.getLength() == 0) {
+                    Element serverBirthdayConfig = config.createElement("s" + guildId);
+                    serverBirthdayConfig.setAttribute("enabled", "true");
+                    serverBirthdayConfig.setAttribute("broadcastId", channelId);
+                    birthdayElement.appendChild(serverBirthdayConfig);
+                } else if (serverElements.getLength() > 0) {
+                    Element serverBirthdayConfig = (Element) serverElements.item(0);
+                    serverBirthdayConfig.setAttribute("enabled", "true");
+                    serverBirthdayConfig.setAttribute("broadcastId", channelId);
+                }
+            }
+
+            // Set config.xml and respond to User
+            if (Utils.setConfiguration(config)) {
+                Main.loggingService.info("succesfully updated config.xml");
+                event.reply("I've set the Broadcast ID to " + channelId).queue();
+            } else {
+                Main.loggingService.severe("could not update config.xml");
+                event.reply("There was an Issue setting the Broadcast ID. Please try again later or contact my Creator!").queue();
+            }
         }
     }
 }

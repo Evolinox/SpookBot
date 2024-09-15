@@ -1,8 +1,10 @@
 package Commands;
 
+import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.events.guild.GuildReadyEvent;
 import net.dv8tion.jda.api.events.session.ReadyEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import net.dv8tion.jda.api.interactions.commands.DefaultMemberPermissions;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.CommandData;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
@@ -74,6 +76,13 @@ public class Manager extends ListenerAdapter {
 
         // Get
         commandData.add(Commands.slash("get_birthday", "See all the Birthdays!"));
+
+        // Set Broadcast Channel
+        OptionData broadcastId = new OptionData(OptionType.STRING, "broadcastchannel", "Please enter the Channel ID for a Broadcast Channel", true);
+        commandData.add(Commands.slash("set_broadcast_channel", "The Broadcast Channel, where i can post Updates like Birthdays")
+                .addOptions(broadcastId)
+                .setDefaultPermissions(DefaultMemberPermissions.enabledFor(Permission.ADMINISTRATOR))
+        );
 
         event.getJDA().updateCommands().addCommands(commandData).queue();
     }
