@@ -63,6 +63,17 @@ public class Manager extends ListenerAdapter {
         OptionData customHour = new OptionData(OptionType.STRING, "customhour", "Enter a custom Hour (HH)", false);
         commandData.add(Commands.slash("timetable", "See all Arrivals and Departures from a Station (Germany Only)").addOptions(stationId, customDate, customHour));
 
+        // Birthday Commands
+        // Set
+        OptionData birthdayDate = new OptionData(OptionType.STRING, "date", "Your Birthday", true);
+        commandData.add(Commands.slash("set_birthday", "Set the Date of your Birthday, so you will get a special Role on this Day!").addOptions(birthdayDate));
+
+        // Remove
+        commandData.add(Commands.slash("remove_birthday", "Remove your Birthday from this Server's list!"));
+
+        // Get
+        commandData.add(Commands.slash("get_birthday", "See all the Birthdays!"));
+
         event.getJDA().updateCommands().addCommands(commandData).queue();
     }
 
