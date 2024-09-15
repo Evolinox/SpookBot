@@ -65,8 +65,9 @@ public class Manager extends ListenerAdapter {
 
         // Birthday Commands
         // Set
-        OptionData birthdayDate = new OptionData(OptionType.STRING, "date", "Your Birthday", true);
-        commandData.add(Commands.slash("set_birthday", "Set the Date of your Birthday, so you will get a special Role on this Day! (DDMM)").addOptions(birthdayDate));
+        OptionData birthdayDay = new OptionData(OptionType.INTEGER, "day", "Please enter the Day of your Birthday", true);
+        OptionData birthdayMonth = new OptionData(OptionType.INTEGER, "month", "Please enter the Month of your Birthday", true);
+        commandData.add(Commands.slash("set_birthday", "Set the Date of your Birthday, so you will get a special Role on this Day! (DDMM)").addOptions(birthdayDay, birthdayMonth));
 
         // Remove
         commandData.add(Commands.slash("remove_birthday", "Remove your Birthday from this Server's list!"));
