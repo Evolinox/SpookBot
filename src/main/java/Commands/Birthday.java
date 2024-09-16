@@ -5,6 +5,7 @@ import SpookBot.Utils;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.User;
+import net.dv8tion.jda.api.entities.channel.concrete.NewsChannel;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.events.guild.GuildReadyEvent;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
@@ -174,7 +175,7 @@ public class Birthday extends ListenerAdapter {
             String userId = null;
 
             // Prepare Broadcast Channel
-            TextChannel broadcastChannel = null;
+            NewsChannel broadcastChannel = null;
 
             // Check, if user has birthday
             Document config = Utils.getConfiguration();
@@ -189,7 +190,7 @@ public class Birthday extends ListenerAdapter {
                 if (guildNode.getNodeType() == Node.ELEMENT_NODE) {
                     Element guildElement = (Element) guildNode;
                     String channelId = guildElement.getAttribute("broadcastId");
-                    broadcastChannel = event.getGuild().getTextChannelById(channelId);
+                    broadcastChannel = event.getGuild().getNewsChannelById(channelId);
 
                     // Alle Kind-Knoten des <s123> Elements finden
                     NodeList childNodes = guildElement.getChildNodes();
