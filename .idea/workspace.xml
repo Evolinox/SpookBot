@@ -9,10 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7a652928-0a4b-472f-bc2b-24c47223091b" name="Changes" comment="Updated README.md">
+    <list default="true" id="7a652928-0a4b-472f-bc2b-24c47223091b" name="Changes" comment="Added set_broadcast_channel Command">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/Timetable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/Timetable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Timetable/XmlToJson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Timetable/XmlToJson.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/Birthday.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/Birthday.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +51,7 @@
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
         <option name="accountId" value="d8b95d03-d144-4b8c-8077-a77aee8ae83e" />
-        <option name="url" value="https://github.com/Evolinox/SpookBot" />
+        <option name="url" value="https://github.com/Evolinox/SpookBot.git" />
       </UrlAndAccount>
     </option>
   </component>
@@ -73,36 +73,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "JAR Application.SpookBot.jar.executor": "Run",
-    "JAR Application.SpookBotV1.jar.executor": "Run",
-    "Maven.SpookBot [install,--non-recursive].executor": "Run",
-    "Maven.main -g.executor": "Run",
-    "Maven.main -s.executor": "Run",
-    "Maven.main.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "UI_DESIGNER_EDITOR_MODE.PaletteManager.STATE": "right",
-    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.STATE": "left",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "v1.1",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "P:/Dokumente/GitHub/SpookBot",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Artifacts",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JAR Application.SpookBot.jar.executor&quot;: &quot;Run&quot;,
+    &quot;JAR Application.SpookBotV1.jar.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.SpookBot [install,--non-recursive].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.main -g.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.main -s.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;UI_DESIGNER_EDITOR_MODE.PaletteManager.STATE&quot;: &quot;right&quot;,
+    &quot;UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.STATE&quot;: &quot;left&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;v1.1&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;P:/Dokumente/GitHub/SpookBot&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Github\SpookBot\src\main\resources" />
@@ -190,6 +190,7 @@
     <attachedChunks>
       <set>
         <option value="jdk-11.0.21-corretto-11.0.21-f644763e9732-e2c057a1" />
+        <option value="jdk-11.0.22-corretto-11.0.22-4caba194b151-396cc1b2" />
       </set>
     </attachedChunks>
   </component>
@@ -229,6 +230,8 @@
       <workItem from="1714459697511" duration="2906000" />
       <workItem from="1714481608015" duration="6097000" />
       <workItem from="1714722139459" duration="4087000" />
+      <workItem from="1726394840150" duration="16164000" />
+      <workItem from="1726468136245" duration="7603000" />
     </task>
     <task id="LOCAL-00001" summary="Removed Bot Token">
       <created>1655665154386</created>
@@ -313,30 +316,6 @@
       <option name="presentableId" value="LOCAL-00012" />
       <option name="project" value="LOCAL" />
       <updated>1656776561681</updated>
-    </task>
-    <task id="LOCAL-00013" summary="Uncommented some Console commands">
-      <option name="closed" value="true" />
-      <created>1704364714851</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1704364714851</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Changed Project Color in IntelliJ">
-      <option name="closed" value="true" />
-      <created>1704365242108</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1704365242108</updated>
-    </task>
-    <task id="LOCAL-00015" summary="Removed YouTube Reference">
-      <option name="closed" value="true" />
-      <created>1713628923759</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1713628923759</updated>
     </task>
     <task id="LOCAL-00016" summary="Added getTitleSong() and getAuthorSong() in scheduler.java">
       <option name="closed" value="true" />
@@ -578,7 +557,63 @@
       <option name="project" value="LOCAL" />
       <updated>1714726136494</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="Added Format to Birthday Command">
+      <option name="closed" value="true" />
+      <created>1726395337383</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1726395337383</updated>
+    </task>
+    <task id="LOCAL-00047" summary="Updated OptionData for set_birthday">
+      <option name="closed" value="true" />
+      <created>1726396396856</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1726396396856</updated>
+    </task>
+    <task id="LOCAL-00048" summary="Added basic logic for set_birthday">
+      <option name="closed" value="true" />
+      <created>1726396417194</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1726396417194</updated>
+    </task>
+    <task id="LOCAL-00049" summary="Added Utils Class for common functions">
+      <option name="closed" value="true" />
+      <created>1726397589711</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1726397589711</updated>
+    </task>
+    <task id="LOCAL-00050" summary="Updated set_birthday Command">
+      <option name="closed" value="true" />
+      <created>1726403179688</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1726403179688</updated>
+    </task>
+    <task id="LOCAL-00051" summary="Updated README.md">
+      <option name="closed" value="true" />
+      <created>1726404841101</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1726404841101</updated>
+    </task>
+    <task id="LOCAL-00052" summary="Added set_broadcast_channel Command">
+      <option name="closed" value="true" />
+      <created>1726406507727</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1726406507727</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -608,12 +643,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added getTitleSong() and getAuthorSong() in scheduler.java" />
-    <MESSAGE value="Added Argument Option:&#10;Use -g on Startup to enable the Graphical User Interface.&#10;&#10;Warning: There will be a lot of NullPointerExceptions, since there are a few dozens Lines referencing the GUI, when its not enabled :(" />
-    <MESSAGE value="Edited README.md" />
-    <MESSAGE value="Added Headless Configuration. But it doesnt save it at the moment :D" />
-    <MESSAGE value="Added null check if GUI is there and also added Logging for when the GUI isn't there." />
-    <MESSAGE value="Publish Branch v1.1" />
     <MESSAGE value="Update JDA from beta 12 -&gt; beta 23" />
     <MESSAGE value="Removed doubled Entries for slf4j" />
     <MESSAGE value="Added Ollama Extension" />
@@ -632,8 +661,14 @@
     <MESSAGE value="Updated IntelliJ Stuff" />
     <MESSAGE value="Updated XmlToJson.java" />
     <MESSAGE value="Added custom Overrides for Date and Hour" />
+    <MESSAGE value="Added Format to Birthday Command" />
+    <MESSAGE value="Updated OptionData for set_birthday" />
+    <MESSAGE value="Added basic logic for set_birthday" />
+    <MESSAGE value="Added Utils Class for common functions" />
+    <MESSAGE value="Updated set_birthday Command" />
     <MESSAGE value="Updated README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated README.md" />
+    <MESSAGE value="Added set_broadcast_channel Command" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added set_broadcast_channel Command" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
