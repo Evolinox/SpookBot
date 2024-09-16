@@ -2,13 +2,39 @@ package Commands;
 
 import SpookBot.Main;
 import SpookBot.Utils;
+import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.entities.Member;
+import net.dv8tion.jda.api.entities.User;
+import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
+import net.dv8tion.jda.api.events.guild.GuildReadyEvent;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.util.Objects;
+import java.util.Set;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
 public class Birthday extends ListenerAdapter {
+    private final ScheduledExecutorService scheduler;
+    private final Set<LocalTime> target;
+    private final ZoneId zoneId = ZoneId.of("Europe/Berlin");
+
+    public Birthday() {
+        this.scheduler = Executors.newScheduledThreadPool(1);
+        this.target = Set.of(
+                LocalTime.of(6, 0)
+        );
+    }
     @Override
     public void onSlashCommandInteraction(SlashCommandInteractionEvent event) {
         // User wants to add Birthday
@@ -130,5 +156,80 @@ public class Birthday extends ListenerAdapter {
                 event.reply("There was an Issue setting the Broadcast ID. Please try again later or contact my Creator!").queue();
             }
         }
+    }
+
+    @Override
+    public void onGuildReady(GuildReadyEvent event) {
+        Runnable runnable = () -> {
+            // Today's Date
+            LocalTime now = LocalTime.now(zoneId);
+            LocalDate today = LocalDate.now(zoneId);
+            Integer day = today.getDayOfMonth();
+            Integer month = today.getMonthValue();
+
+            // Get Guild ID
+            String guildId = event.getGuild().getId();
+
+            // Prepare User ID
+            String userId = null;
+
+            // Prepare Broadcast Channel
+            TextChannel broadcastChannel = null;
+
+            // Check, if user has birthday
+            Document config = Utils.getConfiguration();
+
+            NodeList serverBirthdayConfig = config.getElementsByTagName("s" + guildId);
+
+            // Durchlaufe alle gefundenen <s123> Elemente
+            for (int i = 0; i < serverBirthdayConfig.getLength(); i++) {
+                Node guildNode = serverBirthdayConfig.item(i);
+
+                // Stelle sicher, dass es sich um ein Element handelt
+                if (guildNode.getNodeType() == Node.ELEMENT_NODE) {
+                    Element guildElement = (Element) guildNode;
+                    String channelId = guildElement.getAttribute("broadcastId");
+                    broadcastChannel = event.getGuild().getTextChannelById(channelId);
+
+                    // Alle Kind-Knoten des <s123> Elements finden
+                    NodeList childNodes = guildElement.getChildNodes();
+
+                    // Durchlaufe alle Kind-Knoten und prüfe den Inhalt
+                    for (int j = 0; j < childNodes.getLength(); j++) {
+                        Node childNode = childNodes.item(j);
+
+                        if (childNode.getNodeType() == Node.ELEMENT_NODE) {
+                            Element childElement = (Element) childNode;
+                            String content = childElement.getTextContent().trim();
+
+                            // Vergleich des Inhalts
+                            String[] dateSplit = content.split("\\.");
+                            String birthDay = dateSplit[0]; // Day
+                            String birthMonth = dateSplit[1]; // Month
+                            if (birthDay.equals(day.toString()) && birthMonth.equals(month.toString())) {
+                                userId = childElement.getTagName().replace("u", "");
+                                Main.loggingService.info(userId + " has its birthday today!");
+                            } else {
+                                Main.loggingService.info("Birthday System: No User has its birthday today!");
+                            }
+                        }
+                    }
+                }
+            }
+
+            for (LocalTime time : target) {
+                if (time.getHour() == now.getHour() && time.getMinute() == now.getMinute()) {
+                    EmbedBuilder birthdayMessage = new EmbedBuilder();
+
+                    birthdayMessage.setTitle("Happy Birthday!");
+                    birthdayMessage.setDescription("Heute hat <@" + userId + "> Geburtstag! Alles gute :)");
+                    birthdayMessage.setFooter("SpookBot v1.1");
+
+                    broadcastChannel.sendMessageEmbeds(birthdayMessage.build()).queue();
+                }
+            }
+        };
+
+        scheduler.scheduleAtFixedRate(runnable, 0, 1, TimeUnit.MINUTES);
     }
 }
