@@ -84,6 +84,13 @@ public class Manager extends ListenerAdapter {
                 .setDefaultPermissions(DefaultMemberPermissions.enabledFor(Permission.ADMINISTRATOR))
         );
 
+        // Echo
+        OptionData echoMessage = new OptionData(OptionType.STRING, "message", "Please enter a message i should sent", true);
+        commandData.add(Commands.slash("echo", "Tell me, what i should send in this Channel")
+                .addOptions(echoMessage)
+                .setDefaultPermissions(DefaultMemberPermissions.enabledFor(Permission.ADMINISTRATOR))
+        );
+
         event.getJDA().updateCommands().addCommands(commandData).queue();
     }
 

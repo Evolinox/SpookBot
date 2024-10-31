@@ -254,6 +254,7 @@ public class Main {
         bot.addEventListeners(new Ollama());
         bot.addEventListeners(new Timetable());
         bot.addEventListeners(new Birthday());
+        bot.addEventListeners(new Echo());
 
         JDA SpookBot = bot.build();
 

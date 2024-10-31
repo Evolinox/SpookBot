@@ -9,10 +9,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7a652928-0a4b-472f-bc2b-24c47223091b" name="Changes" comment="Added set_broadcast_channel Command">
+    <list default="true" id="7a652928-0a4b-472f-bc2b-24c47223091b" name="Changes" comment="Updated BroadcastChannel">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Commands/Echo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Commands/Birthday.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/Birthday.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/Manager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SpookBot/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SpookBot/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -181,9 +183,9 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.main" />
       <item itemvalue="Application.main -g" />
       <item itemvalue="Application.main -s" />
+      <item itemvalue="Application.main" />
     </list>
   </component>
   <component name="SharedIndexes">
@@ -231,7 +233,17 @@
       <workItem from="1714481608015" duration="6097000" />
       <workItem from="1714722139459" duration="4087000" />
       <workItem from="1726394840150" duration="16164000" />
-      <workItem from="1726468136245" duration="7603000" />
+      <workItem from="1726468136245" duration="9361000" />
+      <workItem from="1726654873889" duration="5000" />
+      <workItem from="1727175574772" duration="1000" />
+      <workItem from="1727687237267" duration="372000" />
+      <workItem from="1727857042990" duration="108000" />
+      <workItem from="1727857156979" duration="57000" />
+      <workItem from="1728458701127" duration="11000" />
+      <workItem from="1730324159627" duration="4000" />
+      <workItem from="1730362927697" duration="327000" />
+      <workItem from="1730375215232" duration="341000" />
+      <workItem from="1730375567599" duration="724000" />
     </task>
     <task id="LOCAL-00001" summary="Removed Bot Token">
       <created>1655665154386</created>
@@ -316,30 +328,6 @@
       <option name="presentableId" value="LOCAL-00012" />
       <option name="project" value="LOCAL" />
       <updated>1656776561681</updated>
-    </task>
-    <task id="LOCAL-00016" summary="Added getTitleSong() and getAuthorSong() in scheduler.java">
-      <option name="closed" value="true" />
-      <created>1713629396179</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1713629396179</updated>
-    </task>
-    <task id="LOCAL-00017" summary="Added Argument Option:&#10;Use -g on Startup to enable the Graphical User Interface.&#10;&#10;Warning: There will be a lot of NullPointerExceptions, since there are a few dozens Lines referencing the GUI, when its not enabled :(">
-      <option name="closed" value="true" />
-      <created>1713632668355</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1713632668355</updated>
-    </task>
-    <task id="LOCAL-00018" summary="Edited README.md">
-      <option name="closed" value="true" />
-      <created>1713632869705</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1713632869705</updated>
     </task>
     <task id="LOCAL-00019" summary="Added Headless Configuration. But it doesnt save it at the moment :D">
       <option name="closed" value="true" />
@@ -613,7 +601,31 @@
       <option name="project" value="LOCAL" />
       <updated>1726406507727</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="Added a daily Check for Birthdays with a possible Message about a User's Birthday">
+      <option name="closed" value="true" />
+      <created>1726478289241</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1726478289242</updated>
+    </task>
+    <task id="LOCAL-00054" summary="Updated IntelliJ Stuff">
+      <option name="closed" value="true" />
+      <created>1726478307379</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1726478307379</updated>
+    </task>
+    <task id="LOCAL-00055" summary="Updated BroadcastChannel">
+      <option name="closed" value="true" />
+      <created>1726479999424</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1726479999424</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -643,8 +655,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Update JDA from beta 12 -&gt; beta 23" />
-    <MESSAGE value="Removed doubled Entries for slf4j" />
     <MESSAGE value="Added Ollama Extension" />
     <MESSAGE value="Renamed manager -&gt; Manager" />
     <MESSAGE value="Added Choices to Ollama Slashcommand" />
@@ -658,7 +668,6 @@
     <MESSAGE value="Added DB API Variables to config.xml" />
     <MESSAGE value="Added DB API Configuration" />
     <MESSAGE value="Added XmlToJson Converter" />
-    <MESSAGE value="Updated IntelliJ Stuff" />
     <MESSAGE value="Updated XmlToJson.java" />
     <MESSAGE value="Added custom Overrides for Date and Hour" />
     <MESSAGE value="Added Format to Birthday Command" />
@@ -668,7 +677,10 @@
     <MESSAGE value="Updated set_birthday Command" />
     <MESSAGE value="Updated README.md" />
     <MESSAGE value="Added set_broadcast_channel Command" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added set_broadcast_channel Command" />
+    <MESSAGE value="Added a daily Check for Birthdays with a possible Message about a User's Birthday" />
+    <MESSAGE value="Updated IntelliJ Stuff" />
+    <MESSAGE value="Updated BroadcastChannel" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated BroadcastChannel" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
