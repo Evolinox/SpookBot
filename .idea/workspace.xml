@@ -9,12 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7a652928-0a4b-472f-bc2b-24c47223091b" name="Changes" comment="Updated BroadcastChannel">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Commands/Echo.java" afterDir="false" />
+    <list default="true" id="7a652928-0a4b-472f-bc2b-24c47223091b" name="Changes" comment="added echo command">
+      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Commands/Birthday.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/Birthday.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/Manager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SpookBot/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SpookBot/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,13 +23,14 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Dockerfile" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="v1.1" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -49,14 +48,12 @@
       </list>
     </option>
   </component>
-  <component name="GithubPullRequestsUISettings">
-    <option name="selectedUrlAndAccountId">
-      <UrlAndAccount>
-        <option name="accountId" value="d8b95d03-d144-4b8c-8077-a77aee8ae83e" />
-        <option name="url" value="https://github.com/Evolinox/SpookBot.git" />
-      </UrlAndAccount>
-    </option>
-  </component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Evolinox/SpookBot.git&quot;,
+    &quot;accountId&quot;: &quot;d8b95d03-d144-4b8c-8077-a77aee8ae83e&quot;
+  }
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -75,42 +72,43 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;JAR Application.SpookBot.jar.executor&quot;: &quot;Run&quot;,
-    &quot;JAR Application.SpookBotV1.jar.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.SpookBot [install,--non-recursive].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.main -g.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.main -s.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;UI_DESIGNER_EDITOR_MODE.PaletteManager.STATE&quot;: &quot;right&quot;,
-    &quot;UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.STATE&quot;: &quot;left&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;v1.1&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;P:/Dokumente/GitHub/SpookBot&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Docker.Dockerfile.executor": "Run",
+    "JAR Application.SpookBot.jar.executor": "Run",
+    "JAR Application.SpookBotV1.jar.executor": "Run",
+    "Maven.SpookBot [install,--non-recursive].executor": "Run",
+    "Maven.main -g.executor": "Run",
+    "Maven.main -s.executor": "Run",
+    "Maven.main.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "UI_DESIGNER_EDITOR_MODE.PaletteManager.STATE": "right",
+    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.STATE": "left",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "feat/docker",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "P:/Dokumente/GitHub/SpookBot",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Github\SpookBot\src\main\resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.main">
+  <component name="RunManager" selected="Docker.Dockerfile">
     <configuration name="main -g" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="corretto-11" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -182,17 +180,36 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Dockerfile" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
+      <deployment type="dockerfile">
+        <settings>
+          <option name="containerName" value="SpookBot" />
+          <option name="sourceFilePath" value="Dockerfile" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
+      <deployment type="dockerfile" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Application.main -g" />
       <item itemvalue="Application.main -s" />
       <item itemvalue="Application.main" />
+      <item itemvalue="Docker.Dockerfile" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Docker.Dockerfile" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-11.0.21-corretto-11.0.21-f644763e9732-e2c057a1" />
-        <option value="jdk-11.0.22-corretto-11.0.22-4caba194b151-396cc1b2" />
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23726.103" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23726.103" />
       </set>
     </attachedChunks>
   </component>
@@ -243,7 +260,13 @@
       <workItem from="1730324159627" duration="4000" />
       <workItem from="1730362927697" duration="327000" />
       <workItem from="1730375215232" duration="341000" />
-      <workItem from="1730375567599" duration="724000" />
+      <workItem from="1730375567599" duration="3372000" />
+      <workItem from="1730548050720" duration="605000" />
+      <workItem from="1730796970309" duration="17000" />
+      <workItem from="1730807822387" duration="67000" />
+      <workItem from="1730807893441" duration="29000" />
+      <workItem from="1732453175466" duration="27000" />
+      <workItem from="1733338281070" duration="1789000" />
     </task>
     <task id="LOCAL-00001" summary="Removed Bot Token">
       <created>1655665154386</created>
@@ -328,14 +351,6 @@
       <option name="presentableId" value="LOCAL-00012" />
       <option name="project" value="LOCAL" />
       <updated>1656776561681</updated>
-    </task>
-    <task id="LOCAL-00019" summary="Added Headless Configuration. But it doesnt save it at the moment :D">
-      <option name="closed" value="true" />
-      <created>1713635821263</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1713635821263</updated>
     </task>
     <task id="LOCAL-00020" summary="Added null check if GUI is there and also added Logging for when the GUI isn't there.">
       <option name="closed" value="true" />
@@ -625,7 +640,15 @@
       <option name="project" value="LOCAL" />
       <updated>1726479999424</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="added echo command">
+      <option name="closed" value="true" />
+      <created>1730376406405</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1730376406406</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -655,7 +678,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added Ollama Extension" />
     <MESSAGE value="Renamed manager -&gt; Manager" />
     <MESSAGE value="Added Choices to Ollama Slashcommand" />
     <MESSAGE value="Added Options to Ollama Prompt:&#10;- Model&#10;- Prompt" />
@@ -680,7 +702,8 @@
     <MESSAGE value="Added a daily Check for Birthdays with a possible Message about a User's Birthday" />
     <MESSAGE value="Updated IntelliJ Stuff" />
     <MESSAGE value="Updated BroadcastChannel" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated BroadcastChannel" />
+    <MESSAGE value="added echo command" />
+    <option name="LAST_COMMIT_MESSAGE" value="added echo command" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
