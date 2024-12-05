@@ -1,8 +1,10 @@
 package Commands;
 
+import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.events.guild.GuildReadyEvent;
 import net.dv8tion.jda.api.events.session.ReadyEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import net.dv8tion.jda.api.interactions.commands.DefaultMemberPermissions;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.CommandData;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
@@ -62,6 +64,32 @@ public class Manager extends ListenerAdapter {
         OptionData customDate = new OptionData(OptionType.STRING, "customdate", "Enter a custom Date (YYMMDD)", false);
         OptionData customHour = new OptionData(OptionType.STRING, "customhour", "Enter a custom Hour (HH)", false);
         commandData.add(Commands.slash("timetable", "See all Arrivals and Departures from a Station (Germany Only)").addOptions(stationId, customDate, customHour));
+
+        // Birthday Commands
+        // Set
+        OptionData birthdayDay = new OptionData(OptionType.INTEGER, "day", "Please enter the Day of your Birthday", true);
+        OptionData birthdayMonth = new OptionData(OptionType.INTEGER, "month", "Please enter the Month of your Birthday", true);
+        commandData.add(Commands.slash("set_birthday", "Set the Date of your Birthday, so you will get a special Role on this Day! (DDMM)").addOptions(birthdayDay, birthdayMonth));
+
+        // Remove
+        commandData.add(Commands.slash("remove_birthday", "Remove your Birthday from this Server's list!"));
+
+        // Get
+        commandData.add(Commands.slash("get_birthday", "See all the Birthdays!"));
+
+        // Set Broadcast Channel
+        OptionData broadcastId = new OptionData(OptionType.STRING, "broadcastchannel", "Please enter the Channel ID for a Broadcast Channel", true);
+        commandData.add(Commands.slash("set_broadcast_channel", "The Broadcast Channel, where i can post Updates like Birthdays")
+                .addOptions(broadcastId)
+                .setDefaultPermissions(DefaultMemberPermissions.enabledFor(Permission.ADMINISTRATOR))
+        );
+
+        // Echo
+        OptionData echoMessage = new OptionData(OptionType.STRING, "message", "Please enter a message i should sent", true);
+        commandData.add(Commands.slash("echo", "Tell me, what i should send in this Channel")
+                .addOptions(echoMessage)
+                .setDefaultPermissions(DefaultMemberPermissions.enabledFor(Permission.ADMINISTRATOR))
+        );
 
         event.getJDA().updateCommands().addCommands(commandData).queue();
     }

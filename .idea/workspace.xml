@@ -9,10 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7a652928-0a4b-472f-bc2b-24c47223091b" name="Changes" comment="Updated README.md">
+    <list default="true" id="7a652928-0a4b-472f-bc2b-24c47223091b" name="Changes" comment="feat(docker): added Dockerfile">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Commands/Timetable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Commands/Timetable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Timetable/XmlToJson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Timetable/XmlToJson.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SpookBot/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SpookBot/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,13 +24,14 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Dockerfile" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="v1.1" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -47,14 +49,16 @@
       </list>
     </option>
   </component>
-  <component name="GithubPullRequestsUISettings">
-    <option name="selectedUrlAndAccountId">
-      <UrlAndAccount>
-        <option name="accountId" value="d8b95d03-d144-4b8c-8077-a77aee8ae83e" />
-        <option name="url" value="https://github.com/Evolinox/SpookBot" />
-      </UrlAndAccount>
-    </option>
-  </component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Evolinox/SpookBot.git&quot;,
+    &quot;accountId&quot;: &quot;d8b95d03-d144-4b8c-8077-a77aee8ae83e&quot;
+  }
+}</component>
+  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
+}]]></component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -75,6 +79,8 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Docker.Dockerfile.executor": "Run",
+    "Docker.SpookBot.executor": "Run",
     "JAR Application.SpookBot.jar.executor": "Run",
     "JAR Application.SpookBotV1.jar.executor": "Run",
     "Maven.SpookBot [install,--non-recursive].executor": "Run",
@@ -87,7 +93,7 @@
     "UI_DESIGNER_EDITOR_MODE.PaletteManager.STATE": "right",
     "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.STATE": "left",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "v1.1",
+    "git-widget-placeholder": "feat/docker",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "P:/Dokumente/GitHub/SpookBot",
@@ -96,10 +102,10 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Artifacts",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -108,7 +114,7 @@
       <recent name="D:\Github\SpookBot\src\main\resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.main">
+  <component name="RunManager" selected="Docker.SpookBot">
     <configuration name="main -g" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="corretto-11" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -180,16 +186,55 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Dockerfile" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
+      <deployment type="dockerfile">
+        <settings>
+          <option name="buildOnly" value="true" />
+          <option name="containerName" value="SpookBot" />
+          <option name="showCommandPreview" value="true" />
+          <option name="sourceFilePath" value="Dockerfile" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="SpookBot" type="docker-deploy" factoryName="docker-image" temporary="true" server-name="Docker">
+      <deployment type="docker-image">
+        <settings>
+          <option name="imageTag" value="sha256:1e58439ad82c5a71f60f43aaa669b32a33371fa514e629256b8a0e4779059d45" />
+          <option name="containerName" value="spookbot" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="docker-image" temporary="true">
+      <deployment type="docker-image" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
+      <deployment type="dockerfile">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
     <list>
-      <item itemvalue="Application.main" />
       <item itemvalue="Application.main -g" />
       <item itemvalue="Application.main -s" />
+      <item itemvalue="Application.main" />
+      <item itemvalue="Docker.SpookBot" />
+      <item itemvalue="Docker.Dockerfile" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Docker.SpookBot" />
+        <item itemvalue="Docker.Dockerfile" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-11.0.21-corretto-11.0.21-f644763e9732-e2c057a1" />
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23726.103" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23726.103" />
       </set>
     </attachedChunks>
   </component>
@@ -229,6 +274,25 @@
       <workItem from="1714459697511" duration="2906000" />
       <workItem from="1714481608015" duration="6097000" />
       <workItem from="1714722139459" duration="4087000" />
+      <workItem from="1726394840150" duration="16164000" />
+      <workItem from="1726468136245" duration="9361000" />
+      <workItem from="1726654873889" duration="5000" />
+      <workItem from="1727175574772" duration="1000" />
+      <workItem from="1727687237267" duration="372000" />
+      <workItem from="1727857042990" duration="108000" />
+      <workItem from="1727857156979" duration="57000" />
+      <workItem from="1728458701127" duration="11000" />
+      <workItem from="1730324159627" duration="4000" />
+      <workItem from="1730362927697" duration="327000" />
+      <workItem from="1730375215232" duration="341000" />
+      <workItem from="1730375567599" duration="3372000" />
+      <workItem from="1730548050720" duration="605000" />
+      <workItem from="1730796970309" duration="17000" />
+      <workItem from="1730807822387" duration="67000" />
+      <workItem from="1730807893441" duration="29000" />
+      <workItem from="1732453175466" duration="27000" />
+      <workItem from="1733338281070" duration="4074000" />
+      <workItem from="1733412884434" duration="4701000" />
     </task>
     <task id="LOCAL-00001" summary="Removed Bot Token">
       <created>1655665154386</created>
@@ -313,70 +377,6 @@
       <option name="presentableId" value="LOCAL-00012" />
       <option name="project" value="LOCAL" />
       <updated>1656776561681</updated>
-    </task>
-    <task id="LOCAL-00013" summary="Uncommented some Console commands">
-      <option name="closed" value="true" />
-      <created>1704364714851</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1704364714851</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Changed Project Color in IntelliJ">
-      <option name="closed" value="true" />
-      <created>1704365242108</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1704365242108</updated>
-    </task>
-    <task id="LOCAL-00015" summary="Removed YouTube Reference">
-      <option name="closed" value="true" />
-      <created>1713628923759</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1713628923759</updated>
-    </task>
-    <task id="LOCAL-00016" summary="Added getTitleSong() and getAuthorSong() in scheduler.java">
-      <option name="closed" value="true" />
-      <created>1713629396179</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1713629396179</updated>
-    </task>
-    <task id="LOCAL-00017" summary="Added Argument Option:&#10;Use -g on Startup to enable the Graphical User Interface.&#10;&#10;Warning: There will be a lot of NullPointerExceptions, since there are a few dozens Lines referencing the GUI, when its not enabled :(">
-      <option name="closed" value="true" />
-      <created>1713632668355</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1713632668355</updated>
-    </task>
-    <task id="LOCAL-00018" summary="Edited README.md">
-      <option name="closed" value="true" />
-      <created>1713632869705</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1713632869705</updated>
-    </task>
-    <task id="LOCAL-00019" summary="Added Headless Configuration. But it doesnt save it at the moment :D">
-      <option name="closed" value="true" />
-      <created>1713635821263</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1713635821263</updated>
-    </task>
-    <task id="LOCAL-00020" summary="Added null check if GUI is there and also added Logging for when the GUI isn't there.">
-      <option name="closed" value="true" />
-      <created>1713652580800</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1713652580800</updated>
     </task>
     <task id="LOCAL-00021" summary="Added null check if GUI is there and also added Logging for when the GUI isn't there.">
       <option name="closed" value="true" />
@@ -578,7 +578,103 @@
       <option name="project" value="LOCAL" />
       <updated>1714726136494</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="Added Format to Birthday Command">
+      <option name="closed" value="true" />
+      <created>1726395337383</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1726395337383</updated>
+    </task>
+    <task id="LOCAL-00047" summary="Updated OptionData for set_birthday">
+      <option name="closed" value="true" />
+      <created>1726396396856</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1726396396856</updated>
+    </task>
+    <task id="LOCAL-00048" summary="Added basic logic for set_birthday">
+      <option name="closed" value="true" />
+      <created>1726396417194</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1726396417194</updated>
+    </task>
+    <task id="LOCAL-00049" summary="Added Utils Class for common functions">
+      <option name="closed" value="true" />
+      <created>1726397589711</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1726397589711</updated>
+    </task>
+    <task id="LOCAL-00050" summary="Updated set_birthday Command">
+      <option name="closed" value="true" />
+      <created>1726403179688</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1726403179688</updated>
+    </task>
+    <task id="LOCAL-00051" summary="Updated README.md">
+      <option name="closed" value="true" />
+      <created>1726404841101</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1726404841101</updated>
+    </task>
+    <task id="LOCAL-00052" summary="Added set_broadcast_channel Command">
+      <option name="closed" value="true" />
+      <created>1726406507727</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1726406507727</updated>
+    </task>
+    <task id="LOCAL-00053" summary="Added a daily Check for Birthdays with a possible Message about a User's Birthday">
+      <option name="closed" value="true" />
+      <created>1726478289241</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1726478289242</updated>
+    </task>
+    <task id="LOCAL-00054" summary="Updated IntelliJ Stuff">
+      <option name="closed" value="true" />
+      <created>1726478307379</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1726478307379</updated>
+    </task>
+    <task id="LOCAL-00055" summary="Updated BroadcastChannel">
+      <option name="closed" value="true" />
+      <created>1726479999424</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1726479999424</updated>
+    </task>
+    <task id="LOCAL-00056" summary="added echo command">
+      <option name="closed" value="true" />
+      <created>1730376406405</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1730376406406</updated>
+    </task>
+    <task id="LOCAL-00057" summary="feat(docker): added Dockerfile">
+      <option name="closed" value="true" />
+      <created>1733340284255</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1733340284255</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -608,16 +704,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added getTitleSong() and getAuthorSong() in scheduler.java" />
-    <MESSAGE value="Added Argument Option:&#10;Use -g on Startup to enable the Graphical User Interface.&#10;&#10;Warning: There will be a lot of NullPointerExceptions, since there are a few dozens Lines referencing the GUI, when its not enabled :(" />
-    <MESSAGE value="Edited README.md" />
-    <MESSAGE value="Added Headless Configuration. But it doesnt save it at the moment :D" />
-    <MESSAGE value="Added null check if GUI is there and also added Logging for when the GUI isn't there." />
-    <MESSAGE value="Publish Branch v1.1" />
-    <MESSAGE value="Update JDA from beta 12 -&gt; beta 23" />
-    <MESSAGE value="Removed doubled Entries for slf4j" />
-    <MESSAGE value="Added Ollama Extension" />
-    <MESSAGE value="Renamed manager -&gt; Manager" />
     <MESSAGE value="Added Choices to Ollama Slashcommand" />
     <MESSAGE value="Added Options to Ollama Prompt:&#10;- Model&#10;- Prompt" />
     <MESSAGE value="Added JSONObject to filter Ollamas Response" />
@@ -629,11 +715,21 @@
     <MESSAGE value="Added DB API Variables to config.xml" />
     <MESSAGE value="Added DB API Configuration" />
     <MESSAGE value="Added XmlToJson Converter" />
-    <MESSAGE value="Updated IntelliJ Stuff" />
     <MESSAGE value="Updated XmlToJson.java" />
     <MESSAGE value="Added custom Overrides for Date and Hour" />
+    <MESSAGE value="Added Format to Birthday Command" />
+    <MESSAGE value="Updated OptionData for set_birthday" />
+    <MESSAGE value="Added basic logic for set_birthday" />
+    <MESSAGE value="Added Utils Class for common functions" />
+    <MESSAGE value="Updated set_birthday Command" />
     <MESSAGE value="Updated README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated README.md" />
+    <MESSAGE value="Added set_broadcast_channel Command" />
+    <MESSAGE value="Added a daily Check for Birthdays with a possible Message about a User's Birthday" />
+    <MESSAGE value="Updated IntelliJ Stuff" />
+    <MESSAGE value="Updated BroadcastChannel" />
+    <MESSAGE value="added echo command" />
+    <MESSAGE value="feat(docker): added Dockerfile" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(docker): added Dockerfile" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

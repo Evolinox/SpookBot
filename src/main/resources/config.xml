@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <settings>
+    <setup>false</setup>
     <botToken></botToken>
     <commandPrefix></commandPrefix>
     <botActivity></botActivity>
     <laf>Nimbus</laf>
     <dbApiKey></dbApiKey>
     <dbApiSecret></dbApiSecret>
+    <birthday>
+        <s123>
+            <u123>123</u123>
+            <u456>456</u456>
+            <u789>789</u789>
+        </s123>
+    </birthday>
 </settings>

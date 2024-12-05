@@ -77,8 +77,37 @@ public class Main {
             headlessSetup();
         }
 
-        startSpookBot();
+        // Test, if config-file has been setup
+        // mainly for Docker
+        if (setupDone()) {
+            startSpookBot();
+        } else {
+            headlessSetup();
+            startSpookBot();
+        }
+    }
 
+    private static boolean setupDone() {
+        String path = System.getProperty("user.home") + File.separator + "Documents" + File.separator + "SpookBotSettings";
+        File file = new File(path + File.separator + "config.xml");
+
+        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder documentBuilder = null;
+        Document document = null;
+
+        try {
+            documentBuilder = documentBuilderFactory.newDocumentBuilder();
+        } catch (Exception d) {
+            loggingService.severe(d.getMessage());
+        }
+
+        try {
+            document = documentBuilder.parse(file);
+        } catch (Exception e) {
+            loggingService.severe(e.getMessage());
+        }
+
+        return Boolean.parseBoolean(document.getElementsByTagName("setup").item(0).getTextContent());
     }
 
     public static void setActivity(Boolean Custom, String activity) {
@@ -158,6 +187,7 @@ public class Main {
         System.out.println("Are your Input's correct? (Y/N)");
 
         if (handleConfirmation()) {
+            document.getElementsByTagName("setup").item(0).setTextContent("true");
             document.getElementsByTagName("commandPrefix").item(0).setTextContent(prefix);
             document.getElementsByTagName("botToken").item(0).setTextContent(token);
             document.getElementsByTagName("botActivity").item(0).setTextContent(activity);
@@ -253,6 +283,8 @@ public class Main {
         bot.addEventListeners(new Reporting());
         bot.addEventListeners(new Ollama());
         bot.addEventListeners(new Timetable());
+        bot.addEventListeners(new Birthday());
+        bot.addEventListeners(new Echo());
 
         JDA SpookBot = bot.build();
 
