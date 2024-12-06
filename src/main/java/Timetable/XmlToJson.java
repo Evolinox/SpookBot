@@ -31,9 +31,7 @@ public class XmlToJson {
         Document document = null;
         try {
             document = builder.parse(inStream);
-        } catch (SAXException e) {
-            Main.loggingService.severe(String.valueOf(e));
-        } catch (IOException e) {
+        } catch (SAXException | IOException e) {
             Main.loggingService.severe(String.valueOf(e));
         }
 
