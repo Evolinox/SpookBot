@@ -246,9 +246,6 @@ public class Birthday extends ListenerAdapter {
                             String birthMonth = dateSplit[1]; // Month
                             if (birthDay.equals(day.toString()) && birthMonth.equals(month.toString())) {
                                 userId = childElement.getTagName().replace("u", "");
-                                Main.loggingService.info(userId + " has its birthday today!");
-                            } else {
-                                Main.loggingService.info("Birthday System: No User has its birthday today!");
                             }
                         }
                     }
