@@ -15,6 +15,7 @@ import org.w3c.dom.NodeList;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -101,12 +102,12 @@ public class Birthday extends ListenerAdapter {
 
         // User wants to remove Birthday
         else if (event.getName().equals("remove_birthday")) {
-            event.reply("removebirthdaylololo").queue();
+            event.reply("This Feature is currently not implemented, please ask my owner for this").queue();
         }
 
         // User wants a list of upcoming Birthdays
         else if (event.getName().equals("get_birthday")) {
-            event.reply("getbirthdaylololo").queue();
+            event.reply("This Feature is currently not implemented, please ask my owner for this").queue();
         }
 
         // User wants to set the Broadcast Channel
@@ -152,6 +153,48 @@ public class Birthday extends ListenerAdapter {
                 event.reply("There was an Issue setting the Broadcast ID. Please try again later or contact my Creator!").queue();
             }
         }
+
+        // User wants to set the Broadcast Channel
+        else if (event.getName().equals("set_birthday_role")) {
+            // Input Variables
+            String roleId = event.getOption("birthdayrole").getAsString();
+
+            // Get Eventdata
+            String guildId = event.getGuild().getId();
+
+            // Doing a bit of Logging
+            Main.loggingService.info(event.getMember().getEffectiveName() + " has set the Birthdayrole for " + guildId + " to: " + roleId);
+
+            // Get config.xml
+            Document config = Utils.getConfiguration();
+            config.getDocumentElement().normalize();
+
+            // Check, if Server is already in Birthday List
+            NodeList birthdayConfigList = config.getElementsByTagName("birthday");
+            if (birthdayConfigList.getLength() > 0) {
+                Element birthdayElement = (Element) birthdayConfigList.item(0);
+                NodeList serverElements = birthdayElement.getElementsByTagName("s" + guildId);
+
+                // Check
+                if (serverElements.getLength() == 0) {
+                    Element serverBirthdayConfig = config.createElement("s" + guildId);
+                    serverBirthdayConfig.setAttribute("birthdayRoleId", roleId);
+                    birthdayElement.appendChild(serverBirthdayConfig);
+                } else if (serverElements.getLength() > 0) {
+                    Element serverBirthdayConfig = (Element) serverElements.item(0);
+                    serverBirthdayConfig.setAttribute("birthdayRoleId", roleId);
+                }
+            }
+
+            // Set config.xml and respond to User
+            if (Utils.setConfiguration(config)) {
+                Main.loggingService.info("succesfully updated config.xml");
+                event.reply("I've set the Birthdayrole to " + roleId).queue();
+            } else {
+                Main.loggingService.severe("could not update config.xml");
+                event.reply("There was an Issue setting the Birthdayrole. Please try again later or contact my Creator!").queue();
+            }
+        }
     }
 
     @Override
@@ -166,8 +209,8 @@ public class Birthday extends ListenerAdapter {
             // Get Guild ID
             String guildId = event.getGuild().getId();
 
-            // Prepare User ID
-            String userId = null;
+            // Prepare User ID List
+            ArrayList<String> userIds = new ArrayList<String>();
 
             // Prepare Broadcast Channel
             NewsChannel broadcastChannel = null;
@@ -203,7 +246,8 @@ public class Birthday extends ListenerAdapter {
                             String birthDay = dateSplit[0]; // Day
                             String birthMonth = dateSplit[1]; // Month
                             if (birthDay.equals(day.toString()) && birthMonth.equals(month.toString())) {
-                                userId = childElement.getTagName().replace("u", "");
+                                String userId = childElement.getTagName().replace("u", "");
+                                userIds.add(userId);
                             }
                         }
                     }
@@ -212,13 +256,16 @@ public class Birthday extends ListenerAdapter {
 
             for (LocalTime time : target) {
                 if (time.getHour() == now.getHour() && time.getMinute() == now.getMinute()) {
-                    EmbedBuilder birthdayMessage = new EmbedBuilder();
+                    for (String userId : userIds) {
+                        EmbedBuilder birthdayMessage = new EmbedBuilder();
 
-                    birthdayMessage.setTitle("Happy Birthday!");
-                    birthdayMessage.setDescription("Heute hat <@" + userId + "> Geburtstag! Alles gute :)");
-                    birthdayMessage.setFooter("SpookBot v1.1");
+                        birthdayMessage.setTitle("Happy Birthday!");
+                        birthdayMessage.setDescription("Heute hat <@" + userId + "> Geburtstag! Alles gute :)");
+                        birthdayMessage.setFooter("SpookBot v1.1");
 
-                    broadcastChannel.sendMessageEmbeds(birthdayMessage.build()).queue();
+                        broadcastChannel.sendMessageEmbeds(birthdayMessage.build()).queue();
+                        userIds.remove(userId);
+                    }
                 }
             }
         };

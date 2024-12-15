@@ -84,6 +84,13 @@ public class Manager extends ListenerAdapter {
                 .setDefaultPermissions(DefaultMemberPermissions.enabledFor(Permission.ADMINISTRATOR))
         );
 
+        // Set Birthday Role
+        OptionData birthdayRoleId = new OptionData(OptionType.STRING, "birthdayrole", "Please enter the Birthdayrole ID", true);
+        commandData.add(Commands.slash("set_birthday_role", "The Birthdayrole, which i will give the user, who has its birthday")
+                .addOptions(birthdayRoleId)
+                .setDefaultPermissions(DefaultMemberPermissions.enabledFor(Permission.ADMINISTRATOR))
+        );
+
         // Echo
         OptionData echoMessage = new OptionData(OptionType.STRING, "message", "Please enter a message i should sent", true);
         commandData.add(Commands.slash("echo", "Tell me, what i should send in this Channel")
