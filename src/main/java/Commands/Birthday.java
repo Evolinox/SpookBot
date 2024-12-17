@@ -3,6 +3,10 @@ package Commands;
 import SpookBot.Main;
 import SpookBot.Utils;
 import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.entities.Member;
+import net.dv8tion.jda.api.entities.Role;
+import net.dv8tion.jda.api.entities.User;
+import net.dv8tion.jda.api.entities.UserSnowflake;
 import net.dv8tion.jda.api.entities.channel.concrete.NewsChannel;
 import net.dv8tion.jda.api.events.guild.GuildReadyEvent;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
@@ -107,7 +111,54 @@ public class Birthday extends ListenerAdapter {
 
         // User wants a list of upcoming Birthdays
         else if (event.getName().equals("get_birthday")) {
-            event.reply("This Feature is currently not implemented, please ask my owner for this").queue();
+            // Get Guild ID
+            String guildId = event.getGuild().getId();
+
+            // Check, if user has birthday
+            Document config = Utils.getConfiguration();
+
+            EmbedBuilder birthdayCollectionEmbed = new EmbedBuilder();
+            birthdayCollectionEmbed.setTitle("Upcoming Birthdays");
+            birthdayCollectionEmbed.setFooter("SpookBot v1.1");
+
+            NodeList serverBirthdayConfig = config.getElementsByTagName("s" + guildId);
+            // Durchlaufe alle gefundenen <s123> Elemente
+            for (int i = 0; i < serverBirthdayConfig.getLength(); i++) {
+                Node guildNode = serverBirthdayConfig.item(i);
+
+                // Stelle sicher, dass es sich um ein Element handelt
+                if (guildNode.getNodeType() == Node.ELEMENT_NODE) {
+                    Element guildElement = (Element) guildNode;
+
+                    // Alle Kind-Knoten des <s123> Elements finden
+                    NodeList childNodes = guildElement.getChildNodes();
+
+                    // Maximal fünf User sollen auf die Liste
+                    int maxAmountUsers = 5;
+                    if (childNodes.getLength() < 5) {
+                        maxAmountUsers = childNodes.getLength();
+                    }
+
+                    // Durchlaufe alle Kind-Knoten und prüfe den Inhalt
+                    for (int j = 0; j <= maxAmountUsers; j++) {
+                        Node childNode = childNodes.item(j);
+
+                        if (childNode.getNodeType() == Node.ELEMENT_NODE) {
+                            Element childElement = (Element) childNode;
+                            String content = childElement.getTextContent().trim();
+                            String userId = childElement.getTagName().replace("u", "");
+                            User user = event.getJDA().retrieveUserById(userId).complete();
+                            String userName = user.getEffectiveName();
+
+                            String[] dateSplit = content.split("\\.");
+                            String birthDay = dateSplit[0]; // Day
+                            String birthMonth = dateSplit[1]; // Month
+                            birthdayCollectionEmbed.addField(userName, "hat am " + birthDay + "." + birthMonth + ". Geburtstag!", false);
+                        }
+                    }
+                }
+            }
+            event.replyEmbeds(birthdayCollectionEmbed.build()).queue();
         }
 
         // User wants to set the Broadcast Channel
@@ -215,6 +266,9 @@ public class Birthday extends ListenerAdapter {
             // Prepare Broadcast Channel
             NewsChannel broadcastChannel = null;
 
+            // Prepare Birthday Role
+            Role birthdayRole = null;
+
             // Check, if user has birthday
             Document config = Utils.getConfiguration();
 
@@ -229,6 +283,8 @@ public class Birthday extends ListenerAdapter {
                     Element guildElement = (Element) guildNode;
                     String channelId = guildElement.getAttribute("broadcastId");
                     broadcastChannel = event.getGuild().getNewsChannelById(channelId);
+                    String roleId = guildElement.getAttribute("birthdayRoleId");
+                    birthdayRole = event.getGuild().getRoleById(roleId);
 
                     // Alle Kind-Knoten des <s123> Elements finden
                     NodeList childNodes = guildElement.getChildNodes();
@@ -256,7 +312,21 @@ public class Birthday extends ListenerAdapter {
 
             for (LocalTime time : target) {
                 if (time.getHour() == now.getHour() && time.getMinute() == now.getMinute()) {
+                    // Remove Birthday Role from everyone, that has it
+                    if (birthdayRole != null) {
+                        for (Member member : event.getGuild().getMembersWithRoles(birthdayRole)) {
+                            event.getGuild().removeRoleFromMember(member, birthdayRole).queue();
+                        }
+                    }
+
+                    // Check for Birthdays
                     for (String userId : userIds) {
+                        User user = event.getJDA().getUserById(userId);
+
+                        if (birthdayRole != null && user != null) {
+                            event.getGuild().addRoleToMember(user, birthdayRole).queue();
+                        }
+
                         EmbedBuilder birthdayMessage = new EmbedBuilder();
 
                         birthdayMessage.setTitle("Happy Birthday!");
