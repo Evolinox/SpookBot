@@ -63,7 +63,8 @@ public class Manager extends ListenerAdapter {
                 .addChoice("Heilbronn Hbf", "8000157");
         OptionData customDate = new OptionData(OptionType.STRING, "customdate", "Enter a custom Date (YYMMDD)", false);
         OptionData customHour = new OptionData(OptionType.STRING, "customhour", "Enter a custom Hour (HH)", false);
-        commandData.add(Commands.slash("timetable", "See all Arrivals and Departures from a Station (Germany Only)").addOptions(stationId, customDate, customHour));
+        OptionData includeEndingTrains = new OptionData(OptionType.BOOLEAN, "includeendingtrains", "Includes Ending Trains", false);
+        commandData.add(Commands.slash("timetable", "See all Arrivals and Departures from a Station (Germany Only)").addOptions(stationId, customDate, customHour, includeEndingTrains));
 
         // Birthday Commands
         // Set
