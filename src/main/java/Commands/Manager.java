@@ -58,9 +58,12 @@ public class Manager extends ListenerAdapter {
 
         //Timetable
         OptionData stationId = new OptionData(OptionType.STRING, "station", "Which Station?", true)
-                .addChoice("Mosbach (Baden)", "8004094")
-                .addChoice("Mosbach-Neckarelz", "8000264")
-                .addChoice("Heilbronn Hbf", "8000157");
+                .addChoice("Mosbach (Baden) | (RMO)", "8004094")
+                .addChoice("Mosbach-Neckarelz | (RNZ)", "8000264")
+                .addChoice("Heidelberg Hbf | (RH)", "8000156")
+                .addChoice("Bad Friedrichshall Hbf | (TBF)", "8000017")
+                .addChoice("Neckarsulm | (TN)", "8004220")
+                .addChoice("Heilbronn Hbf | (TH)", "8000157");
         OptionData customDate = new OptionData(OptionType.STRING, "customdate", "Enter a custom Date (YYMMDD)", false);
         OptionData customHour = new OptionData(OptionType.STRING, "customhour", "Enter a custom Hour (HH)", false);
         OptionData includeEndingTrains = new OptionData(OptionType.BOOLEAN, "includeendingtrains", "Includes Ending Trains", false);
