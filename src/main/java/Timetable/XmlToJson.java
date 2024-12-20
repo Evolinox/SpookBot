@@ -86,6 +86,8 @@ public class XmlToJson {
                         }
                         if (!serviceDataElement.getAttribute("l").isEmpty()) {
                             serviceLine = serviceDataElement.getAttribute("l");
+                        }  else {
+                            serviceLine = serviceNumber;
                         }
                         if (!serviceDataElement.getAttribute("c").isEmpty()) {
                             serviceType = serviceDataElement.getAttribute("c");
