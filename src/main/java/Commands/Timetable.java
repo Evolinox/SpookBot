@@ -34,7 +34,7 @@ public class Timetable extends ListenerAdapter {
             // Embed
             EmbedBuilder timetableEmbed = new EmbedBuilder();
             timetableEmbed.setTitle(timetable.optString("station"));
-            timetableEmbed.setDescription("Fahrplan um " + event.getOption("customhour").getAsString());
+            timetableEmbed.setDescription("Fahrplan von " + event.getOption("customhour").getAsString() + " bis " + (event.getOption("customhour").getAsInt() + 1) + " Uhr");
             timetableEmbed.setFooter("Timetable Plugin V1 · Lokalen Fahrplan beachten!");
             timetableEmbed.setColor(Color.red);
 
