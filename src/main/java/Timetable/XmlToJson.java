@@ -18,9 +18,6 @@ import java.util.Objects;
 
 public class XmlToJson {
     public static JSONObject ToJSON(HttpResponse<String> response) {
-        // Debug, will be removed, when done.
-        Main.loggingService.info(response.body());
-
         // Document Builder
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = null;

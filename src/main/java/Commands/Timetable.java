@@ -40,7 +40,6 @@ public class Timetable extends ListenerAdapter {
 
             try {
                 timetable = Request.getTimetable(event.getOption("station").getAsString(), date, hour);
-                System.out.println(timetable.toString(1));
             } catch (IOException | InterruptedException e) {
                 throw new RuntimeException(e);
             }
