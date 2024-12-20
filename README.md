@@ -15,8 +15,9 @@ Stream Audio from various Sources
 Inspect Discord User Profiles  
 Create a verification embed for new Members  
 Integrated Ollama AI (Requires Local Server)  
-Get a Timetable for a Trainstation (Germany only)  
-Set Birthdays and get a reminder for them in a specifiable Channel  
+Get a Timetable for a Trainstation (currently only three stations supported)  
+Set Birthdays and get a reminder for them in a specifiable Channel
+Send Echos as Bot
 
 ## Setup
 > [!IMPORTANT]
